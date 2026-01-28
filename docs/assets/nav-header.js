@@ -1,116 +1,94 @@
-// Navigation Header para CNES 360 v2
+// Navegação do CNES 360 v2
 (function() {
-    const currentPath = window.location.pathname;
+    // Detectar nível de profundidade da página
+    const path = window.location.pathname;
+    const isSubfolder = path.includes('/analises/') || path.includes('/metodologias/') || 
+                        path.includes('/guias/') || path.includes('/tecnicos/') || 
+                        path.includes('/projetos/');
+    const prefix = isSubfolder ? '../' : '';
     
-    // Determinar nível de profundidade para links relativos
-    const depth = (currentPath.match(/\//g) || []).length - 1;
-    const prefix = depth > 1 ? '../' : '';
+    // Mapa de navegação
+    const pages = [
+        { name: 'Portal', url: prefix + 'index.html', icon: 'fa-home' },
+        { name: 'Índice', url: prefix + 'INDEX.html', icon: 'fa-list' },
+        { name: 'Análise Macrorregião', url: prefix + 'analises/ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.html', icon: 'fa-chart-bar' },
+        { name: 'Clusterização', url: prefix + 'analises/CLUSTERIZACAO_LEITOS_CNES.html', icon: 'fa-project-diagram' },
+        { name: 'Taxonomia', url: prefix + 'metodologias/TAXONOMIA_LEITOS_CNES.html', icon: 'fa-sitemap' },
+        { name: 'Tipologia', url: prefix + 'metodologias/TIPOLOGIA_LEITOS_CNES.html', icon: 'fa-tags' },
+        { name: 'Guia Decisão', url: prefix + 'guias/GUIA_TOMADA_DECISAO.html', icon: 'fa-compass' },
+        { name: 'Nota Técnica', url: prefix + 'tecnicos/NOTA_TECNICA_ETL_CNES_LEITOS.html', icon: 'fa-cogs' },
+        { name: 'Projeto', url: prefix + 'projetos/PROJETO.html', icon: 'fa-info-circle' },
+        { name: 'Terra SUS', url: prefix + 'projetos/PROJETO_TERRA_SUS.html', icon: 'fa-globe' }
+    ];
+    
+    // Encontrar página atual
+    let currentIndex = -1;
+    const currentPath = window.location.pathname;
+    pages.forEach((page, index) => {
+        if (currentPath.endsWith(page.url.replace(prefix, '').replace('../', ''))) {
+            currentIndex = index;
+        }
+    });
     
     // Criar header de navegação
-    const navHTML = `
-    <div id="cnes-nav-header" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        background: linear-gradient(135deg, #0066cc, #004499);
-        padding: 12px 20px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    ">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <a href="${prefix}index.html" style="
-                color: white;
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 1.1rem;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            ">
-                <span style="font-size: 1.3rem;">🏥</span>
-                CNES 360 v2
-            </a>
-            <span style="color: rgba(255,255,255,0.5);">|</span>
-            <a href="${prefix}INDEX.html" style="
-                color: rgba(255,255,255,0.9);
-                text-decoration: none;
-                font-size: 0.9rem;
-                padding: 6px 12px;
-                border-radius: 6px;
-                transition: background 0.2s;
-            " onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='transparent'">
-                📚 Índice
-            </a>
+    const header = document.createElement('div');
+    header.className = 'cnes-nav-header';
+    header.innerHTML = `
+        <div class="cnes-nav-container">
+            <div class="cnes-nav-brand">
+                <a href="${prefix}index.html">
+                    <i class="fas fa-hospital"></i>
+                    <span>CNES 360 v2</span>
+                </a>
+            </div>
+            <div class="cnes-nav-links">
+                <a href="${prefix}index.html" class="cnes-nav-link" title="Portal">
+                    <i class="fas fa-home"></i> Portal
+                </a>
+                <a href="${prefix}INDEX.html" class="cnes-nav-link" title="Índice">
+                    <i class="fas fa-list"></i> Índice
+                </a>
+                <div class="cnes-nav-dropdown">
+                    <button class="cnes-nav-link cnes-dropdown-toggle">
+                        <i class="fas fa-file-alt"></i> Documentos <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="cnes-dropdown-menu">
+                        <a href="${prefix}analises/ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.html"><i class="fas fa-chart-bar"></i> Análise Macrorregião</a>
+                        <a href="${prefix}analises/CLUSTERIZACAO_LEITOS_CNES.html"><i class="fas fa-project-diagram"></i> Clusterização</a>
+                        <a href="${prefix}metodologias/TAXONOMIA_LEITOS_CNES.html"><i class="fas fa-sitemap"></i> Taxonomia</a>
+                        <a href="${prefix}metodologias/TIPOLOGIA_LEITOS_CNES.html"><i class="fas fa-tags"></i> Tipologia</a>
+                        <a href="${prefix}guias/GUIA_TOMADA_DECISAO.html"><i class="fas fa-compass"></i> Guia Decisão</a>
+                        <a href="${prefix}tecnicos/NOTA_TECNICA_ETL_CNES_LEITOS.html"><i class="fas fa-cogs"></i> Nota Técnica</a>
+                        <a href="${prefix}projetos/PROJETO.html"><i class="fas fa-info-circle"></i> Projeto</a>
+                        <a href="${prefix}projetos/PROJETO_TERRA_SUS.html"><i class="fas fa-globe"></i> Terra SUS</a>
+                    </div>
+                </div>
+            </div>
+            <div class="cnes-nav-arrows">
+                ${currentIndex > 0 ? `<a href="${pages[currentIndex - 1].url}" class="cnes-nav-arrow" title="${pages[currentIndex - 1].name}"><i class="fas fa-chevron-left"></i> Anterior</a>` : '<span class="cnes-nav-arrow disabled"><i class="fas fa-chevron-left"></i> Anterior</span>'}
+                ${currentIndex < pages.length - 1 && currentIndex >= 0 ? `<a href="${pages[currentIndex + 1].url}" class="cnes-nav-arrow" title="${pages[currentIndex + 1].name}">Próximo <i class="fas fa-chevron-right"></i></a>` : '<span class="cnes-nav-arrow disabled">Próximo <i class="fas fa-chevron-right"></i></span>'}
+            </div>
         </div>
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <button onclick="history.back()" style="
-                background: rgba(255,255,255,0.15);
-                border: none;
-                color: white;
-                padding: 8px 16px;
-                border-radius: 6px;
-                cursor: pointer;
-                font-size: 0.85rem;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                transition: background 0.2s;
-            " onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
-                ← Voltar
-            </button>
-            <button onclick="history.forward()" style="
-                background: rgba(255,255,255,0.15);
-                border: none;
-                color: white;
-                padding: 8px 16px;
-                border-radius: 6px;
-                cursor: pointer;
-                font-size: 0.85rem;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                transition: background 0.2s;
-            " onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
-                Avançar →
-            </button>
-            <a href="${prefix}index.html" style="
-                background: #00a86b;
-                color: white;
-                text-decoration: none;
-                padding: 8px 16px;
-                border-radius: 6px;
-                font-size: 0.85rem;
-                font-weight: 500;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                transition: background 0.2s;
-            " onmouseover="this.style.background='#008f5b'" onmouseout="this.style.background='#00a86b'">
-                🏠 Portal
-            </a>
-        </div>
-    </div>
     `;
     
     // Inserir no início do body
-    document.body.insertAdjacentHTML('afterbegin', navHTML);
+    document.body.insertBefore(header, document.body.firstChild);
     
-    // Adicionar padding ao body para compensar o header fixo
-    document.body.style.paddingTop = '60px';
+    // Adicionar evento de dropdown
+    const dropdownToggle = document.querySelector('.cnes-dropdown-toggle');
+    const dropdownMenu = document.querySelector('.cnes-dropdown-menu');
     
-    // Ajustar sidebar do Quarto se existir
-    const sidebar = document.querySelector('#quarto-sidebar');
-    if (sidebar) {
-        sidebar.style.top = '60px';
-    }
-    
-    const marginSidebar = document.querySelector('#quarto-margin-sidebar');
-    if (marginSidebar) {
-        marginSidebar.style.top = '60px';
+    if (dropdownToggle && dropdownMenu) {
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('show');
+        });
+        
+        // Fechar dropdown ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.cnes-nav-dropdown')) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
     }
 })();

@@ -1,0 +1,268 @@
+/* CNES 360 v2 - Estilos de Navegação */
+
+/* Header de Navegação */
+.cnes-nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 0;
+}
+
+.cnes-nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cnes-nav-brand a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    transition: opacity 0.2s;
+}
+
+.cnes-nav-brand a:hover {
+    opacity: 0.9;
+}
+
+.cnes-nav-brand i {
+    font-size: 1.5rem;
+}
+
+.cnes-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cnes-nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.cnes-nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Dropdown */
+.cnes-nav-dropdown {
+    position: relative;
+}
+
+.cnes-dropdown-toggle {
+    font-family: inherit;
+}
+
+.cnes-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    min-width: 250px;
+    padding: 8px 0;
+    display: none;
+    z-index: 10000;
+    margin-top: 8px;
+}
+
+.cnes-dropdown-menu.show {
+    display: block;
+}
+
+.cnes-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.cnes-dropdown-menu a:hover {
+    background: #f0f7ff;
+    color: #0066cc;
+}
+
+.cnes-dropdown-menu a i {
+    width: 20px;
+    text-align: center;
+    color: #0066cc;
+}
+
+/* Setas de Navegação */
+.cnes-nav-arrows {
+    display: flex;
+    gap: 10px;
+}
+
+.cnes-nav-arrow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s;
+}
+
+.cnes-nav-arrow:hover:not(.disabled) {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.cnes-nav-arrow.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Ajuste do conteúdo principal para não ficar atrás do header */
+body {
+    padding-top: 70px !important;
+}
+
+/* Melhorias gerais de layout */
+#quarto-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.quarto-title {
+    padding: 30px 0;
+    border-bottom: 3px solid #0066cc;
+    margin-bottom: 30px;
+}
+
+.quarto-title h1.title {
+    color: #0066cc;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.quarto-title .subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* Sidebar melhorada */
+#quarto-sidebar {
+    background: #f8f9fa;
+    border-right: 1px solid #e0e0e0;
+    padding-top: 80px;
+}
+
+#quarto-sidebar .sidebar-title {
+    color: #0066cc;
+    font-weight: 600;
+}
+
+/* Links e tabelas */
+a {
+    color: #0066cc;
+}
+
+a:hover {
+    color: #004499;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+table th {
+    background: #0066cc;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table tr:hover {
+    background: #f0f7ff;
+}
+
+/* Código */
+pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .cnes-nav-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+    
+    .cnes-nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .cnes-nav-arrows {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    body {
+        padding-top: 140px !important;
+    }
+    
+    .cnes-dropdown-menu {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        width: auto;
+    }
+}
