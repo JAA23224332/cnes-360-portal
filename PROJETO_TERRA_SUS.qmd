@@ -1,0 +1,711 @@
+---
+title: "Terra SUS"
+subtitle: "Plataforma de Georreferenciamento para Monitoramento da Rede Hospitalar do Sistema Único de Saúde"
+author: "Cieges - Brasil Estadual / CONASS"
+date: "2026-01-22"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    documentclass: article
+    papersize: a3
+    geometry:
+      - margin=1.5cm
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \usepackage{geometry}
+        \geometry{a3paper, margin=1.5cm}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{multirow}
+        \usepackage{wrapfig}
+        \usepackage{float}
+        \floatplacement{figure}{H}
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{4pt}
+        \usepackage{adjustbox}
+        \usepackage{tabularx}
+        \usepackage{booktabs}
+---
+
+# Introdução
+
+## Contexto
+
+O Cadastro Nacional de Estabelecimentos de Saúde (CNES) foi instituído no início dos anos 2000, no contexto de fortalecimento do Sistema Único de Saúde (SUS), com o objetivo de consolidar uma base nacional única de informações sobre os estabelecimentos de saúde em funcionamento no país. Sua criação representou um marco na organização da informação em saúde, ao padronizar e integrar dados até então dispersos, permitindo maior transparência, planejamento e controle das ações e serviços de saúde.
+
+Desde então, o CNES tornou-se um instrumento estratégico para a saúde pública, pois reúne informações essenciais sobre a rede assistencial, como tipos de estabelecimentos, serviços ofertados, capacidade instalada, recursos humanos, equipamentos e natureza jurídica. Essas informações subsidiam a formulação de políticas públicas, o planejamento territorial da rede de atenção à saúde e o monitoramento da oferta de serviços, contribuindo para a tomada de decisão baseada em evidências.
+
+No âmbito do financiamento da saúde, o CNES assume papel central, uma vez que é referência obrigatória para o repasse de recursos federais, estaduais e municipais. Diversos mecanismos de financiamento e programas do SUS utilizam os dados do CNES como critério para habilitação, credenciamento e pagamento de serviços. Assim, a consistência e a fidedignidade das informações cadastradas impactam diretamente na alocação de recursos, na contratualização de serviços e na sustentabilidade financeira do sistema de saúde.
+
+Dessa forma, a qualidade do cadastro dos estabelecimentos de saúde é fundamental. Um CNES atualizado e corretamente preenchido garante maior confiabilidade às informações utilizadas para o planejamento, o financiamento e a avaliação da rede assistencial. Cadastros incompletos ou inconsistentes podem gerar distorções na análise da capacidade instalada, prejuízos no repasse de recursos e fragilidades na organização da rede de atenção.
+
+Portanto, manter o CNES atualizado não é apenas uma exigência administrativa, mas um compromisso com a boa gestão pública, com a eficiência do financiamento da saúde e com a garantia do acesso equitativo e qualificado aos serviços de saúde para a população.
+
+## Justificativa
+
+A distribuição desigual de leitos hospitalares entre regiões brasileiras representa um dos principais desafios para a gestão do SUS. Enquanto grandes centros urbanos concentram serviços de alta complexidade, municípios menores frequentemente dependem de transferências para acesso a leitos de UTI e especialidades críticas.
+
+A falta de informações consolidadas e de fácil interpretação dificulta:
+
+- A identificação de **vazios assistenciais** (regiões sem cobertura adequada)
+- A avaliação de **riscos de desassistência** por concentração de mercado
+- O **planejamento de investimentos** em infraestrutura hospitalar
+- A **organização de redes de referência** regionais
+
+O projeto **Terra SUS** surge como resposta a essa necessidade, transformando dados brutos do CNES em inteligência territorial para apoio à gestão.
+
+---
+
+# Objetivos
+
+## Objetivo Geral
+
+Utilizar a base do CNES 360, com foco na assistência hospitalar, como instrumento analítico de inteligência territorial, integrando georreferenciamento, análise de dados e visualização estratégica para subsidiar o planejamento, a gestão e a tomada de decisão em saúde.
+
+## Objetivos Específicos
+
+1. **Tratar e qualificar os dados do CNES** - Realizar processo de ETL (Extração, Transformação e Carga) para limpeza, padronização e enriquecimento dos dados brutos de leitos hospitalares
+
+2. **Desenvolver taxonomia hierárquica de leitos** - Classificar os leitos em 3 níveis (intensidade do cuidado, público-alvo, especialidade) baseada em normativas do Ministério da Saúde
+
+3. **Identificar padrões por clusterização** - Aplicar técnicas de machine learning para identificar agrupamentos naturais de especialidades com características similares
+
+4. **Mapear vazios assistenciais por município** - Calcular indicadores de cobertura, concentração de mercado (HHI) e classificação de vazios (COMPLETO, PARCIAL, BÁSICO, DESERTO)
+
+5. **Gerar produtos de visualização estratégica** - Desenvolver relatórios, dashboards e guias de uso que facilitem a interpretação dos dados e o apoio à gestão
+
+6. **Aplicar o instrumento com técnicos estaduais** - Capacitar equipes que trabalham com CNES nos estados para uso da plataforma
+
+## Competências do IDASH Atendidas
+
+### Sobre o Programa IDASH
+
+O **Programa de Formação em Informática e Ciência de Dados para Saúde (IDASH)** é uma iniciativa do Centro de Controle e Prevenção de Doenças dos Estados Unidos (CDC) em parceria com o Centro Internacional de Treinamento e Educação em Saúde da Universidade de Washington (UW I-TECH).
+
+O programa tem duração de **10 meses** e visa fortalecer a capacidade de profissionais da saúde pública em cinco áreas-chave:
+
+1. **Direção estratégica de informática em saúde pública e gerenciamento de projetos**
+2. **Interoperabilidade**
+3. **Tecnologias de sistemas de informação**
+4. **Análise e visualização de dados de saúde pública**
+5. **Comunicação sobre informática em saúde pública**
+
+A formação consiste em três workshops presenciais (totalizando quatro semanas ao longo de um ano), além de ensino a distância e implementação de um **projeto aplicado**. O programa conta com participantes de 6 países da América do Sul: Brasil, Chile, Colômbia, Equador, Paraguai e Peru.
+
+O projeto **Terra SUS** é o projeto aplicado desenvolvido pela equipe brasileira no âmbito do programa IDASH.
+
+### Competências Atendidas pelo Projeto
+
+| Competência IDASH | Aplicação no Projeto Terra SUS |
+|-------------------|-------------------------------|
+| **Direção estratégica e gerenciamento de projetos** | Planejamento e execução do projeto em 4 fases, com cronograma, marcos e entregas definidas |
+| **Interoperabilidade** | Integração de dados do CNES com taxonomias padronizadas e formatos abertos (CSV, HTML, PDF) |
+| **Tecnologias de sistemas de informação** | Uso de Python, Pandas, Quarto, ferramentas de ETL (Pinti) e visualização |
+| **Análise e visualização de dados** | Clusterização, cálculo de indicadores (HHI), classificação de vazios, gráficos e mapas |
+| **Comunicação em informática em saúde** | Relatórios técnicos, guia de tomada de decisão, documentação do projeto |
+
+## Escopo do Projeto
+
+### Abrangência Geográfica
+
+- **Nacional:** Todos os 5.570 municípios brasileiros
+- **Foco:** Estabelecimentos de assistência hospitalar
+
+### Beneficiários
+
+| Perfil | Benefício |
+|--------|-----------|
+| **Secretarias Estaduais de Saúde** | Planejamento da rede hospitalar estadual |
+| **Secretarias Municipais de Saúde** | Identificação de necessidades locais |
+| **CONASS/CONASEMS** | Visão consolidada nacional |
+| **Ministério da Saúde** | Subsídio para políticas públicas |
+| **Técnicos de CNES** | Ferramenta de trabalho qualificada |
+
+### Período de Execução
+
+- **Fase 1 (Desenvolvimento):** [A definir no cronograma]
+- **Fase 2 (Aplicação piloto):** [A definir no cronograma]
+- **Fase 3 (Expansão):** [A definir no cronograma]
+
+---
+
+# Método
+
+## Plano de Desenvolvimento
+
+O projeto foi desenvolvido em 4 etapas metodológicas sequenciais:
+
+### Etapa 1: ETL (Extração, Transformação e Carga)
+
+**Técnicas utilizadas:**
+
+- Extração de dados via DataSUS/Pinti
+- Limpeza e tratamento de valores nulos
+- Padronização de variáveis
+- Enriquecimento com descrições de códigos
+
+**Entrada:** Arquivo bruto do CNES com 309.610 registros (6 meses)
+
+**Transformações:**
+
+| Transformação | Resultado |
+|---------------|-----------|
+| Filtro de competência única | 309.610 → 51.602 registros |
+| Remoção de nulos | 51.602 → 49.804 registros |
+| Seleção de colunas | 30 → 11 colunas |
+| Enriquecimento | +2 colunas descritivas |
+
+**Saída:** Arquivo tratado com 49.804 registros, zero valores nulos
+
+### Etapa 2: Classificação Taxonômica
+
+**Técnicas utilizadas:**
+
+- Classificação determinística por regras de negócio
+- Fundamentação em normativas do Ministério da Saúde
+
+**Estrutura hierárquica em 3 níveis:**
+
+```
+NÍVEL 1: Intensidade do Cuidado
+├── INTENSIVO (UTI) - RDC ANVISA nº 7/2010
+├── SEMI-INTENSIVO (UCI) - Portaria GM/MS nº 3.432/1998
+├── ALTA COMPLEXIDADE - Portaria GM/MS nº 930/2012
+├── MÉDIA COMPLEXIDADE
+└── BAIXA COMPLEXIDADE
+
+NÍVEL 2: Público-Alvo
+├── ADULTO
+├── PEDIÁTRICO
+├── NEONATAL - Portaria GM/MS nº 930/2012
+└── OBSTÉTRICO
+
+NÍVEL 3: Grupo de Especialidade
+└── 21 grupos (Cardiologia, Neurologia, Oncologia, etc.)
+```
+
+**Resultado:** 100% dos leitos classificados nos 3 níveis
+
+### Etapa 3: Clusterização de Especialidades
+
+**Técnicas utilizadas:**
+
+- Engenharia de features (12 variáveis por especialidade)
+- Normalização StandardScaler
+- Redução de dimensionalidade (PCA)
+- Clusterização hierárquica (método de Ward)
+- Validação estatística
+
+**Métricas de validação:**
+
+| Métrica | Valor | Interpretação |
+|---------|-------|---------------|
+| Silhouette Score | 0.45 | Boa separação entre clusters |
+| Calinski-Harabasz | 28.5 | Clusters bem definidos |
+| Davies-Bouldin | 0.89 | Baixa sobreposição |
+
+**Resultado:** 8 clusters identificados com interpretação clínica
+
+### Etapa 4: Análise de Vazios Assistenciais
+
+**Técnicas utilizadas:**
+
+- Agregação de indicadores por município
+- Cálculo do Índice Herfindahl-Hirschman (HHI) de concentração
+- Classificação de vazios assistenciais
+- Análise regional comparativa
+
+**Indicadores calculados:**
+
+| Indicador | Descrição |
+|-----------|-----------|
+| `total_leitos` | Quantidade absoluta de leitos no município |
+| `leitos_sus` / `pct_sus` | Leitos disponíveis ao SUS |
+| `tem_uti` / `tem_uci` | Presença de leitos intensivos |
+| `hhi` | Índice de concentração de mercado |
+| `classificacao_vazio` | COMPLETO, PARCIAL, BÁSICO ou DESERTO |
+
+## Fonte de Dados e Informações
+
+### Fonte Principal
+
+| Característica | Descrição |
+|----------------|-----------|
+| **Sistema** | CNES - Cadastro Nacional de Estabelecimentos de Saúde |
+| **Órgão** | Ministério da Saúde / DataSUS |
+| **Competência** | Junho/2025 (202506) |
+| **Extração** | Ferramenta Pinti |
+| **Periodicidade** | Mensal |
+
+### Dados Extraídos
+
+| Variável | Descrição |
+|----------|-----------|
+| `cnes` | Código do estabelecimento |
+| `codufmun` | Código IBGE do município |
+| `co_leito` | Código do tipo de leito |
+| `tp_leito` | Tipo de leito |
+| `qt_exist` | Quantidade de leitos existentes |
+| `qt_sus` | Quantidade de leitos SUS |
+| `qt_nsus` | Quantidade de leitos não-SUS |
+
+### Fontes Complementares (para integração futura)
+
+| Fonte | Dados | Aplicação |
+|-------|-------|-----------|
+| IBGE | População por município | Leitos per capita |
+| SIH/SUS | Internações realizadas | Taxa de ocupação |
+| ANS | Beneficiários de planos | Ajuste de demanda SUS |
+
+## Especificações do Produto Final
+
+### Requisitos Funcionais
+
+| ID | Requisito | Prioridade |
+|----|-----------|------------|
+| RF01 | Processar dados brutos do CNES e gerar arquivo tratado | Alta |
+| RF02 | Classificar leitos em taxonomia hierárquica de 3 níveis | Alta |
+| RF03 | Identificar clusters de especialidades por similaridade | Média |
+| RF04 | Calcular indicadores de vazios assistenciais por município | Alta |
+| RF05 | Gerar relatórios em formato HTML e PDF | Alta |
+| RF06 | Exportar datasets em formato CSV | Alta |
+| RF07 | Disponibilizar guia de uso para gestores | Média |
+
+### Requisitos Não-Funcionais
+
+| ID | Requisito | Especificação |
+|----|-----------|---------------|
+| RNF01 | Reprodutibilidade | Código documentado em Quarto (.qmd) |
+| RNF02 | Portabilidade | Arquivos em formatos abertos (CSV, HTML, PDF) |
+| RNF03 | Atualização | Processo replicável para novas competências |
+| RNF04 | Acessibilidade | Relatórios navegáveis com sumário |
+
+### Produtos Entregues
+
+#### Datasets
+
+| Arquivo | Registros | Descrição |
+|---------|-----------|-----------|
+| `arq2_tratado.csv` | 49.804 | Dados de leitos limpos e enriquecidos |
+| `arq3_tipologias.csv` | 49.804 | Leitos com tipologias derivadas |
+| `arq4_perfil_estabelecimentos.csv` | 9.072 | Perfil por estabelecimento |
+| `arq5_taxonomia_leitos.csv` | 49.804 | Leitos com taxonomia hierárquica |
+| `arq6_clusterizacao_especialidades.csv` | 65 | Clusters por especialidade |
+| `arq7_analise_municipios.csv` | 3.597 | Indicadores por município |
+
+#### Relatórios Técnicos
+
+| Documento | Conteúdo |
+|-----------|----------|
+| **Nota Técnica ETL** | Processo de transformação de dados |
+| **Tipologia de Leitos** | Metodologia de tipologias derivadas |
+| **Taxonomia Hierárquica** | Classificação em 3 níveis |
+| **Clusterização Híbrida** | Metodologia data-driven |
+| **Análise de Desertos** | Vazios assistenciais por município |
+
+#### Documentos de Apoio
+
+| Documento | Conteúdo |
+|-----------|----------|
+| **Guia de Tomada de Decisão** | Orientações para uso na gestão |
+| **Índice do Projeto** | Navegação por todos os produtos |
+| **Documento do Projeto** | Objetivos, metodologia e resultados |
+
+---
+
+# Resultados Esperados e Impacto na Saúde Pública
+
+## Resultados Alcançados
+
+### Panorama Nacional de Leitos
+
+| Métrica | Valor |
+|---------|-------|
+| **Total de leitos mapeados** | 535.133 |
+| **Estabelecimentos analisados** | 9.072 |
+| **Municípios com cobertura** | 3.597 |
+| **Especialidades classificadas** | 65 |
+| **Taxa de classificação taxonômica** | 100% |
+
+### Identificação de Vazios Assistenciais
+
+| Classificação | Municípios | Percentual |
+|---------------|------------|------------|
+| **COMPLETO** (tem UTI/UCI) | ~850 | 23% |
+| **PARCIAL** (tem alta complexidade) | ~1.100 | 31% |
+| **BÁSICO** (apenas média/baixa) | ~1.650 | 46% |
+
+### Análise de Concentração de Mercado
+
+| Situação | Municípios | Percentual |
+|----------|------------|------------|
+| **Monopólio** (HHI > 0.8) | ~1.800 | 50% |
+| **Concentração moderada** (HHI 0.25-0.8) | ~1.400 | 39% |
+| **Mercado competitivo** (HHI < 0.25) | ~400 | 11% |
+
+### Disparidades Regionais Identificadas
+
+| Região | % Municípios com UTI | % Leitos SUS |
+|--------|---------------------|--------------|
+| Sul | ~35% | ~65% |
+| Sudeste | ~30% | ~68% |
+| Centro-Oeste | ~25% | ~72% |
+| Nordeste | ~18% | ~78% |
+| Norte | ~12% | ~82% |
+
+## Marcos do Projeto
+
+| Marco | Entrega | Status |
+|-------|---------|--------|
+| M1 | Dados tratados e validados | ✅ Concluído |
+| M2 | Taxonomia hierárquica implementada | ✅ Concluído |
+| M3 | Clusterização de especialidades | ✅ Concluído |
+| M4 | Análise de vazios por município | ✅ Concluído |
+| M5 | Relatórios técnicos gerados | ✅ Concluído |
+| M6 | Guia de tomada de decisão | ✅ Concluído |
+| M7 | Documentação do projeto | ✅ Concluído |
+
+## Impacto Esperado na Saúde Pública
+
+### Curto Prazo
+
+- **Visibilidade:** Gestores terão acesso a informações consolidadas sobre a rede hospitalar
+- **Priorização:** Identificação clara de municípios com maior necessidade de investimento
+- **Planejamento:** Subsídio para organização de redes de referência regionais
+
+### Médio Prazo
+
+- **Redução de vazios:** Direcionamento de recursos para regiões prioritárias
+- **Mitigação de riscos:** Identificação de municípios com alta concentração (monopólio)
+- **Qualificação do CNES:** Incentivo à atualização cadastral pelos gestores
+
+### Longo Prazo
+
+- **Equidade:** Redução das desigualdades regionais na oferta de leitos
+- **Eficiência:** Melhor alocação de recursos públicos em saúde
+- **Transparência:** Democratização do acesso a informações estratégicas
+
+---
+
+# Cronograma
+
+## Plano de Implementação
+
+O cronograma do projeto está organizado em **4 fases principais**, distribuídas ao longo de **9 meses** (Dezembro/2025 a Agosto/2026).
+
+::: {.callout-note}
+## Legenda de Status
+
+| Indicador | Significado |
+|:---------:|-------------|
+| 🟢 | Implementação de acordo com o planejado |
+| 🟡 | Com alguns atrasos mas avançando |
+| 🔴 | Problemas grandes ou atrasos que exigem atenção |
+| ⬜ | Não iniciado |
+:::
+
+## Fase 1: Planejamento e Definição
+
+**Período:** Dezembro/2025 - Janeiro/2026
+
+| Cód | Atividade | Responsável | Período | Status |
+|:---:|-----------|-------------|:-------:|:------:|
+| 1.1 | Reunião de Definição do Projeto | Cieges/CONASS | Dez/25 | 🟢 |
+| 1.2 | Definição dos Stakeholders | Cieges/IDASH | Dez/25 | 🟢 |
+| 1.3 | Reunião com CONASS para compartilhamento de BD | Cieges/CONASS | Jan/26 | 🟢 |
+
+::: {.callout-tip}
+## Entregas da Fase 1
+- ✅ Escopo do projeto definido
+- ✅ Stakeholders mapeados
+- ✅ Acesso aos dados do CNES garantido
+:::
+
+## Fase 2: Desenvolvimento Técnico
+
+**Período:** Janeiro - Março/2026
+
+| Cód | Atividade | Responsável | Período | Status |
+|:---:|-----------|-------------|:-------:|:------:|
+| 2.1 | Encontro Presencial para deliberar sobre o projeto | Grupo IDASH | Jan/26 | 🟢 |
+| 2.2 | Reuniões Virtuais de acompanhamento | Cieges | Jan-Mar/26 | 🟢 |
+| 2.3 | ETL e tratamento de dados | Cieges | Fev/26 | 🟢 |
+| 2.4 | Desenvolvimento da Taxonomia Hierárquica | Cieges | Fev/26 | 🟢 |
+| 2.5 | Clusterização de Especialidades | Cieges | Mar/26 | 🟢 |
+| 2.6 | Análise de Vazios Assistenciais | Cieges | Mar/26 | 🟢 |
+
+::: {.callout-tip}
+## Entregas da Fase 2
+- ✅ Dados tratados (`arq2_tratado.csv`)
+- ✅ Taxonomia hierárquica (`arq5_taxonomia_leitos.csv`)
+- ✅ Clusters de especialidades (`arq6_clusterizacao_especialidades.csv`)
+- ✅ Indicadores por município (`arq7_analise_municipios.csv`)
+:::
+
+## Fase 3: Documentação e Validação
+
+**Período:** Março - Abril/2026
+
+| Cód | Atividade | Responsável | Período | Status |
+|:---:|-----------|-------------|:-------:|:------:|
+| 3.1 | Início da Escrita do Projeto | Cieges | Mar/26 | 🟢 |
+| 3.2 | Geração de Relatórios Técnicos | Cieges | Mar/26 | 🟢 |
+| 3.3 | Elaboração do Guia de Tomada de Decisão | Cieges | Abr/26 | 🟢 |
+| 3.4 | Banca para submissão do Projeto | CONASS/IDASH | Abr/26 | ⬜ |
+
+::: {.callout-tip}
+## Entregas da Fase 3
+- ✅ Nota Técnica ETL
+- ✅ Relatórios de Tipologia, Taxonomia, Clusterização
+- ✅ Análise de Desertos de Leitos
+- ✅ Guia de Tomada de Decisão
+- ✅ Documento do Projeto Terra SUS
+:::
+
+## Fase 4: Aplicação e Expansão
+
+**Período:** Maio - Agosto/2026
+
+| Cód | Atividade | Responsável | Período | Status |
+|:---:|-----------|-------------|:-------:|:------:|
+| 4.1 | Capacitação de técnicos estaduais | Cieges/IDASH | Mai-Jun/26 | ⬜ |
+| 4.2 | Aplicação piloto em estados selecionados | Grupo IDASH | Jun-Jul/26 | ⬜ |
+| 4.3 | Coleta de feedback e ajustes | Cieges | Jul-Ago/26 | ⬜ |
+| 4.4 | Expansão para demais estados | CONASS | Ago/26 | ⬜ |
+
+::: {.callout-warning}
+## Entregas da Fase 4 (Pendentes)
+- ⏳ Material de capacitação
+- ⏳ Relatório de aplicação piloto
+- ⏳ Versão ajustada da ferramenta
+- ⏳ Plano de expansão nacional
+:::
+
+## Visão Geral - Diagrama de Gantt
+
+```{mermaid}
+gantt
+    title Cronograma Terra SUS (Dez/2025 - Ago/2026)
+    dateFormat  YYYY-MM
+    
+    section Fase 1
+    Reunião Definição           :done, f1a, 2025-12, 1M
+    Definição Stakeholders      :done, f1b, 2025-12, 1M
+    Reunião CONASS BD           :done, f1c, 2026-01, 1M
+    
+    section Fase 2
+    Encontro Presencial         :done, f2a, 2026-01, 1M
+    Reuniões Virtuais           :done, f2b, 2026-01, 3M
+    ETL Dados                   :done, f2c, 2026-02, 1M
+    Taxonomia                   :done, f2d, 2026-02, 1M
+    Clusterização               :done, f2e, 2026-03, 1M
+    Análise Vazios              :done, f2f, 2026-03, 1M
+    
+    section Fase 3
+    Escrita Projeto             :done, f3a, 2026-03, 1M
+    Relatórios Técnicos         :done, f3b, 2026-03, 1M
+    Guia Decisão                :done, f3c, 2026-04, 1M
+    Banca Submissão             :f3d, 2026-04, 1M
+    
+    section Fase 4
+    Capacitação                 :f4a, 2026-05, 2M
+    Piloto Estados              :f4b, 2026-06, 2M
+    Feedback e Ajustes          :f4c, 2026-07, 2M
+    Expansão Nacional           :f4d, 2026-08, 1M
+```
+
+## Resumo de Marcos
+
+| # | Marco | Data | Status |
+|:-:|-------|:----:|:------:|
+| M1 | Projeto definido | Jan/2026 | 🟢 |
+| M2 | Dados tratados | Fev/2026 | 🟢 |
+| M3 | Análises concluídas | Mar/2026 | 🟢 |
+| M4 | Documentação finalizada | Abr/2026 | 🟢 |
+| M5 | Banca de submissão | Abr/2026 | ⬜ |
+| M6 | Piloto concluído | Jul/2026 | ⬜ |
+| M7 | Expansão nacional | Ago/2026 | ⬜ |
+
+::: {.callout-important}
+## Progresso Atual
+**4 de 7 marcos concluídos (57%)**
+
+O projeto encontra-se na transição entre a Fase 3 (Documentação) e Fase 4 (Aplicação).
+:::
+
+---
+
+# Estimativa Orçamentária
+
+## Fonte de Financiamento
+
+O projeto é financiado pelo **CONASS (Conselho Nacional de Secretários de Saúde)** através do **Cieges (Centro de Inteligência em Gestão Estadual de Saúde)**.
+
+## Estimativa de Custos
+
+| Categoria | Descrição | Estimativa |
+|-----------|-----------|------------|
+| **Recursos Humanos** | Equipe técnica de desenvolvimento | A definir |
+| **Infraestrutura** | Servidores e armazenamento | A definir |
+| **Ferramentas** | Licenças de software (se aplicável) | A definir |
+| **Capacitação** | Treinamento de equipes estaduais | A definir |
+| **Documentação** | Elaboração de materiais | A definir |
+
+**Observação:** O projeto utiliza predominantemente ferramentas de código aberto (Python, Quarto, Pandas), minimizando custos com licenciamento.
+
+---
+
+# Equipe de Trabalho e Partes Interessadas
+
+## Estrutura Organizacional
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         CONASS                                   │
+│              Conselho Nacional de Secretários de Saúde           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│                         Cieges                                   │
+│       Centro de Inteligência em Gestão Estadual de Saúde        │
+│                    (Equipe de Desenvolvimento)                   │
+│                                                                  │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│                    Grupo IDASH Estadual                          │
+│         Instituto de Dados e Análises em Saúde                   │
+│                    (Aplicação nos Estados)                       │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Funções e Responsabilidades
+
+| Função | Responsável | Atribuições |
+|--------|-------------|-------------|
+| **Coordenação Geral** | CONASS | Direcionamento estratégico e financiamento |
+| **Desenvolvimento Técnico** | Cieges | ETL, análises, relatórios e documentação |
+| **Validação Metodológica** | Grupo IDASH | Revisão técnica e adequação às necessidades |
+| **Aplicação Estadual** | Técnicos de CNES | Uso da ferramenta e feedback |
+
+## Stakeholders
+
+### Internos
+
+| Stakeholder | Interesse | Influência |
+|-------------|-----------|------------|
+| CONASS | Apoio à gestão estadual | Alta |
+| Cieges | Desenvolvimento de produtos | Alta |
+| Grupo IDASH | Padronização metodológica | Média |
+
+### Externos
+
+| Stakeholder | Interesse | Influência |
+|-------------|-----------|------------|
+| Secretarias Estaduais de Saúde | Planejamento da rede | Alta |
+| Secretarias Municipais de Saúde | Gestão local | Média |
+| Ministério da Saúde | Políticas nacionais | Alta |
+| CONASEMS | Articulação municipal | Média |
+| DataSUS | Fonte de dados | Média |
+
+## Suporte Técnico Necessário
+
+| Tipo | Descrição | Responsável |
+|------|-----------|-------------|
+| **Acesso a dados** | Extração mensal do CNES | DataSUS/Pinti |
+| **Infraestrutura** | Ambiente de processamento | Cieges |
+| **Capacitação** | Treinamento em uso da ferramenta | Cieges/IDASH |
+| **Suporte contínuo** | Dúvidas e ajustes | Cieges |
+
+---
+
+# Referências
+
+AGÊNCIA NACIONAL DE VIGILÂNCIA SANITÁRIA. **RDC nº 7, de 24 de fevereiro de 2010**. Dispõe sobre os requisitos mínimos para funcionamento de Unidades de Terapia Intensiva e dá outras providências. Diário Oficial da União, Brasília, 2010.
+
+BRASIL. Ministério da Saúde. **Cadastro Nacional de Estabelecimentos de Saúde (CNES)**. Disponível em: http://cnes.datasus.gov.br. Acesso em: jan. 2026.
+
+BRASIL. Ministério da Saúde. **Portaria GM/MS nº 3.432, de 12 de agosto de 1998**. Estabelece critérios de classificação para as Unidades de Tratamento Intensivo. Diário Oficial da União, Brasília, 1998.
+
+BRASIL. Ministério da Saúde. **Portaria GM/MS nº 930, de 10 de maio de 2012**. Define as diretrizes e objetivos para a organização da atenção integral e humanizada ao recém-nascido grave ou potencialmente grave. Diário Oficial da União, Brasília, 2012.
+
+BRASIL. Ministério da Saúde. **Portaria GM/MS nº 148, de 31 de janeiro de 2012**. Define as normas de funcionamento e habilitação do Serviço Hospitalar de Referência para atenção a pessoas com sofrimento ou transtorno mental. Diário Oficial da União, Brasília, 2012.
+
+BRASIL. Ministério da Saúde. **Portaria GM/MS nº 2.809, de 7 de dezembro de 2012**. Estabelece a organização dos Cuidados Prolongados para retaguarda à Rede de Atenção às Urgências e Emergências. Diário Oficial da União, Brasília, 2012.
+
+KAUFMAN, L.; ROUSSEEUW, P. J. **Finding Groups in Data: An Introduction to Cluster Analysis**. New York: John Wiley & Sons, 1990.
+
+ROUSSEEUW, P. J. Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. **Journal of Computational and Applied Mathematics**, v. 20, p. 53-65, 1987.
+
+HIRSCHMAN, A. O. **The Paternity of an Index**. The American Economic Review, v. 54, n. 5, p. 761-762, 1964. (Índice Herfindahl-Hirschman)
+
+---
+
+# Apêndice A: Glossário
+
+| Termo | Definição |
+|-------|-----------|
+| **CNES** | Cadastro Nacional de Estabelecimentos de Saúde - base de dados oficial do Ministério da Saúde sobre a infraestrutura de saúde no Brasil |
+| **ETL** | Extract, Transform, Load - processo de extração, transformação e carga de dados |
+| **HHI** | Índice Herfindahl-Hirschman - medida de concentração de mercado (0 = disperso, 1 = monopólio) |
+| **UTI** | Unidade de Terapia Intensiva - leitos para pacientes graves que necessitam de monitoramento contínuo |
+| **UCI** | Unidade de Cuidados Intermediários - leitos para pacientes que necessitam de cuidados semi-intensivos |
+| **Vazio Assistencial** | Região geográfica sem oferta adequada de determinado serviço de saúde |
+| **Taxonomia** | Sistema de classificação hierárquica baseado em critérios definidos |
+| **Cluster** | Agrupamento de elementos com características similares |
+| **Competência** | Mês/ano de referência dos dados no CNES (formato AAAAMM) |
+| **SUS** | Sistema Único de Saúde - sistema público de saúde brasileiro |
+| **CONASS** | Conselho Nacional de Secretários de Saúde |
+| **CONASEMS** | Conselho Nacional de Secretarias Municipais de Saúde |
+| **Cieges** | Centro de Inteligência em Gestão Estadual de Saúde |
+| **IDASH** | Instituto de Dados e Análises em Saúde |
+| **DataSUS** | Departamento de Informática do SUS - responsável pelos sistemas de informação em saúde |
+| **Pinti** | Ferramenta de extração e tratamento de dados do CNES |
+
+---
+
+# Apêndice B: Estrutura de Arquivos do Projeto
+
+```
+Terra SUS/
+│
+├── 📄 PROJETO_TERRA_SUS.qmd          # Este documento
+├── 📄 INDEX.qmd                       # Índice navegável do projeto
+│
+├── 📊 Dados/
+│   ├── arq1_original.csv             # Dados brutos (309.610 registros)
+│   ├── arq2_tratado.csv              # Dados tratados (49.804 registros)
+│   ├── arq3_tipologias.csv           # Tipologias derivadas
+│   ├── arq4_perfil_estabelecimentos.csv  # Perfil por estabelecimento
+│   ├── arq5_taxonomia_leitos.csv     # Taxonomia hierárquica
+│   ├── arq6_clusterizacao_especialidades.csv  # Clusters
+│   └── arq7_analise_municipios.csv   # Indicadores por município
+│
+├── 📑 Relatórios/
+│   ├── NOTA_TECNICA_ETL_CNES_LEITOS.qmd
+│   ├── TIPOLOGIA_LEITOS_CNES.qmd
+│   ├── TAXONOMIA_LEITOS_CNES.qmd
+│   ├── CLUSTERIZACAO_LEITOS_CNES.qmd
+│   └── ANALISE_DESERTOS_LEITOS.qmd
+│
+└── 📘 Documentação/
+    ├── GUIA_TOMADA_DECISAO.qmd
+    └── PROJETO.qmd
+```
+
+---
+
+**Elaborado por:** Cieges - Brasil Estadual / CONASS  
+**Data:** 22/01/2026  
+**Versão:** 1.0

@@ -1,0 +1,2371 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Olavo Costa">
+<meta name="dcterms.date" content="2026-01-21">
+
+<title>Taxonomia Hierárquica de Leitos Hospitalares do CNES</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="TAXONOMIA_LEITOS_CNES_files/libs/clipboard/clipboard.min.js"></script>
+<script src="TAXONOMIA_LEITOS_CNES_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="TAXONOMIA_LEITOS_CNES_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="TAXONOMIA_LEITOS_CNES_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="TAXONOMIA_LEITOS_CNES_files/libs/quarto-html/popper.min.js"></script>
+<script src="TAXONOMIA_LEITOS_CNES_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="TAXONOMIA_LEITOS_CNES_files/libs/quarto-html/anchor.min.js"></script>
+<link href="TAXONOMIA_LEITOS_CNES_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="TAXONOMIA_LEITOS_CNES_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="TAXONOMIA_LEITOS_CNES_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="TAXONOMIA_LEITOS_CNES_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="TAXONOMIA_LEITOS_CNES_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a>
+  <ul>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link" data-scroll-target="#objetivo"><span class="header-section-number">1.1</span> Objetivo</a></li>
+  <li><a href="#fundamentação-normativa" id="toc-fundamentação-normativa" class="nav-link" data-scroll-target="#fundamentação-normativa"><span class="header-section-number">1.2</span> Fundamentação Normativa</a></li>
+  <li><a href="#estrutura-da-taxonomia" id="toc-estrutura-da-taxonomia" class="nav-link" data-scroll-target="#estrutura-da-taxonomia"><span class="header-section-number">1.3</span> Estrutura da Taxonomia</a></li>
+  </ul></li>
+  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">2</span> Metodologia</a>
+  <ul>
+  <li><a href="#nível-1-intensidade-do-cuidado" id="toc-nível-1-intensidade-do-cuidado" class="nav-link" data-scroll-target="#nível-1-intensidade-do-cuidado"><span class="header-section-number">2.1</span> Nível 1: Intensidade do Cuidado</a>
+  <ul class="collapse">
+  <li><a href="#definições-operacionais" id="toc-definições-operacionais" class="nav-link" data-scroll-target="#definições-operacionais"><span class="header-section-number">2.1.1</span> Definições Operacionais</a></li>
+  <li><a href="#matriz-de-classificação---nível-1" id="toc-matriz-de-classificação---nível-1" class="nav-link" data-scroll-target="#matriz-de-classificação---nível-1"><span class="header-section-number">2.1.2</span> Matriz de Classificação - Nível 1</a></li>
+  </ul></li>
+  <li><a href="#nível-2-público-alvo" id="toc-nível-2-público-alvo" class="nav-link" data-scroll-target="#nível-2-público-alvo"><span class="header-section-number">2.2</span> Nível 2: Público-Alvo</a>
+  <ul class="collapse">
+  <li><a href="#definições-operacionais-1" id="toc-definições-operacionais-1" class="nav-link" data-scroll-target="#definições-operacionais-1"><span class="header-section-number">2.2.1</span> Definições Operacionais</a></li>
+  <li><a href="#matriz-de-classificação---nível-2" id="toc-matriz-de-classificação---nível-2" class="nav-link" data-scroll-target="#matriz-de-classificação---nível-2"><span class="header-section-number">2.2.2</span> Matriz de Classificação - Nível 2</a></li>
+  </ul></li>
+  <li><a href="#nível-3-grupo-de-especialidade" id="toc-nível-3-grupo-de-especialidade" class="nav-link" data-scroll-target="#nível-3-grupo-de-especialidade"><span class="header-section-number">2.3</span> Nível 3: Grupo de Especialidade</a>
+  <ul class="collapse">
+  <li><a href="#definições-operacionais-2" id="toc-definições-operacionais-2" class="nav-link" data-scroll-target="#definições-operacionais-2"><span class="header-section-number">2.3.1</span> Definições Operacionais</a></li>
+  <li><a href="#matriz-de-classificação---nível-3" id="toc-matriz-de-classificação---nível-3" class="nav-link" data-scroll-target="#matriz-de-classificação---nível-3"><span class="header-section-number">2.3.2</span> Matriz de Classificação - Nível 3</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#taxonomia-completa" id="toc-taxonomia-completa" class="nav-link" data-scroll-target="#taxonomia-completa"><span class="header-section-number">3</span> Taxonomia Completa</a>
+  <ul>
+  <li><a href="#código-taxonômico-integrado" id="toc-código-taxonômico-integrado" class="nav-link" data-scroll-target="#código-taxonômico-integrado"><span class="header-section-number">3.1</span> Código Taxonômico Integrado</a></li>
+  <li><a href="#visualização-hierárquica" id="toc-visualização-hierárquica" class="nav-link" data-scroll-target="#visualização-hierárquica"><span class="header-section-number">3.2</span> Visualização Hierárquica</a></li>
+  <li><a href="#matriz-de-cruzamento-n1-n2" id="toc-matriz-de-cruzamento-n1-n2" class="nav-link" data-scroll-target="#matriz-de-cruzamento-n1-n2"><span class="header-section-number">3.3</span> Matriz de Cruzamento N1 × N2</a></li>
+  <li><a href="#matriz-de-cruzamento-n1-n3" id="toc-matriz-de-cruzamento-n1-n3" class="nav-link" data-scroll-target="#matriz-de-cruzamento-n1-n3"><span class="header-section-number">3.4</span> Matriz de Cruzamento N1 × N3</a></li>
+  </ul></li>
+  <li><a href="#validação" id="toc-validação" class="nav-link" data-scroll-target="#validação"><span class="header-section-number">4</span> Validação</a>
+  <ul>
+  <li><a href="#cobertura-da-classificação" id="toc-cobertura-da-classificação" class="nav-link" data-scroll-target="#cobertura-da-classificação"><span class="header-section-number">4.1</span> Cobertura da Classificação</a></li>
+  <li><a href="#consistência-lógica" id="toc-consistência-lógica" class="nav-link" data-scroll-target="#consistência-lógica"><span class="header-section-number">4.2</span> Consistência Lógica</a></li>
+  </ul></li>
+  <li><a href="#dicionário-de-dados" id="toc-dicionário-de-dados" class="nav-link" data-scroll-target="#dicionário-de-dados"><span class="header-section-number">5</span> Dicionário de Dados</a>
+  <ul>
+  <li><a href="#nível-1-intensidade-do-cuidado-1" id="toc-nível-1-intensidade-do-cuidado-1" class="nav-link" data-scroll-target="#nível-1-intensidade-do-cuidado-1"><span class="header-section-number">5.1</span> Nível 1: Intensidade do Cuidado</a></li>
+  <li><a href="#nível-2-público-alvo-1" id="toc-nível-2-público-alvo-1" class="nav-link" data-scroll-target="#nível-2-público-alvo-1"><span class="header-section-number">5.2</span> Nível 2: Público-Alvo</a></li>
+  <li><a href="#nível-3-grupo-de-especialidade-1" id="toc-nível-3-grupo-de-especialidade-1" class="nav-link" data-scroll-target="#nível-3-grupo-de-especialidade-1"><span class="header-section-number">5.3</span> Nível 3: Grupo de Especialidade</a></li>
+  </ul></li>
+  <li><a href="#exportação" id="toc-exportação" class="nav-link" data-scroll-target="#exportação"><span class="header-section-number">6</span> Exportação</a></li>
+  <li><a href="#resumo-executivo" id="toc-resumo-executivo" class="nav-link" data-scroll-target="#resumo-executivo"><span class="header-section-number">7</span> Resumo Executivo</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="TAXONOMIA_LEITOS_CNES.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Taxonomia Hierárquica de Leitos Hospitalares do CNES</h1>
+<p class="subtitle lead">Metodologia Determinística por Regras de Negócio</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Olavo Costa </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
+<section id="objetivo" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">1.1</span> Objetivo</h2>
+<p>Este documento apresenta uma <strong>taxonomia hierárquica de leitos hospitalares</strong> baseada em regras de negócio determinísticas, com fundamentação normativa e clínica. A taxonomia classifica os 535.133 leitos do CNES (competência 202506) em uma estrutura de <strong>três níveis hierárquicos</strong>.</p>
+</section>
+<section id="fundamentação-normativa" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="fundamentação-normativa"><span class="header-section-number">1.2</span> Fundamentação Normativa</h2>
+<p>A classificação proposta está fundamentada nas seguintes normativas do Ministério da Saúde e ANVISA:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Normativa</th>
+<th>Descrição</th>
+<th>Aplicação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>RDC ANVISA nº 7/2010</strong></td>
+<td>Requisitos mínimos para UTI</td>
+<td>Classificação de leitos intensivos (Tipo I, II, III)</td>
+</tr>
+<tr class="even">
+<td><strong>Portaria GM/MS nº 3.432/1998</strong></td>
+<td>Critérios de classificação hospitalar</td>
+<td>Níveis de complexidade</td>
+</tr>
+<tr class="odd">
+<td><strong>Portaria GM/MS nº 930/2012</strong></td>
+<td>Diretrizes para atenção neonatal</td>
+<td>UCI e UTI neonatal</td>
+</tr>
+<tr class="even">
+<td><strong>Portaria GM/MS nº 148/2012</strong></td>
+<td>CAPS e Saúde Mental</td>
+<td>Leitos de saúde mental</td>
+</tr>
+<tr class="odd">
+<td><strong>Portaria GM/MS nº 2.809/2012</strong></td>
+<td>Hospitais de Longa Permanência</td>
+<td>Leitos de crônicos</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="estrutura-da-taxonomia" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="estrutura-da-taxonomia"><span class="header-section-number">1.3</span> Estrutura da Taxonomia</h2>
+<pre><code>NÍVEL 1: INTENSIDADE DO CUIDADO (5 categorias)
+│
+├── NÍVEL 2: PÚBLICO-ALVO (4 categorias)
+│   │
+│   └── NÍVEL 3: GRUPO DE ESPECIALIDADE (18 grupos)
+│       │
+│       └── ESPECIALIDADE ORIGINAL (65 códigos CNES)</code></pre>
+</section>
+</section>
+<section id="metodologia" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Metodologia</h1>
+<section id="nível-1-intensidade-do-cuidado" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="nível-1-intensidade-do-cuidado"><span class="header-section-number">2.1</span> Nível 1: Intensidade do Cuidado</h2>
+<p>Classificação baseada na <strong>densidade tecnológica</strong> e <strong>complexidade assistencial</strong> do leito.</p>
+<section id="definições-operacionais" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="definições-operacionais"><span class="header-section-number">2.1.1</span> Definições Operacionais</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Categoria</th>
+<th>Definição</th>
+<th>Critério de Inclusão</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>N1_01</strong></td>
+<td>INTENSIVO</td>
+<td>Leitos com monitorização contínua, suporte avançado de vida e alta densidade tecnológica</td>
+<td>UTI (todos os tipos), UCO, UTI Queimados</td>
+</tr>
+<tr class="even">
+<td><strong>N1_02</strong></td>
+<td>SEMI-INTENSIVO</td>
+<td>Leitos com monitorização intermitente e suporte intermediário</td>
+<td>UCI Adulto/Pediátrico/Neonatal, Canguru, Suporte Ventilatório</td>
+</tr>
+<tr class="odd">
+<td><strong>N1_03</strong></td>
+<td>ALTA_COMPLEXIDADE</td>
+<td>Leitos para procedimentos de alta complexidade ou condições especiais</td>
+<td>Transplante, Queimados (não UTI), Oncologia cirúrgica</td>
+</tr>
+<tr class="even">
+<td><strong>N1_04</strong></td>
+<td>MEDIA_COMPLEXIDADE</td>
+<td>Leitos cirúrgicos e clínicos de média complexidade</td>
+<td>Cirurgias eletivas, internações clínicas agudas</td>
+</tr>
+<tr class="odd">
+<td><strong>N1_05</strong></td>
+<td>BAIXA_COMPLEXIDADE</td>
+<td>Leitos de longa permanência, reabilitação e cuidados prolongados</td>
+<td>Crônicos, Psiquiatria, Reabilitação, Hospital Dia</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="matriz-de-classificação---nível-1" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="matriz-de-classificação---nível-1"><span class="header-section-number">2.1.2</span> Matriz de Classificação - Nível 1</h3>
+<div id="9ffe6978" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'arq2_tratado.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'latin1'</span>, low_memory<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># NÍVEL 1: INTENSIDADE DO CUIDADO</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_intensidade(row):</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">    Classifica o leito quanto à intensidade do cuidado.</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">    Fundamentação:</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">    - RDC ANVISA nº 7/2010: UTI Tipo I, II, III</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">    - Portaria GM/MS nº 930/2012: UCI Neonatal</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">    - Portaria GM/MS nº 2.809/2012: Longa Permanência</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    co <span class="op">=</span> row[<span class="st">'co_leito'</span>]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    tp <span class="op">=</span> row[<span class="st">'tp_leito'</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> <span class="bu">str</span>(row[<span class="st">'DS_CO_LEITO'</span>]).upper()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N1_01: INTENSIVO</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># UTI Adulto, Pediátrica, Neonatal, Coronariana, Queimados</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    LEITOS_UTI <span class="op">=</span> [<span class="dv">74</span>, <span class="dv">75</span>, <span class="dv">76</span>,  <span class="co"># UTI Adulto Tipo I, II, III</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">77</span>, <span class="dv">78</span>, <span class="dv">79</span>,  <span class="co"># UTI Pediátrica Tipo I, II, III</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">80</span>, <span class="dv">81</span>, <span class="dv">82</span>,  <span class="co"># UTI Neonatal Tipo I, II, III</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">83</span>,          <span class="co"># UTI de Queimados</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">85</span>, <span class="dv">86</span>]      <span class="co"># UTI Coronariana Tipo II, III</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> LEITOS_UTI:</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N1_01_INTENSIVO'</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N1_02: SEMI-INTENSIVO</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># UCI (Unidade de Cuidados Intermediários), Canguru, Suporte Ventilatório</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    LEITOS_UCI <span class="op">=</span> [<span class="dv">65</span>,          <span class="co"># Unidade Intermediária Neonatal</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">92</span>,          <span class="co"># UCI Neonatal Convencional</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">93</span>,          <span class="co"># UCI Neonatal Canguru</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">94</span>,          <span class="co"># UCI Pediátrico</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">95</span>,          <span class="co"># UCI Adulto</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">96</span>]          <span class="co"># Suporte Ventilatório Pulmonar</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> LEITOS_UCI:</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N1_02_SEMI_INTENSIVO'</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N1_03: ALTA COMPLEXIDADE</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Transplante, Queimados (não UTI), Oncologia, Cardiologia cirúrgica</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    LEITOS_ALTA <span class="op">=</span> [<span class="dv">67</span>,         <span class="co"># Transplante</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">71</span>,         <span class="co"># Intercorrência pós-transplante</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">90</span>, <span class="dv">91</span>,     <span class="co"># Queimado Adulto/Pediátrico (cirúrgico)</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">88</span>, <span class="dv">89</span>]     <span class="co"># Queimado Adulto/Pediátrico (clínico)</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Oncologia e Cardiologia cirúrgica</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> LEITOS_ALTA:</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N1_03_ALTA_COMPLEXIDADE'</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tp <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> co <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">12</span>]:  <span class="co"># Cardiologia e Oncologia cirúrgica</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N1_03_ALTA_COMPLEXIDADE'</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N1_05: BAIXA COMPLEXIDADE (verificar antes de média)</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Crônicos, Psiquiatria, Reabilitação, Hospital Dia, Saúde Mental</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    LEITOS_BAIXA <span class="op">=</span> [<span class="dv">34</span>,        <span class="co"># Crônicos</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">47</span>,        <span class="co"># Psiquiatria</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">48</span>,        <span class="co"># Reabilitação</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">49</span>,        <span class="co"># Pneumologia Sanitária (tuberculose)</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">84</span>,        <span class="co"># Acolhimento Noturno</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">87</span>,        <span class="co"># Saúde Mental (clínico)</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">73</span>]        <span class="co"># Saúde Mental (hospital dia)</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> LEITOS_BAIXA:</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N1_05_BAIXA_COMPLEXIDADE'</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Hospital Dia (exceto cirúrgico/diagnóstico)</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tp <span class="op">==</span> <span class="dv">7</span> <span class="kw">and</span> co <span class="op">!=</span> <span class="dv">7</span>:</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N1_05_BAIXA_COMPLEXIDADE'</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N1_04: MÉDIA COMPLEXIDADE (default)</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cirúrgico, Clínico agudo, Obstétrico, Pediátrico</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'N1_04_MEDIA_COMPLEXIDADE'</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'NIVEL_1_INTENSIDADE'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(classificar_intensidade, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo Nível 1</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>n1_resumo <span class="op">=</span> df.groupby(<span class="st">'NIVEL_1_INTENSIDADE'</span>).agg({</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cnes'</span>: <span class="st">'count'</span>,</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>}).rename(columns<span class="op">=</span>{<span class="st">'cnes'</span>: <span class="st">'Registros'</span>, <span class="st">'qt_exist'</span>: <span class="st">'Leitos'</span>})</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>n1_resumo[<span class="st">'%'</span>] <span class="op">=</span> (n1_resumo[<span class="st">'Leitos'</span>] <span class="op">/</span> n1_resumo[<span class="st">'Leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>n1_resumo <span class="op">=</span> n1_resumo.sort_values(<span class="st">'Leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"NÍVEL 1: INTENSIDADE DO CUIDADO"</span>)</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>n1_resumo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>NÍVEL 1: INTENSIDADE DO CUIDADO
+============================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Registros</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+<th data-quarto-table-cell-role="th">%</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NIVEL_1_INTENSIDADE</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N1_04_MEDIA_COMPLEXIDADE</th>
+<td>39182</td>
+<td>390512</td>
+<td>72.97</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N1_01_INTENSIVO</th>
+<td>4365</td>
+<td>65273</td>
+<td>12.20</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N1_05_BAIXA_COMPLEXIDADE</th>
+<td>3222</td>
+<td>54450</td>
+<td>10.18</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N1_03_ALTA_COMPLEXIDADE</th>
+<td>1490</td>
+<td>12860</td>
+<td>2.40</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N1_02_SEMI_INTENSIVO</th>
+<td>1545</td>
+<td>12038</td>
+<td>2.25</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="nível-2-público-alvo" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="nível-2-público-alvo"><span class="header-section-number">2.2</span> Nível 2: Público-Alvo</h2>
+<p>Classificação baseada na <strong>faixa etária e condição</strong> do paciente atendido.</p>
+<section id="definições-operacionais-1" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="definições-operacionais-1"><span class="header-section-number">2.2.1</span> Definições Operacionais</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Categoria</th>
+<th>Definição</th>
+<th>Critério de Inclusão</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>N2_01</strong></td>
+<td>ADULTO</td>
+<td>Pacientes com idade ≥ 15 anos (exceto gestantes)</td>
+<td>Leitos sem especificação pediátrica, neonatal ou obstétrica</td>
+</tr>
+<tr class="even">
+<td><strong>N2_02</strong></td>
+<td>PEDIATRICO</td>
+<td>Pacientes com idade entre 29 dias e 14 anos</td>
+<td>tp_leito=5 ou descrição contém “PEDIATR”</td>
+</tr>
+<tr class="odd">
+<td><strong>N2_03</strong></td>
+<td>NEONATAL</td>
+<td>Recém-nascidos (0-28 dias)</td>
+<td>Descrição contém “NEONAT” ou “CANGURU”</td>
+</tr>
+<tr class="even">
+<td><strong>N2_04</strong></td>
+<td>OBSTETRICO</td>
+<td>Gestantes, parturientes e puérperas</td>
+<td>tp_leito=4 ou descrição contém “OBSTETR”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="matriz-de-classificação---nível-2" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="matriz-de-classificação---nível-2"><span class="header-section-number">2.2.2</span> Matriz de Classificação - Nível 2</h3>
+<div id="d311cb8f" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># NÍVEL 2: PÚBLICO-ALVO</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_publico(row):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Classifica o leito quanto ao público-alvo.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Fundamentação:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    - Portaria GM/MS nº 930/2012: Definição de neonatal (0-28 dias)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    - ECA: Definição de criança/adolescente</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    co <span class="op">=</span> row[<span class="st">'co_leito'</span>]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    tp <span class="op">=</span> row[<span class="st">'tp_leito'</span>]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> <span class="bu">str</span>(row[<span class="st">'DS_CO_LEITO'</span>]).upper()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N2_03: NEONATAL</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Leitos específicos para recém-nascidos (0-28 dias)</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    LEITOS_NEONATAL <span class="op">=</span> [<span class="dv">41</span>,     <span class="co"># Neonatologia (clínico)</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                       <span class="dv">65</span>,     <span class="co"># Unidade Intermediária Neonatal</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                       <span class="dv">80</span>, <span class="dv">81</span>, <span class="dv">82</span>,  <span class="co"># UTI Neonatal Tipo I, II, III</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                       <span class="dv">92</span>,     <span class="co"># UCI Neonatal Convencional</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                       <span class="dv">93</span>]     <span class="co"># UCI Neonatal Canguru</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> LEITOS_NEONATAL <span class="kw">or</span> <span class="st">'NEONAT'</span> <span class="kw">in</span> ds <span class="kw">or</span> <span class="st">'CANGURU'</span> <span class="kw">in</span> ds:</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N2_03_NEONATAL'</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N2_02: PEDIÁTRICO</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Leitos para crianças (29 dias a 14 anos)</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    LEITOS_PEDIATRICO <span class="op">=</span> [<span class="dv">45</span>,   <span class="co"># Pediatria Clínica</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>                         <span class="dv">68</span>,   <span class="co"># Pediatria Cirúrgica</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>                         <span class="dv">77</span>, <span class="dv">78</span>, <span class="dv">79</span>,  <span class="co"># UTI Pediátrica Tipo I, II, III</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>                         <span class="dv">89</span>,   <span class="co"># Queimado Pediátrico (clínico)</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>                         <span class="dv">91</span>,   <span class="co"># Queimado Pediátrico (cirúrgico)</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>                         <span class="dv">94</span>]   <span class="co"># UCI Pediátrico</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tp <span class="op">==</span> <span class="dv">5</span> <span class="kw">or</span> co <span class="kw">in</span> LEITOS_PEDIATRICO <span class="kw">or</span> <span class="st">'PEDIATR'</span> <span class="kw">in</span> ds:</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N2_02_PEDIATRICO'</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N2_04: OBSTÉTRICO</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Leitos para gestantes, parturientes e puérperas</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    LEITOS_OBSTETRICO <span class="op">=</span> [<span class="dv">10</span>,   <span class="co"># Obstetrícia Cirúrgica</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>                         <span class="dv">43</span>]   <span class="co"># Obstetrícia Clínica</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tp <span class="op">==</span> <span class="dv">4</span> <span class="kw">or</span> co <span class="kw">in</span> LEITOS_OBSTETRICO <span class="kw">or</span> <span class="st">'OBSTETR'</span> <span class="kw">in</span> ds:</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N2_04_OBSTETRICO'</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># N2_01: ADULTO (default)</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Demais leitos</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------------------------------------------------------</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'N2_01_ADULTO'</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'NIVEL_2_PUBLICO'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(classificar_publico, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo Nível 2</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>n2_resumo <span class="op">=</span> df.groupby(<span class="st">'NIVEL_2_PUBLICO'</span>).agg({</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cnes'</span>: <span class="st">'count'</span>,</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>}).rename(columns<span class="op">=</span>{<span class="st">'cnes'</span>: <span class="st">'Registros'</span>, <span class="st">'qt_exist'</span>: <span class="st">'Leitos'</span>})</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>n2_resumo[<span class="st">'%'</span>] <span class="op">=</span> (n2_resumo[<span class="st">'Leitos'</span>] <span class="op">/</span> n2_resumo[<span class="st">'Leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>n2_resumo <span class="op">=</span> n2_resumo.sort_values(<span class="st">'Leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">NÍVEL 2: PÚBLICO-ALVO"</span>)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>n2_resumo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+NÍVEL 2: PÚBLICO-ALVO
+============================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Registros</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+<th data-quarto-table-cell-role="th">%</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NIVEL_2_PUBLICO</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N2_01_ADULTO</th>
+<td>32449</td>
+<td>390494</td>
+<td>72.97</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N2_02_PEDIATRICO</th>
+<td>8448</td>
+<td>74920</td>
+<td>14.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N2_04_OBSTETRICO</th>
+<td>6670</td>
+<td>50095</td>
+<td>9.36</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N2_03_NEONATAL</th>
+<td>2237</td>
+<td>19624</td>
+<td>3.67</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="nível-3-grupo-de-especialidade" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="nível-3-grupo-de-especialidade"><span class="header-section-number">2.3</span> Nível 3: Grupo de Especialidade</h2>
+<p>Agrupamento das 65 especialidades originais do CNES em <strong>18 grupos funcionais</strong>.</p>
+<section id="definições-operacionais-2" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="definições-operacionais-2"><span class="header-section-number">2.3.1</span> Definições Operacionais</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Grupo</th>
+<th>Especialidades Incluídas (co_leito)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>N3_01</strong></td>
+<td>UTI_GERAL</td>
+<td>74, 75, 76 (UTI Adulto I/II/III)</td>
+</tr>
+<tr class="even">
+<td><strong>N3_02</strong></td>
+<td>UTI_CARDIOLOGICA</td>
+<td>85, 86 (UCO II/III)</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_03</strong></td>
+<td>UTI_PEDIATRICA</td>
+<td>77, 78, 79 (UTI Ped I/II/III)</td>
+</tr>
+<tr class="even">
+<td><strong>N3_04</strong></td>
+<td>UTI_NEONATAL</td>
+<td>80, 81, 82 (UTI Neo I/II/III)</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_05</strong></td>
+<td>UTI_QUEIMADOS</td>
+<td>83</td>
+</tr>
+<tr class="even">
+<td><strong>N3_06</strong></td>
+<td>UCI_ADULTO</td>
+<td>95, 96</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_07</strong></td>
+<td>UCI_PEDIATRICO</td>
+<td>94</td>
+</tr>
+<tr class="even">
+<td><strong>N3_08</strong></td>
+<td>UCI_NEONATAL</td>
+<td>65, 92, 93</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_09</strong></td>
+<td>CIRURGIA_GERAL</td>
+<td>3, 13, 15</td>
+</tr>
+<tr class="even">
+<td><strong>N3_10</strong></td>
+<td>CIRURGIA_ESPECIALIZADA</td>
+<td>1, 2, 4, 5, 6, 8, 9, 11, 12, 14, 16</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_11</strong></td>
+<td>CIRURGIA_TRANSPLANTE</td>
+<td>67, 71</td>
+</tr>
+<tr class="even">
+<td><strong>N3_12</strong></td>
+<td>CLINICA_GERAL</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_13</strong></td>
+<td>CLINICA_ESPECIALIZADA</td>
+<td>31, 32, 35, 36, 37, 38, 40, 42, 44, 46</td>
+</tr>
+<tr class="even">
+<td><strong>N3_14</strong></td>
+<td>QUEIMADOS</td>
+<td>88, 89, 90, 91</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_15</strong></td>
+<td>OBSTETRICIA</td>
+<td>10, 43</td>
+</tr>
+<tr class="even">
+<td><strong>N3_16</strong></td>
+<td>PEDIATRIA</td>
+<td>45, 68</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_17</strong></td>
+<td>NEONATOLOGIA</td>
+<td>41</td>
+</tr>
+<tr class="even">
+<td><strong>N3_18</strong></td>
+<td>SAUDE_MENTAL</td>
+<td>47, 73, 84, 87</td>
+</tr>
+<tr class="odd">
+<td><strong>N3_19</strong></td>
+<td>LONGA_PERMANENCIA</td>
+<td>34, 48, 49</td>
+</tr>
+<tr class="even">
+<td><strong>N3_20</strong></td>
+<td>HOSPITAL_DIA</td>
+<td>7, 69, 70, 72</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="matriz-de-classificação---nível-3" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="matriz-de-classificação---nível-3"><span class="header-section-number">2.3.2</span> Matriz de Classificação - Nível 3</h3>
+<div id="387c8293" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># NÍVEL 3: GRUPO DE ESPECIALIDADE</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_especialidade(row):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Agrupa as 65 especialidades CNES em 20 grupos funcionais.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Fundamentação:</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">    - Tabela SIGTAP de procedimentos</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">    - Portarias de habilitação hospitalar</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    co <span class="op">=</span> row[<span class="st">'co_leito'</span>]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    tp <span class="op">=</span> row[<span class="st">'tp_leito'</span>]</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LEITOS INTENSIVOS (UTI)</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">74</span>, <span class="dv">75</span>, <span class="dv">76</span>]:</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_01_UTI_GERAL'</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">85</span>, <span class="dv">86</span>]:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_02_UTI_CARDIOLOGICA'</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">77</span>, <span class="dv">78</span>, <span class="dv">79</span>]:</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_03_UTI_PEDIATRICA'</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">80</span>, <span class="dv">81</span>, <span class="dv">82</span>]:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_04_UTI_NEONATAL'</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="op">==</span> <span class="dv">83</span>:</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_05_UTI_QUEIMADOS'</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LEITOS SEMI-INTENSIVOS (UCI)</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">95</span>, <span class="dv">96</span>]:</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_06_UCI_ADULTO'</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="op">==</span> <span class="dv">94</span>:</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_07_UCI_PEDIATRICO'</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">65</span>, <span class="dv">92</span>, <span class="dv">93</span>]:</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_08_UCI_NEONATAL'</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LEITOS CIRÚRGICOS</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">3</span>, <span class="dv">13</span>, <span class="dv">15</span>]:  <span class="co"># Cirurgia Geral, Ortopedia, Plástica</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_09_CIRURGIA_GERAL'</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">14</span>, <span class="dv">16</span>]:  <span class="co"># Especialidades cirúrgicas</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_10_CIRURGIA_ESPECIALIZADA'</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">12</span>] <span class="kw">and</span> tp <span class="op">==</span> <span class="dv">1</span>:  <span class="co"># Cardiologia e Oncologia cirúrgica</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_11_CIRURGIA_ALTA_COMPLEXIDADE'</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">67</span>, <span class="dv">71</span>]:  <span class="co"># Transplante</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_12_TRANSPLANTE'</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LEITOS QUEIMADOS (não UTI)</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">88</span>, <span class="dv">89</span>, <span class="dv">90</span>, <span class="dv">91</span>]:</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_13_QUEIMADOS'</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LEITOS CLÍNICOS</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="op">==</span> <span class="dv">33</span>:  <span class="co"># Clínica Geral</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_14_CLINICA_GERAL'</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">31</span>, <span class="dv">32</span>, <span class="dv">35</span>, <span class="dv">36</span>, <span class="dv">37</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">42</span>, <span class="dv">44</span>, <span class="dv">46</span>]:  <span class="co"># Especialidades clínicas</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_15_CLINICA_ESPECIALIZADA'</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LEITOS MATERNO-INFANTIL</span></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">10</span>, <span class="dv">43</span>]:  <span class="co"># Obstetrícia</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_16_OBSTETRICIA'</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">45</span>, <span class="dv">68</span>]:  <span class="co"># Pediatria</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_17_PEDIATRIA'</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="op">==</span> <span class="dv">41</span>:  <span class="co"># Neonatologia clínica</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_18_NEONATOLOGIA'</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LEITOS SAÚDE MENTAL</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">47</span>, <span class="dv">73</span>, <span class="dv">84</span>, <span class="dv">87</span>]:</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_19_SAUDE_MENTAL'</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># LEITOS LONGA PERMANÊNCIA</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> [<span class="dv">34</span>, <span class="dv">48</span>, <span class="dv">49</span>]:</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_20_LONGA_PERMANENCIA'</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>    <span class="co"># HOSPITAL DIA</span></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tp <span class="op">==</span> <span class="dv">7</span>:</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'N3_21_HOSPITAL_DIA'</span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>    <span class="co"># NÃO CLASSIFICADO</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -------------------------------------------------------------------------</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'N3_99_NAO_CLASSIFICADO'</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(classificar_especialidade, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo Nível 3</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>n3_resumo <span class="op">=</span> df.groupby(<span class="st">'NIVEL_3_ESPECIALIDADE'</span>).agg({</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cnes'</span>: <span class="st">'count'</span>,</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>}).rename(columns<span class="op">=</span>{<span class="st">'cnes'</span>: <span class="st">'Registros'</span>, <span class="st">'qt_exist'</span>: <span class="st">'Leitos'</span>})</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>n3_resumo[<span class="st">'%'</span>] <span class="op">=</span> (n3_resumo[<span class="st">'Leitos'</span>] <span class="op">/</span> n3_resumo[<span class="st">'Leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>n3_resumo <span class="op">=</span> n3_resumo.sort_values(<span class="st">'Leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">NÍVEL 3: GRUPO DE ESPECIALIDADE"</span>)</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>n3_resumo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+NÍVEL 3: GRUPO DE ESPECIALIDADE
+============================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Registros</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+<th data-quarto-table-cell-role="th">%</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NIVEL_3_ESPECIALIDADE</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_14_CLINICA_GERAL</th>
+<td>6313</td>
+<td>138290</td>
+<td>25.84</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_09_CIRURGIA_GERAL</th>
+<td>7239</td>
+<td>86321</td>
+<td>16.13</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_16_OBSTETRICIA</th>
+<td>6670</td>
+<td>50095</td>
+<td>9.36</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_17_PEDIATRIA</th>
+<td>5934</td>
+<td>46609</td>
+<td>8.71</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_01_UTI_GERAL</th>
+<td>2416</td>
+<td>45337</td>
+<td>8.47</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_19_SAUDE_MENTAL</th>
+<td>2119</td>
+<td>38998</td>
+<td>7.29</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_15_CLINICA_ESPECIALIZADA</th>
+<td>4676</td>
+<td>31527</td>
+<td>5.89</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_10_CIRURGIA_ESPECIALIZADA</th>
+<td>6439</td>
+<td>24960</td>
+<td>4.66</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_20_LONGA_PERMANENCIA</th>
+<td>985</td>
+<td>14876</td>
+<td>2.78</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_21_HOSPITAL_DIA</th>
+<td>1588</td>
+<td>10706</td>
+<td>2.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_11_CIRURGIA_ALTA_COMPLEXIDADE</th>
+<td>1096</td>
+<td>10585</td>
+<td>1.98</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_04_UTI_NEONATAL</th>
+<td>901</td>
+<td>10091</td>
+<td>1.89</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_03_UTI_PEDIATRICA</th>
+<td>803</td>
+<td>7646</td>
+<td>1.43</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_08_UCI_NEONATAL</th>
+<td>895</td>
+<td>6953</td>
+<td>1.30</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_06_UCI_ADULTO</th>
+<td>569</td>
+<td>4675</td>
+<td>0.87</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_18_NEONATOLOGIA</th>
+<td>441</td>
+<td>2580</td>
+<td>0.48</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_02_UTI_CARDIOLOGICA</th>
+<td>191</td>
+<td>1938</td>
+<td>0.36</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_12_TRANSPLANTE</th>
+<td>289</td>
+<td>1775</td>
+<td>0.33</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_13_QUEIMADOS</th>
+<td>105</td>
+<td>500</td>
+<td>0.09</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">N3_07_UCI_PEDIATRICO</th>
+<td>81</td>
+<td>410</td>
+<td>0.08</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">N3_05_UTI_QUEIMADOS</th>
+<td>54</td>
+<td>261</td>
+<td>0.05</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="taxonomia-completa" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Taxonomia Completa</h1>
+<section id="código-taxonômico-integrado" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="código-taxonômico-integrado"><span class="header-section-number">3.1</span> Código Taxonômico Integrado</h2>
+<p>Criação do código hierárquico completo no formato: <code>N1_XX.N2_XX.N3_XX</code></p>
+<div id="d86a5e2e" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CÓDIGO TAXONÔMICO INTEGRADO</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =============================================================================</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Extrair códigos numéricos</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'COD_N1'</span>] <span class="op">=</span> df[<span class="st">'NIVEL_1_INTENSIDADE'</span>].<span class="bu">str</span>.extract(<span class="vs">r'</span><span class="kw">(</span><span class="vs">N1_</span><span class="dv">\d</span><span class="op">{2}</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'COD_N2'</span>] <span class="op">=</span> df[<span class="st">'NIVEL_2_PUBLICO'</span>].<span class="bu">str</span>.extract(<span class="vs">r'</span><span class="kw">(</span><span class="vs">N2_</span><span class="dv">\d</span><span class="op">{2}</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'COD_N3'</span>] <span class="op">=</span> df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>].<span class="bu">str</span>.extract(<span class="vs">r'</span><span class="kw">(</span><span class="vs">N3_</span><span class="dv">\d</span><span class="op">{2}</span><span class="kw">)</span><span class="vs">'</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Código taxonômico completo</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'CODIGO_TAXONOMICO'</span>] <span class="op">=</span> df[<span class="st">'COD_N1'</span>] <span class="op">+</span> <span class="st">'.'</span> <span class="op">+</span> df[<span class="st">'COD_N2'</span>] <span class="op">+</span> <span class="st">'.'</span> <span class="op">+</span> df[<span class="st">'COD_N3'</span>]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Descrição completa</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'DESC_N1'</span>] <span class="op">=</span> df[<span class="st">'NIVEL_1_INTENSIDADE'</span>].<span class="bu">str</span>.replace(<span class="vs">r'N1_</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">_'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'DESC_N2'</span>] <span class="op">=</span> df[<span class="st">'NIVEL_2_PUBLICO'</span>].<span class="bu">str</span>.replace(<span class="vs">r'N2_</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">_'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'DESC_N3'</span>] <span class="op">=</span> df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>].<span class="bu">str</span>.replace(<span class="vs">r'N3_</span><span class="dv">\d</span><span class="op">{2}</span><span class="vs">_'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'TAXONOMIA_DESCRITIVA'</span>] <span class="op">=</span> df[<span class="st">'DESC_N1'</span>] <span class="op">+</span> <span class="st">' &gt; '</span> <span class="op">+</span> df[<span class="st">'DESC_N2'</span>] <span class="op">+</span> <span class="st">' &gt; '</span> <span class="op">+</span> df[<span class="st">'DESC_N3'</span>]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar combinações únicas</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>taxonomia <span class="op">=</span> df.groupby([<span class="st">'CODIGO_TAXONOMICO'</span>, <span class="st">'TAXONOMIA_DESCRITIVA'</span>]).agg({</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>}).reset_index()</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>taxonomia <span class="op">=</span> taxonomia.sort_values(<span class="st">'qt_exist'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>taxonomia.columns <span class="op">=</span> [<span class="st">'Código'</span>, <span class="st">'Descrição'</span>, <span class="st">'Leitos'</span>]</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"TAXONOMIA HIERÁRQUICA COMPLETA"</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de combinações taxonômicas: </span><span class="sc">{</span><span class="bu">len</span>(taxonomia)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de leitos classificados: </span><span class="sc">{</span>taxonomia[<span class="st">'Leitos'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>taxonomia</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>TAXONOMIA HIERÁRQUICA COMPLETA
+================================================================================
+Total de combinações taxonômicas: 24
+Total de leitos classificados: 535,133</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Código</th>
+<th data-quarto-table-cell-role="th">Descrição</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>N1_04.N2_01.N3_14</td>
+<td>MEDIA_COMPLEXIDADE &gt; ADULTO &gt; CLINICA_GERAL</td>
+<td>138290</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">12</th>
+<td>N1_04.N2_01.N3_09</td>
+<td>MEDIA_COMPLEXIDADE &gt; ADULTO &gt; CIRURGIA_GERAL</td>
+<td>66203</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">20</th>
+<td>N1_04.N2_04.N3_16</td>
+<td>MEDIA_COMPLEXIDADE &gt; OBSTETRICO &gt; OBSTETRICIA</td>
+<td>50095</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">18</th>
+<td>N1_04.N2_02.N3_17</td>
+<td>MEDIA_COMPLEXIDADE &gt; PEDIATRICO &gt; PEDIATRIA</td>
+<td>46609</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>N1_01.N2_01.N3_01</td>
+<td>INTENSIVO &gt; ADULTO &gt; UTI_GERAL</td>
+<td>45337</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">21</th>
+<td>N1_05.N2_01.N3_19</td>
+<td>BAIXA_COMPLEXIDADE &gt; ADULTO &gt; SAUDE_MENTAL</td>
+<td>38998</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">15</th>
+<td>N1_04.N2_01.N3_15</td>
+<td>MEDIA_COMPLEXIDADE &gt; ADULTO &gt; CLINICA_ESPECIAL...</td>
+<td>31527</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>N1_04.N2_01.N3_10</td>
+<td>MEDIA_COMPLEXIDADE &gt; ADULTO &gt; CIRURGIA_ESPECIA...</td>
+<td>24960</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">17</th>
+<td>N1_04.N2_02.N3_09</td>
+<td>MEDIA_COMPLEXIDADE &gt; PEDIATRICO &gt; CIRURGIA_GERAL</td>
+<td>20118</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">22</th>
+<td>N1_05.N2_01.N3_20</td>
+<td>BAIXA_COMPLEXIDADE &gt; ADULTO &gt; LONGA_PERMANENCIA</td>
+<td>14876</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>N1_03.N2_01.N3_11</td>
+<td>ALTA_COMPLEXIDADE &gt; ADULTO &gt; CIRURGIA_ALTA_COM...</td>
+<td>10585</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">16</th>
+<td>N1_04.N2_01.N3_21</td>
+<td>MEDIA_COMPLEXIDADE &gt; ADULTO &gt; HOSPITAL_DIA</td>
+<td>10130</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>N1_01.N2_03.N3_04</td>
+<td>INTENSIVO &gt; NEONATAL &gt; UTI_NEONATAL</td>
+<td>10091</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>N1_01.N2_02.N3_03</td>
+<td>INTENSIVO &gt; PEDIATRICO &gt; UTI_PEDIATRICA</td>
+<td>7646</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">7</th>
+<td>N1_02.N2_03.N3_08</td>
+<td>SEMI_INTENSIVO &gt; NEONATAL &gt; UCI_NEONATAL</td>
+<td>6953</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>N1_02.N2_01.N3_06</td>
+<td>SEMI_INTENSIVO &gt; ADULTO &gt; UCI_ADULTO</td>
+<td>4675</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">19</th>
+<td>N1_04.N2_03.N3_18</td>
+<td>MEDIA_COMPLEXIDADE &gt; NEONATAL &gt; NEONATOLOGIA</td>
+<td>2580</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>N1_01.N2_01.N3_02</td>
+<td>INTENSIVO &gt; ADULTO &gt; UTI_CARDIOLOGICA</td>
+<td>1938</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">9</th>
+<td>N1_03.N2_01.N3_12</td>
+<td>ALTA_COMPLEXIDADE &gt; ADULTO &gt; TRANSPLANTE</td>
+<td>1775</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">23</th>
+<td>N1_05.N2_01.N3_21</td>
+<td>BAIXA_COMPLEXIDADE &gt; ADULTO &gt; HOSPITAL_DIA</td>
+<td>576</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>N1_02.N2_02.N3_07</td>
+<td>SEMI_INTENSIVO &gt; PEDIATRICO &gt; UCI_PEDIATRICO</td>
+<td>410</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">10</th>
+<td>N1_03.N2_01.N3_13</td>
+<td>ALTA_COMPLEXIDADE &gt; ADULTO &gt; QUEIMADOS</td>
+<td>363</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>N1_01.N2_01.N3_05</td>
+<td>INTENSIVO &gt; ADULTO &gt; UTI_QUEIMADOS</td>
+<td>261</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>N1_03.N2_02.N3_13</td>
+<td>ALTA_COMPLEXIDADE &gt; PEDIATRICO &gt; QUEIMADOS</td>
+<td>137</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="visualização-hierárquica" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="visualização-hierárquica"><span class="header-section-number">3.2</span> Visualização Hierárquica</h2>
+<div id="523c4056" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico por Nível 1</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">5</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Nível 1: Intensidade</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>n1_plot <span class="op">=</span> n1_resumo.sort_values(<span class="st">'Leitos'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>colors_n1 <span class="op">=</span> [<span class="st">'#1a1a2e'</span>, <span class="st">'#16213e'</span>, <span class="st">'#0f3460'</span>, <span class="st">'#533483'</span>, <span class="st">'#e94560'</span>]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].barh(n1_plot.index.<span class="bu">str</span>.replace(<span class="st">'N1_</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{2}</span><span class="st">_'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>             n1_plot[<span class="st">'Leitos'</span>], color<span class="op">=</span>colors_n1)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Nível 1: Intensidade do Cuidado'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Leitos'</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(n1_plot[<span class="st">'Leitos'</span>]):</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].text(v <span class="op">+</span> <span class="dv">2000</span>, i, <span class="ss">f'</span><span class="sc">{</span>v<span class="sc">:,}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Nível 2: Público-Alvo</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>n2_plot <span class="op">=</span> n2_resumo.sort_values(<span class="st">'Leitos'</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>colors_n2 <span class="op">=</span> [<span class="st">'#2c3e50'</span>, <span class="st">'#3498db'</span>, <span class="st">'#e74c3c'</span>, <span class="st">'#f39c12'</span>]</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].barh(n2_plot.index.<span class="bu">str</span>.replace(<span class="st">'N2_</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{2}</span><span class="st">_'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>             n2_plot[<span class="st">'Leitos'</span>], color<span class="op">=</span>colors_n2)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Nível 2: Público-Alvo'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Leitos'</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(n2_plot[<span class="st">'Leitos'</span>]):</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].text(v <span class="op">+</span> <span class="dv">2000</span>, i, <span class="ss">f'</span><span class="sc">{</span>v<span class="sc">:,}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Nível 3: Top 10 Especialidades</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>n3_plot <span class="op">=</span> n3_resumo.head(<span class="dv">10</span>).sort_values(<span class="st">'Leitos'</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].barh(n3_plot.index.<span class="bu">str</span>.replace(<span class="st">'N3_</span><span class="ch">\\</span><span class="st">d</span><span class="sc">{2}</span><span class="st">_'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">True</span>), </span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>             n3_plot[<span class="st">'Leitos'</span>], color<span class="op">=</span><span class="st">'#34495e'</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_title(<span class="st">'Nível 3: Top 10 Grupos de Especialidade'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_xlabel(<span class="st">'Leitos'</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(n3_plot[<span class="st">'Leitos'</span>]):</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">2</span>].text(v <span class="op">+</span> <span class="dv">1000</span>, i, <span class="ss">f'</span><span class="sc">{</span>v<span class="sc">:,}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAXONOMIA_LEITOS_CNES_files/figure-html/cell-6-output-1.png" width="1535" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-cruzamento-n1-n2" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="matriz-de-cruzamento-n1-n2"><span class="header-section-number">3.3</span> Matriz de Cruzamento N1 × N2</h2>
+<div id="42d937a1" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de cruzamento Intensidade × Público</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>matriz_n1_n2 <span class="op">=</span> pd.crosstab(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'DESC_N1'</span>], </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'DESC_N2'</span>], </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    values<span class="op">=</span>df[<span class="st">'qt_exist'</span>], </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    aggfunc<span class="op">=</span><span class="st">'sum'</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    margins<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    margins_name<span class="op">=</span><span class="st">'TOTAL'</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>).fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">MATRIZ DE CRUZAMENTO: INTENSIDADE × PÚBLICO-ALVO"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>matriz_n1_n2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+MATRIZ DE CRUZAMENTO: INTENSIDADE × PÚBLICO-ALVO
+================================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">DESC_N2</th>
+<th data-quarto-table-cell-role="th">ADULTO</th>
+<th data-quarto-table-cell-role="th">NEONATAL</th>
+<th data-quarto-table-cell-role="th">OBSTETRICO</th>
+<th data-quarto-table-cell-role="th">PEDIATRICO</th>
+<th data-quarto-table-cell-role="th">TOTAL</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">DESC_N1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">ALTA_COMPLEXIDADE</th>
+<td>12723</td>
+<td>0</td>
+<td>0</td>
+<td>137</td>
+<td>12860</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">BAIXA_COMPLEXIDADE</th>
+<td>54450</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>54450</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">INTENSIVO</th>
+<td>47536</td>
+<td>10091</td>
+<td>0</td>
+<td>7646</td>
+<td>65273</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">MEDIA_COMPLEXIDADE</th>
+<td>271110</td>
+<td>2580</td>
+<td>50095</td>
+<td>66727</td>
+<td>390512</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">SEMI_INTENSIVO</th>
+<td>4675</td>
+<td>6953</td>
+<td>0</td>
+<td>410</td>
+<td>12038</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">TOTAL</th>
+<td>390494</td>
+<td>19624</td>
+<td>50095</td>
+<td>74920</td>
+<td>535133</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-cruzamento-n1-n3" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="matriz-de-cruzamento-n1-n3"><span class="header-section-number">3.4</span> Matriz de Cruzamento N1 × N3</h2>
+<div id="882aaa8e" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top 10 grupos de especialidade</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>top_n3 <span class="op">=</span> n3_resumo.head(<span class="dv">10</span>).index.tolist()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df_top <span class="op">=</span> df[df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>].isin(top_n3)]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>matriz_n1_n3 <span class="op">=</span> pd.crosstab(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    df_top[<span class="st">'DESC_N1'</span>], </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    df_top[<span class="st">'DESC_N3'</span>], </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    values<span class="op">=</span>df_top[<span class="st">'qt_exist'</span>], </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    aggfunc<span class="op">=</span><span class="st">'sum'</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>).fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">MATRIZ DE CRUZAMENTO: INTENSIDADE × ESPECIALIDADE (Top 10)"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>matriz_n1_n3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+MATRIZ DE CRUZAMENTO: INTENSIDADE × ESPECIALIDADE (Top 10)
+================================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">DESC_N3</th>
+<th data-quarto-table-cell-role="th">CIRURGIA_ESPECIALIZADA</th>
+<th data-quarto-table-cell-role="th">CIRURGIA_GERAL</th>
+<th data-quarto-table-cell-role="th">CLINICA_ESPECIALIZADA</th>
+<th data-quarto-table-cell-role="th">CLINICA_GERAL</th>
+<th data-quarto-table-cell-role="th">HOSPITAL_DIA</th>
+<th data-quarto-table-cell-role="th">LONGA_PERMANENCIA</th>
+<th data-quarto-table-cell-role="th">OBSTETRICIA</th>
+<th data-quarto-table-cell-role="th">PEDIATRIA</th>
+<th data-quarto-table-cell-role="th">SAUDE_MENTAL</th>
+<th data-quarto-table-cell-role="th">UTI_GERAL</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">DESC_N1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">BAIXA_COMPLEXIDADE</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>576</td>
+<td>14876</td>
+<td>0</td>
+<td>0</td>
+<td>38998</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">INTENSIVO</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>45337</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MEDIA_COMPLEXIDADE</th>
+<td>24960</td>
+<td>86321</td>
+<td>31527</td>
+<td>138290</td>
+<td>10130</td>
+<td>0</td>
+<td>50095</td>
+<td>46609</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="validação" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Validação</h1>
+<section id="cobertura-da-classificação" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="cobertura-da-classificação"><span class="header-section-number">4.1</span> Cobertura da Classificação</h2>
+<div id="374d3b3d" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar leitos não classificados</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>nao_class <span class="op">=</span> df[df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>].<span class="bu">str</span>.contains(<span class="st">'NAO_CLASSIFICADO'</span>)]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"VALIDAÇÃO DA COBERTURA"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de leitos: </span><span class="sc">{</span>df[<span class="st">'qt_exist'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Leitos classificados: </span><span class="sc">{</span>df[<span class="op">~</span>df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>].<span class="bu">str</span>.contains(<span class="st">'NAO_CLASSIFICADO'</span>)][<span class="st">'qt_exist'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Leitos não classificados: </span><span class="sc">{</span>nao_class[<span class="st">'qt_exist'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Taxa de cobertura: </span><span class="sc">{</span>(<span class="dv">1</span> <span class="op">-</span> nao_class[<span class="st">'qt_exist'</span>].<span class="bu">sum</span>()<span class="op">/</span>df[<span class="st">'qt_exist'</span>].<span class="bu">sum</span>())<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(nao_class) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Leitos não classificados por especialidade:"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(nao_class.groupby(<span class="st">'DS_CO_LEITO'</span>)[<span class="st">'qt_exist'</span>].<span class="bu">sum</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>VALIDAÇÃO DA COBERTURA
+============================================================
+Total de leitos: 535,133
+Leitos classificados: 535,133
+Leitos não classificados: 0
+Taxa de cobertura: 100.00%</code></pre>
+</div>
+</div>
+</section>
+<section id="consistência-lógica" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="consistência-lógica"><span class="header-section-number">4.2</span> Consistência Lógica</h2>
+<div id="ceac0318" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar consistência: Neonatal só pode ser N2_03</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>inconsistencias <span class="op">=</span> []</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Regra 1: UTI Neonatal deve ser N2_03_NEONATAL</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>uti_neo <span class="op">=</span> df[(df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>] <span class="op">==</span> <span class="st">'N3_04_UTI_NEONATAL'</span>) <span class="op">&amp;</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>             (df[<span class="st">'NIVEL_2_PUBLICO'</span>] <span class="op">!=</span> <span class="st">'N2_03_NEONATAL'</span>)]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(uti_neo) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    inconsistencias.append(<span class="ss">f"UTI Neonatal com público não-neonatal: </span><span class="sc">{</span><span class="bu">len</span>(uti_neo)<span class="sc">}</span><span class="ss"> registros"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Regra 2: Obstetrícia deve ser N2_04_OBSTETRICO</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>obst <span class="op">=</span> df[(df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>] <span class="op">==</span> <span class="st">'N3_16_OBSTETRICIA'</span>) <span class="op">&amp;</span> </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>          (df[<span class="st">'NIVEL_2_PUBLICO'</span>] <span class="op">!=</span> <span class="st">'N2_04_OBSTETRICO'</span>)]</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(obst) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    inconsistencias.append(<span class="ss">f"Obstetrícia com público não-obstétrico: </span><span class="sc">{</span><span class="bu">len</span>(obst)<span class="sc">}</span><span class="ss"> registros"</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Regra 3: Pediatria deve ser N2_02_PEDIATRICO</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ped <span class="op">=</span> df[(df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>] <span class="op">==</span> <span class="st">'N3_17_PEDIATRIA'</span>) <span class="op">&amp;</span> </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>         (df[<span class="st">'NIVEL_2_PUBLICO'</span>] <span class="op">!=</span> <span class="st">'N2_02_PEDIATRICO'</span>)]</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(ped) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    inconsistencias.append(<span class="ss">f"Pediatria com público não-pediátrico: </span><span class="sc">{</span><span class="bu">len</span>(ped)<span class="sc">}</span><span class="ss"> registros"</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">VALIDAÇÃO DE CONSISTÊNCIA LÓGICA"</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(inconsistencias) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"✓ Nenhuma inconsistência encontrada"</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> inc <span class="kw">in</span> inconsistencias:</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"✗ </span><span class="sc">{</span>inc<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+VALIDAÇÃO DE CONSISTÊNCIA LÓGICA
+============================================================
+✓ Nenhuma inconsistência encontrada</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="dicionário-de-dados" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Dicionário de Dados</h1>
+<section id="nível-1-intensidade-do-cuidado-1" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="nível-1-intensidade-do-cuidado-1"><span class="header-section-number">5.1</span> Nível 1: Intensidade do Cuidado</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Nome</th>
+<th>Descrição</th>
+<th>Leitos CNES Incluídos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>N1_01</td>
+<td>INTENSIVO</td>
+<td>Monitorização contínua, suporte avançado de vida</td>
+<td>74-86 (UTI), 83 (UTI Queimados)</td>
+</tr>
+<tr class="even">
+<td>N1_02</td>
+<td>SEMI_INTENSIVO</td>
+<td>Monitorização intermitente, suporte intermediário</td>
+<td>65, 92-96 (UCI)</td>
+</tr>
+<tr class="odd">
+<td>N1_03</td>
+<td>ALTA_COMPLEXIDADE</td>
+<td>Procedimentos de alta complexidade</td>
+<td>67, 71 (Transplante), 2/12 cirúrgico, 88-91 (Queimados)</td>
+</tr>
+<tr class="even">
+<td>N1_04</td>
+<td>MEDIA_COMPLEXIDADE</td>
+<td>Internações cirúrgicas e clínicas agudas</td>
+<td>Demais leitos cirúrgicos e clínicos</td>
+</tr>
+<tr class="odd">
+<td>N1_05</td>
+<td>BAIXA_COMPLEXIDADE</td>
+<td>Longa permanência, reabilitação</td>
+<td>34, 47, 48, 49, 73, 84, 87, Hospital Dia</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nível-2-público-alvo-1" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="nível-2-público-alvo-1"><span class="header-section-number">5.2</span> Nível 2: Público-Alvo</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 15%">
+<col style="width: 28%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Nome</th>
+<th>Descrição</th>
+<th>Faixa Etária</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>N2_01</td>
+<td>ADULTO</td>
+<td>Pacientes adultos</td>
+<td>≥ 15 anos</td>
+</tr>
+<tr class="even">
+<td>N2_02</td>
+<td>PEDIATRICO</td>
+<td>Crianças e adolescentes</td>
+<td>29 dias a 14 anos</td>
+</tr>
+<tr class="odd">
+<td>N2_03</td>
+<td>NEONATAL</td>
+<td>Recém-nascidos</td>
+<td>0 a 28 dias</td>
+</tr>
+<tr class="even">
+<td>N2_04</td>
+<td>OBSTETRICO</td>
+<td>Gestantes, parturientes, puérperas</td>
+<td>Qualquer idade</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="nível-3-grupo-de-especialidade-1" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="nível-3-grupo-de-especialidade-1"><span class="header-section-number">5.3</span> Nível 3: Grupo de Especialidade</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 18%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Nome</th>
+<th>co_leito Incluídos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>N3_01</td>
+<td>UTI_GERAL</td>
+<td>74, 75, 76</td>
+</tr>
+<tr class="even">
+<td>N3_02</td>
+<td>UTI_CARDIOLOGICA</td>
+<td>85, 86</td>
+</tr>
+<tr class="odd">
+<td>N3_03</td>
+<td>UTI_PEDIATRICA</td>
+<td>77, 78, 79</td>
+</tr>
+<tr class="even">
+<td>N3_04</td>
+<td>UTI_NEONATAL</td>
+<td>80, 81, 82</td>
+</tr>
+<tr class="odd">
+<td>N3_05</td>
+<td>UTI_QUEIMADOS</td>
+<td>83</td>
+</tr>
+<tr class="even">
+<td>N3_06</td>
+<td>UCI_ADULTO</td>
+<td>95, 96</td>
+</tr>
+<tr class="odd">
+<td>N3_07</td>
+<td>UCI_PEDIATRICO</td>
+<td>94</td>
+</tr>
+<tr class="even">
+<td>N3_08</td>
+<td>UCI_NEONATAL</td>
+<td>65, 92, 93</td>
+</tr>
+<tr class="odd">
+<td>N3_09</td>
+<td>CIRURGIA_GERAL</td>
+<td>3, 13, 15</td>
+</tr>
+<tr class="even">
+<td>N3_10</td>
+<td>CIRURGIA_ESPECIALIZADA</td>
+<td>1, 4, 5, 6, 8, 9, 11, 14, 16</td>
+</tr>
+<tr class="odd">
+<td>N3_11</td>
+<td>CIRURGIA_ALTA_COMPLEXIDADE</td>
+<td>2, 12 (quando tp_leito=1)</td>
+</tr>
+<tr class="even">
+<td>N3_12</td>
+<td>TRANSPLANTE</td>
+<td>67, 71</td>
+</tr>
+<tr class="odd">
+<td>N3_13</td>
+<td>QUEIMADOS</td>
+<td>88, 89, 90, 91</td>
+</tr>
+<tr class="even">
+<td>N3_14</td>
+<td>CLINICA_GERAL</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td>N3_15</td>
+<td>CLINICA_ESPECIALIZADA</td>
+<td>31, 32, 35, 36, 37, 38, 40, 42, 44, 46</td>
+</tr>
+<tr class="even">
+<td>N3_16</td>
+<td>OBSTETRICIA</td>
+<td>10, 43</td>
+</tr>
+<tr class="odd">
+<td>N3_17</td>
+<td>PEDIATRIA</td>
+<td>45, 68</td>
+</tr>
+<tr class="even">
+<td>N3_18</td>
+<td>NEONATOLOGIA</td>
+<td>41</td>
+</tr>
+<tr class="odd">
+<td>N3_19</td>
+<td>SAUDE_MENTAL</td>
+<td>47, 73, 84, 87</td>
+</tr>
+<tr class="even">
+<td>N3_20</td>
+<td>LONGA_PERMANENCIA</td>
+<td>34, 48, 49</td>
+</tr>
+<tr class="odd">
+<td>N3_21</td>
+<td>HOSPITAL_DIA</td>
+<td>tp_leito=7 (exceto classificados acima)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="exportação" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Exportação</h1>
+<div id="1969aaee" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecionar colunas para exportação</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>colunas_export <span class="op">=</span> [</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Identificadores originais</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'competen'</span> <span class="cf">if</span> <span class="st">'competen'</span> <span class="kw">in</span> df.columns <span class="cf">else</span> df.columns[<span class="dv">0</span>],</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>, <span class="st">'cnes'</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Classificação original CNES</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tp_leito'</span>, <span class="st">'DS_TP_LEITO'</span>, <span class="st">'co_leito'</span>, <span class="st">'DS_CO_LEITO'</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Quantidades</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>, <span class="st">'qt_contr'</span>, <span class="st">'qt_sus'</span>, <span class="st">'qt_nsus'</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># TAXONOMIA HIERÁRQUICA</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CODIGO_TAXONOMICO'</span>,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'NIVEL_1_INTENSIDADE'</span>, <span class="st">'NIVEL_2_PUBLICO'</span>, <span class="st">'NIVEL_3_ESPECIALIDADE'</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'DESC_N1'</span>, <span class="st">'DESC_N2'</span>, <span class="st">'DESC_N3'</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'TAXONOMIA_DESCRITIVA'</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar nome da primeira coluna</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>colunas_export[<span class="dv">0</span>] <span class="op">=</span> df.columns[<span class="dv">0</span>]</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>df_export <span class="op">=</span> df[colunas_export]</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>df_export.to_csv(<span class="st">'arq5_taxonomia_leitos.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"EXPORTAÇÃO CONCLUÍDA"</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Arquivo: arq5_taxonomia_leitos.csv"</span>)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Registros: </span><span class="sc">{</span><span class="bu">len</span>(df_export)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Colunas: </span><span class="sc">{</span><span class="bu">len</span>(df_export.columns)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Colunas exportadas:"</span>)</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> df_export.columns:</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  - </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>EXPORTAÇÃO CONCLUÍDA
+============================================================
+Arquivo: arq5_taxonomia_leitos.csv
+Registros: 49,804
+Colunas: 19
+
+Colunas exportadas:
+  - ï»¿competen
+  - codufmun
+  - cnes
+  - tp_leito
+  - DS_TP_LEITO
+  - co_leito
+  - DS_CO_LEITO
+  - qt_exist
+  - qt_contr
+  - qt_sus
+  - qt_nsus
+  - CODIGO_TAXONOMICO
+  - NIVEL_1_INTENSIDADE
+  - NIVEL_2_PUBLICO
+  - NIVEL_3_ESPECIALIDADE
+  - DESC_N1
+  - DESC_N2
+  - DESC_N3
+  - TAXONOMIA_DESCRITIVA</code></pre>
+</div>
+</div>
+</section>
+<section id="resumo-executivo" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Resumo Executivo</h1>
+<div id="15f5cf11" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RESUMO EXECUTIVO - TAXONOMIA HIERÁRQUICA DE LEITOS CNES"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 DADOS PROCESSADOS"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Competência: 202506"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Total de registros: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Total de leitos: </span><span class="sc">{</span>df[<span class="st">'qt_exist'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Estabelecimentos: </span><span class="sc">{</span>df[<span class="st">'cnes'</span>]<span class="sc">.</span>nunique()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios: </span><span class="sc">{</span>df[<span class="st">'codufmun'</span>]<span class="sc">.</span>nunique()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📐 ESTRUTURA TAXONÔMICA"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Nível 1 (Intensidade): 5 categorias"</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Nível 2 (Público): 4 categorias"</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Nível 3 (Especialidade): </span><span class="sc">{</span>df[<span class="st">'NIVEL_3_ESPECIALIDADE'</span>]<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss"> grupos"</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Combinações únicas: </span><span class="sc">{</span>df[<span class="st">'CODIGO_TAXONOMICO'</span>]<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📈 DISTRIBUIÇÃO POR INTENSIDADE"</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, row <span class="kw">in</span> n1_resumo.iterrows():</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    nome <span class="op">=</span> idx.replace(<span class="st">'N1_0'</span>, <span class="st">''</span>).replace(<span class="st">'_'</span>, <span class="st">' '</span>)[<span class="dv">2</span>:]</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   </span><span class="sc">{</span>nome<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>row[<span class="st">'Leitos'</span>]<span class="sc">:,}</span><span class="ss"> leitos (</span><span class="sc">{</span>row[<span class="st">'%'</span>]<span class="sc">}</span><span class="ss">%)"</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✅ VALIDAÇÃO"</span>)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Taxa de cobertura: 100%"</span>)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Inconsistências: 0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================
+RESUMO EXECUTIVO - TAXONOMIA HIERÁRQUICA DE LEITOS CNES
+================================================================================
+
+📊 DADOS PROCESSADOS
+   Competência: 202506
+   Total de registros: 49,804
+   Total de leitos: 535,133
+   Estabelecimentos: 9,072
+   Municípios: 3,597
+
+📐 ESTRUTURA TAXONÔMICA
+   Nível 1 (Intensidade): 5 categorias
+   Nível 2 (Público): 4 categorias
+   Nível 3 (Especialidade): 21 grupos
+   Combinações únicas: 24
+
+📈 DISTRIBUIÇÃO POR INTENSIDADE
+   MEDIA COMPLEXIDADE: 390,512.0 leitos (72.97%)
+   INTENSIVO: 65,273.0 leitos (12.2%)
+   BAIXA COMPLEXIDADE: 54,450.0 leitos (10.18%)
+   ALTA COMPLEXIDADE: 12,860.0 leitos (2.4%)
+   SEMI INTENSIVO: 12,038.0 leitos (2.25%)
+
+✅ VALIDAÇÃO
+   Taxa de cobertura: 100%
+   Inconsistências: 0</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Elaborado por:</strong> Olavo Costa<br>
+<strong>Data:</strong> 21/01/2026<br>
+<strong>Metodologia:</strong> Taxonomia Determinística por Regras de Negócio<br>
+<strong>Fonte:</strong> CNES - Competência 202506<br>
+<strong>Fundamentação:</strong> RDC ANVISA nº 7/2010, Portarias GM/MS nº 3.432/1998, 930/2012, 148/2012, 2.809/2012</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

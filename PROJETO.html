@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cieges - Brasil Estadual">
+<meta name="dcterms.date" content="2026-01-21">
+
+<title>Projeto CNES 360 v2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="PROJETO_files/libs/clipboard/clipboard.min.js"></script>
+<script src="PROJETO_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="PROJETO_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="PROJETO_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="PROJETO_files/libs/quarto-html/popper.min.js"></script>
+<script src="PROJETO_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="PROJETO_files/libs/quarto-html/anchor.min.js"></script>
+<link href="PROJETO_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="PROJETO_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="PROJETO_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="PROJETO_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="PROJETO_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#apresentação-do-projeto" id="toc-apresentação-do-projeto" class="nav-link active" data-scroll-target="#apresentação-do-projeto"><span class="header-section-number">1</span> Apresentação do Projeto</a>
+  <ul class="collapse">
+  <li><a href="#contexto" id="toc-contexto" class="nav-link" data-scroll-target="#contexto"><span class="header-section-number">1.1</span> Contexto</a></li>
+  <li><a href="#o-projeto-cnes-360-v2" id="toc-o-projeto-cnes-360-v2" class="nav-link" data-scroll-target="#o-projeto-cnes-360-v2"><span class="header-section-number">1.2</span> O Projeto CNES 360 v2</a></li>
+  </ul></li>
+  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos"><span class="header-section-number">2</span> Objetivos</a>
+  <ul class="collapse">
+  <li><a href="#objetivo-geral" id="toc-objetivo-geral" class="nav-link" data-scroll-target="#objetivo-geral"><span class="header-section-number">2.1</span> Objetivo Geral</a></li>
+  <li><a href="#objetivos-específicos" id="toc-objetivos-específicos" class="nav-link" data-scroll-target="#objetivos-específicos"><span class="header-section-number">2.2</span> Objetivos Específicos</a></li>
+  </ul></li>
+  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">3</span> Metodologia</a>
+  <ul class="collapse">
+  <li><a href="#fonte-de-dados" id="toc-fonte-de-dados" class="nav-link" data-scroll-target="#fonte-de-dados"><span class="header-section-number">3.1</span> Fonte de Dados</a></li>
+  <li><a href="#etapas-do-projeto" id="toc-etapas-do-projeto" class="nav-link" data-scroll-target="#etapas-do-projeto"><span class="header-section-number">3.2</span> Etapas do Projeto</a>
+  <ul class="collapse">
+  <li><a href="#etapa-1-etl-extração-transformação-e-carga" id="toc-etapa-1-etl-extração-transformação-e-carga" class="nav-link" data-scroll-target="#etapa-1-etl-extração-transformação-e-carga"><span class="header-section-number">3.2.1</span> Etapa 1: ETL (Extração, Transformação e Carga)</a></li>
+  <li><a href="#etapa-2-classificação-taxonômica" id="toc-etapa-2-classificação-taxonômica" class="nav-link" data-scroll-target="#etapa-2-classificação-taxonômica"><span class="header-section-number">3.2.2</span> Etapa 2: Classificação Taxonômica</a></li>
+  <li><a href="#etapa-3-clusterização-de-especialidades" id="toc-etapa-3-clusterização-de-especialidades" class="nav-link" data-scroll-target="#etapa-3-clusterização-de-especialidades"><span class="header-section-number">3.2.3</span> Etapa 3: Clusterização de Especialidades</a></li>
+  <li><a href="#etapa-4-análise-de-vazios-assistenciais" id="toc-etapa-4-análise-de-vazios-assistenciais" class="nav-link" data-scroll-target="#etapa-4-análise-de-vazios-assistenciais"><span class="header-section-number">3.2.4</span> Etapa 4: Análise de Vazios Assistenciais</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#produtos-gerados" id="toc-produtos-gerados" class="nav-link" data-scroll-target="#produtos-gerados"><span class="header-section-number">4</span> Produtos Gerados</a>
+  <ul class="collapse">
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets"><span class="header-section-number">4.1</span> Datasets</a></li>
+  <li><a href="#relatórios-técnicos" id="toc-relatórios-técnicos" class="nav-link" data-scroll-target="#relatórios-técnicos"><span class="header-section-number">4.2</span> Relatórios Técnicos</a></li>
+  <li><a href="#documentos-de-apoio" id="toc-documentos-de-apoio" class="nav-link" data-scroll-target="#documentos-de-apoio"><span class="header-section-number">4.3</span> Documentos de Apoio</a></li>
+  </ul></li>
+  <li><a href="#resultados-principais" id="toc-resultados-principais" class="nav-link" data-scroll-target="#resultados-principais"><span class="header-section-number">5</span> Resultados Principais</a>
+  <ul class="collapse">
+  <li><a href="#panorama-nacional" id="toc-panorama-nacional" class="nav-link" data-scroll-target="#panorama-nacional"><span class="header-section-number">5.1</span> Panorama Nacional</a></li>
+  <li><a href="#vazios-assistenciais" id="toc-vazios-assistenciais" class="nav-link" data-scroll-target="#vazios-assistenciais"><span class="header-section-number">5.2</span> Vazios Assistenciais</a></li>
+  <li><a href="#concentração-de-mercado" id="toc-concentração-de-mercado" class="nav-link" data-scroll-target="#concentração-de-mercado"><span class="header-section-number">5.3</span> Concentração de Mercado</a></li>
+  <li><a href="#disparidades-regionais" id="toc-disparidades-regionais" class="nav-link" data-scroll-target="#disparidades-regionais"><span class="header-section-number">5.4</span> Disparidades Regionais</a></li>
+  </ul></li>
+  <li><a href="#limitações" id="toc-limitações" class="nav-link" data-scroll-target="#limitações"><span class="header-section-number">6</span> Limitações</a></li>
+  <li><a href="#próximos-passos" id="toc-próximos-passos" class="nav-link" data-scroll-target="#próximos-passos"><span class="header-section-number">7</span> Próximos Passos</a>
+  <ul class="collapse">
+  <li><a href="#curto-prazo" id="toc-curto-prazo" class="nav-link" data-scroll-target="#curto-prazo"><span class="header-section-number">7.1</span> Curto Prazo</a></li>
+  <li><a href="#médio-prazo" id="toc-médio-prazo" class="nav-link" data-scroll-target="#médio-prazo"><span class="header-section-number">7.2</span> Médio Prazo</a></li>
+  <li><a href="#longo-prazo" id="toc-longo-prazo" class="nav-link" data-scroll-target="#longo-prazo"><span class="header-section-number">7.3</span> Longo Prazo</a></li>
+  </ul></li>
+  <li><a href="#mudanças-realizadas-nesta-versão" id="toc-mudanças-realizadas-nesta-versão" class="nav-link" data-scroll-target="#mudanças-realizadas-nesta-versão"><span class="header-section-number">8</span> Mudanças Realizadas nesta Versão</a>
+  <ul class="collapse">
+  <li><a href="#comparativo-versão-anterior-vs.-versão-atual" id="toc-comparativo-versão-anterior-vs.-versão-atual" class="nav-link" data-scroll-target="#comparativo-versão-anterior-vs.-versão-atual"><span class="header-section-number">8.1</span> Comparativo: Versão Anterior vs.&nbsp;Versão Atual</a></li>
+  <li><a href="#justificativa-das-mudanças" id="toc-justificativa-das-mudanças" class="nav-link" data-scroll-target="#justificativa-das-mudanças"><span class="header-section-number">8.2</span> Justificativa das Mudanças</a>
+  <ul class="collapse">
+  <li><a href="#objetivo-geral-reformulado" id="toc-objetivo-geral-reformulado" class="nav-link" data-scroll-target="#objetivo-geral-reformulado"><span class="header-section-number">8.2.1</span> 1. Objetivo Geral Reformulado</a></li>
+  <li><a href="#objetivos-específicos-alinhados-aos-produtos" id="toc-objetivos-específicos-alinhados-aos-produtos" class="nav-link" data-scroll-target="#objetivos-específicos-alinhados-aos-produtos"><span class="header-section-number">8.2.2</span> 2. Objetivos Específicos Alinhados aos Produtos</a></li>
+  <li><a href="#metodologia-estruturada" id="toc-metodologia-estruturada" class="nav-link" data-scroll-target="#metodologia-estruturada"><span class="header-section-number">8.2.3</span> 3. Metodologia Estruturada</a></li>
+  <li><a href="#resultados-quantificados" id="toc-resultados-quantificados" class="nav-link" data-scroll-target="#resultados-quantificados"><span class="header-section-number">8.2.4</span> 4. Resultados Quantificados</a></li>
+  <li><a href="#limitações-explícitas" id="toc-limitações-explícitas" class="nav-link" data-scroll-target="#limitações-explícitas"><span class="header-section-number">8.2.5</span> 5. Limitações Explícitas</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">9</span> Referências</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="PROJETO.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Projeto CNES 360 v2</h1>
+<p class="subtitle lead">Inteligência de Dados de Leitos Hospitalares para Gestão em Saúde</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cieges - Brasil Estadual </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="apresentação-do-projeto" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Apresentação do Projeto</h1>
+<section id="contexto" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="contexto"><span class="header-section-number">1.1</span> Contexto</h2>
+<p>O Sistema Único de Saúde (SUS) enfrenta desafios constantes na gestão da capacidade instalada hospitalar. A distribuição desigual de leitos entre regiões, a concentração de serviços de alta complexidade em poucos municípios e a falta de informações consolidadas dificultam o planejamento e a tomada de decisão pelos gestores.</p>
+<p>O <strong>Cadastro Nacional de Estabelecimentos de Saúde (CNES)</strong> é a principal fonte de dados sobre a infraestrutura de saúde no Brasil, contendo informações detalhadas sobre leitos hospitalares. No entanto, os dados brutos do CNES são volumosos, fragmentados e de difícil interpretação para uso gerencial.</p>
+</section>
+<section id="o-projeto-cnes-360-v2" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="o-projeto-cnes-360-v2"><span class="header-section-number">1.2</span> O Projeto CNES 360 v2</h2>
+<p>O <strong>CNES 360 v2</strong> é uma iniciativa de inteligência de dados que transforma os dados brutos de leitos do CNES em informação estratégica, gerando indicadores, classificações e análises prontas para uso na gestão em saúde.</p>
+<hr>
+</section>
+</section>
+<section id="objetivos" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Objetivos</h1>
+<section id="objetivo-geral" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="objetivo-geral"><span class="header-section-number">2.1</span> Objetivo Geral</h2>
+<p>Desenvolver um conjunto de análises e indicadores sobre leitos hospitalares do Brasil, a partir dos dados do CNES, que subsidiem a tomada de decisão de gestores de saúde na identificação de vazios assistenciais, avaliação de riscos e planejamento de investimentos.</p>
+</section>
+<section id="objetivos-específicos" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="objetivos-específicos"><span class="header-section-number">2.2</span> Objetivos Específicos</h2>
+<ol type="1">
+<li><p><strong>Tratar e qualificar os dados</strong> - Realizar processo de ETL para limpeza, padronização e enriquecimento dos dados brutos do CNES</p></li>
+<li><p><strong>Classificar os leitos</strong> - Desenvolver taxonomia hierárquica de leitos baseada em normativas do Ministério da Saúde (intensidade do cuidado, público-alvo, especialidade)</p></li>
+<li><p><strong>Identificar padrões</strong> - Aplicar técnicas de clusterização para identificar agrupamentos naturais de especialidades com características similares</p></li>
+<li><p><strong>Mapear vazios assistenciais</strong> - Calcular indicadores por município que permitam identificar regiões com déficit de leitos e alta concentração de mercado</p></li>
+<li><p><strong>Gerar produtos para gestão</strong> - Disponibilizar datasets, relatórios e guias de uso que facilitem a aplicação dos dados na prática gerencial</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="metodologia" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Metodologia</h1>
+<section id="fonte-de-dados" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="fonte-de-dados"><span class="header-section-number">3.1</span> Fonte de Dados</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Fonte</strong></td>
+<td>CNES - Cadastro Nacional de Estabelecimentos de Saúde</td>
+</tr>
+<tr class="even">
+<td><strong>Competência</strong></td>
+<td>Junho/2025 (202506)</td>
+</tr>
+<tr class="odd">
+<td><strong>Extração</strong></td>
+<td>DataSUS / Pinti</td>
+</tr>
+<tr class="even">
+<td><strong>Escopo</strong></td>
+<td>Leitos hospitalares de todo o Brasil</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="etapas-do-projeto" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="etapas-do-projeto"><span class="header-section-number">3.2</span> Etapas do Projeto</h2>
+<section id="etapa-1-etl-extração-transformação-e-carga" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="etapa-1-etl-extração-transformação-e-carga"><span class="header-section-number">3.2.1</span> Etapa 1: ETL (Extração, Transformação e Carga)</h3>
+<p><strong>Entrada:</strong> Arquivo bruto do CNES com 309.610 registros (6 meses)</p>
+<p><strong>Transformações realizadas:</strong></p>
+<ul>
+<li>Filtro de competência única (junho/2025)</li>
+<li>Remoção de registros com valores nulos</li>
+<li>Seleção de colunas relevantes</li>
+<li>Enriquecimento com descrições de tipos e códigos de leito</li>
+<li>Validação de totais</li>
+</ul>
+<p><strong>Saída:</strong> Arquivo tratado com 49.804 registros</p>
+</section>
+<section id="etapa-2-classificação-taxonômica" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="etapa-2-classificação-taxonômica"><span class="header-section-number">3.2.2</span> Etapa 2: Classificação Taxonômica</h3>
+<p>Desenvolvimento de taxonomia hierárquica em 3 níveis:</p>
+<pre><code>NÍVEL 1: Intensidade do Cuidado
+├── INTENSIVO (UTI)
+├── SEMI-INTENSIVO (UCI)
+├── ALTA COMPLEXIDADE
+├── MÉDIA COMPLEXIDADE
+└── BAIXA COMPLEXIDADE
+
+NÍVEL 2: Público-Alvo
+├── ADULTO
+├── PEDIÁTRICO
+├── NEONATAL
+└── OBSTÉTRICO
+
+NÍVEL 3: Grupo de Especialidade
+└── 21 grupos (Cardiologia, Neurologia, Oncologia, etc.)</code></pre>
+<p><strong>Fundamentação:</strong> RDC ANVISA nº 7/2010, Portarias GM/MS nº 3.432/1998, 930/2012, 148/2012, 2.809/2012</p>
+</section>
+<section id="etapa-3-clusterização-de-especialidades" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="etapa-3-clusterização-de-especialidades"><span class="header-section-number">3.2.3</span> Etapa 3: Clusterização de Especialidades</h3>
+<p>Aplicação de metodologia híbrida (data-driven + validação clínica):</p>
+<ul>
+<li>Engenharia de 12 features por especialidade</li>
+<li>Normalização e redução de dimensionalidade (PCA)</li>
+<li>Clusterização hierárquica (método de Ward)</li>
+<li>Validação estatística (Silhouette, Calinski-Harabasz, Davies-Bouldin)</li>
+<li>Rotulação clínica dos clusters</li>
+</ul>
+<p><strong>Resultado:</strong> 8 clusters identificados com interpretação clínica</p>
+</section>
+<section id="etapa-4-análise-de-vazios-assistenciais" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="etapa-4-análise-de-vazios-assistenciais"><span class="header-section-number">3.2.4</span> Etapa 4: Análise de Vazios Assistenciais</h3>
+<p>Cálculo de indicadores por município:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Indicador</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Total de leitos</strong></td>
+<td>Quantidade absoluta de leitos</td>
+</tr>
+<tr class="even">
+<td><strong>Leitos SUS</strong></td>
+<td>Leitos disponíveis ao sistema público</td>
+</tr>
+<tr class="odd">
+<td><strong>Cobertura UTI/UCI</strong></td>
+<td>Presença de leitos intensivos</td>
+</tr>
+<tr class="even">
+<td><strong>Índice HHI</strong></td>
+<td>Concentração de mercado (Herfindahl-Hirschman)</td>
+</tr>
+<tr class="odd">
+<td><strong>Classificação de vazio</strong></td>
+<td>COMPLETO, PARCIAL, BÁSICO ou DESERTO</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+</section>
+<section id="produtos-gerados" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Produtos Gerados</h1>
+<section id="datasets" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="datasets"><span class="header-section-number">4.1</span> Datasets</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 35%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Registros</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>arq2_tratado.csv</code></td>
+<td>49.804</td>
+<td>Dados de leitos limpos e enriquecidos</td>
+</tr>
+<tr class="even">
+<td><code>arq3_tipologias.csv</code></td>
+<td>49.804</td>
+<td>Leitos com tipologias derivadas</td>
+</tr>
+<tr class="odd">
+<td><code>arq4_perfil_estabelecimentos.csv</code></td>
+<td>9.072</td>
+<td>Perfil por estabelecimento</td>
+</tr>
+<tr class="even">
+<td><code>arq5_taxonomia_leitos.csv</code></td>
+<td>49.804</td>
+<td>Leitos com taxonomia hierárquica</td>
+</tr>
+<tr class="odd">
+<td><code>arq6_clusterizacao_especialidades.csv</code></td>
+<td>65</td>
+<td>Clusters por especialidade</td>
+</tr>
+<tr class="even">
+<td><code>arq7_analise_municipios.csv</code></td>
+<td>3.597</td>
+<td>Indicadores por município</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="relatórios-técnicos" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="relatórios-técnicos"><span class="header-section-number">4.2</span> Relatórios Técnicos</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Documento</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Nota Técnica ETL</strong></td>
+<td>Descrição do processo de transformação de dados</td>
+</tr>
+<tr class="even">
+<td><strong>Tipologia de Leitos</strong></td>
+<td>Metodologia de criação de tipologias derivadas</td>
+</tr>
+<tr class="odd">
+<td><strong>Taxonomia Hierárquica</strong></td>
+<td>Classificação em 3 níveis com fundamentação normativa</td>
+</tr>
+<tr class="even">
+<td><strong>Clusterização Híbrida</strong></td>
+<td>Metodologia data-driven com validação clínica</td>
+</tr>
+<tr class="odd">
+<td><strong>Análise de Desertos</strong></td>
+<td>Identificação de vazios assistenciais por município</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="documentos-de-apoio" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="documentos-de-apoio"><span class="header-section-number">4.3</span> Documentos de Apoio</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Documento</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Guia de Tomada de Decisão</strong></td>
+<td>Orientações para uso dos dados na gestão</td>
+</tr>
+<tr class="even">
+<td><strong>Índice do Projeto</strong></td>
+<td>Navegação organizada por todos os produtos</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="resultados-principais" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Resultados Principais</h1>
+<section id="panorama-nacional" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="panorama-nacional"><span class="header-section-number">5.1</span> Panorama Nacional</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Total de leitos</strong></td>
+<td>535.133</td>
+</tr>
+<tr class="even">
+<td><strong>Estabelecimentos</strong></td>
+<td>9.072</td>
+</tr>
+<tr class="odd">
+<td><strong>Municípios com leitos</strong></td>
+<td>3.597</td>
+</tr>
+<tr class="even">
+<td><strong>Especialidades</strong></td>
+<td>65</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vazios-assistenciais" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="vazios-assistenciais"><span class="header-section-number">5.2</span> Vazios Assistenciais</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Classificação</th>
+<th>Municípios</th>
+<th>%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>COMPLETO</strong> (tem UTI/UCI)</td>
+<td>~850</td>
+<td>23%</td>
+</tr>
+<tr class="even">
+<td><strong>PARCIAL</strong> (tem alta complexidade)</td>
+<td>~1.100</td>
+<td>31%</td>
+</tr>
+<tr class="odd">
+<td><strong>BÁSICO</strong> (apenas média/baixa)</td>
+<td>~1.650</td>
+<td>46%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="concentração-de-mercado" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="concentração-de-mercado"><span class="header-section-number">5.3</span> Concentração de Mercado</h2>
+<ul>
+<li><strong>Municípios com monopólio (HHI &gt; 0.8):</strong> ~1.800 (50%)</li>
+<li><strong>Municípios com baixa concentração (HHI &lt; 0.25):</strong> ~400 (11%)</li>
+</ul>
+</section>
+<section id="disparidades-regionais" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="disparidades-regionais"><span class="header-section-number">5.4</span> Disparidades Regionais</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Região</th>
+<th>% Municípios com UTI</th>
+<th>% Leitos SUS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sul</td>
+<td>~35%</td>
+<td>~65%</td>
+</tr>
+<tr class="even">
+<td>Sudeste</td>
+<td>~30%</td>
+<td>~68%</td>
+</tr>
+<tr class="odd">
+<td>Centro-Oeste</td>
+<td>~25%</td>
+<td>~72%</td>
+</tr>
+<tr class="even">
+<td>Nordeste</td>
+<td>~18%</td>
+<td>~78%</td>
+</tr>
+<tr class="odd">
+<td>Norte</td>
+<td>~12%</td>
+<td>~82%</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="limitações" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Limitações</h1>
+<ol type="1">
+<li><p><strong>Dados de cadastro</strong> - Os dados refletem a estrutura cadastrada, não a capacidade operacional em tempo real</p></li>
+<li><p><strong>Competência única</strong> - A análise considera apenas junho/2025, não permitindo análise de tendência</p></li>
+<li><p><strong>Ausência de demanda</strong> - Não há cruzamento com dados de internações ou população</p></li>
+<li><p><strong>Geolocalização</strong> - Não foram calculadas distâncias entre municípios para análise de acesso</p></li>
+</ol>
+<hr>
+</section>
+<section id="próximos-passos" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Próximos Passos</h1>
+<section id="curto-prazo" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="curto-prazo"><span class="header-section-number">7.1</span> Curto Prazo</h2>
+<ul>
+<li>Integrar dados de população (IBGE) para cálculo de leitos per capita</li>
+<li>Cruzar com dados de internações (SIH/SUS) para taxa de ocupação</li>
+</ul>
+</section>
+<section id="médio-prazo" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="médio-prazo"><span class="header-section-number">7.2</span> Médio Prazo</h2>
+<ul>
+<li>Desenvolver Índice de Vulnerabilidade de Leitos (IVL)</li>
+<li>Criar dashboard interativo para gestores</li>
+</ul>
+</section>
+<section id="longo-prazo" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="longo-prazo"><span class="header-section-number">7.3</span> Longo Prazo</h2>
+<ul>
+<li>Modelo preditivo de demanda de leitos</li>
+<li>API para integração com sistemas de regulação</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="mudanças-realizadas-nesta-versão" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Mudanças Realizadas nesta Versão</h1>
+<section id="comparativo-versão-anterior-vs.-versão-atual" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="comparativo-versão-anterior-vs.-versão-atual"><span class="header-section-number">8.1</span> Comparativo: Versão Anterior vs.&nbsp;Versão Atual</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 42%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th>Versão Anterior</th>
+<th>Versão Atual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Objetivo</strong></td>
+<td>Genérico (“inteligência de dados”)</td>
+<td>Específico (subsidiar decisão sobre vazios e investimentos)</td>
+</tr>
+<tr class="even">
+<td><strong>Metodologia</strong></td>
+<td>Implícita nos documentos</td>
+<td>Explícita e sequencial (4 etapas)</td>
+</tr>
+<tr class="odd">
+<td><strong>Produtos</strong></td>
+<td>Listados sem contexto</td>
+<td>Organizados por tipo (datasets, relatórios, apoio)</td>
+</tr>
+<tr class="even">
+<td><strong>Resultados</strong></td>
+<td>Dispersos nos relatórios</td>
+<td>Consolidados com números-chave</td>
+</tr>
+<tr class="odd">
+<td><strong>Limitações</strong></td>
+<td>Não mencionadas</td>
+<td>Explicitadas para uso consciente</td>
+</tr>
+<tr class="even">
+<td><strong>Próximos passos</strong></td>
+<td>Sugestões vagas</td>
+<td>Priorizados por horizonte temporal</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="justificativa-das-mudanças" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="justificativa-das-mudanças"><span class="header-section-number">8.2</span> Justificativa das Mudanças</h2>
+<section id="objetivo-geral-reformulado" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="objetivo-geral-reformulado"><span class="header-section-number">8.2.1</span> 1. Objetivo Geral Reformulado</h3>
+<p><strong>Antes:</strong> “Transformar dados brutos em informação estratégica”</p>
+<p><strong>Depois:</strong> “Desenvolver análises e indicadores que subsidiem a tomada de decisão na identificação de vazios assistenciais, avaliação de riscos e planejamento de investimentos”</p>
+<p><strong>Motivo:</strong> O objetivo anterior era genérico e não indicava o problema que o projeto resolve. A nova versão explicita o valor entregue ao gestor.</p>
+</section>
+<section id="objetivos-específicos-alinhados-aos-produtos" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="objetivos-específicos-alinhados-aos-produtos"><span class="header-section-number">8.2.2</span> 2. Objetivos Específicos Alinhados aos Produtos</h3>
+<p>Cada objetivo específico agora corresponde a um produto concreto:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Objetivo</th>
+<th>Produto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tratar dados</td>
+<td>arq2_tratado.csv + Nota Técnica ETL</td>
+</tr>
+<tr class="even">
+<td>Classificar leitos</td>
+<td>arq5_taxonomia.csv + Taxonomia Hierárquica</td>
+</tr>
+<tr class="odd">
+<td>Identificar padrões</td>
+<td>arq6_clusterizacao.csv + Clusterização Híbrida</td>
+</tr>
+<tr class="even">
+<td>Mapear vazios</td>
+<td>arq7_municipios.csv + Análise de Desertos</td>
+</tr>
+<tr class="odd">
+<td>Gerar produtos</td>
+<td>Guia de Tomada de Decisão</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="metodologia-estruturada" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="metodologia-estruturada"><span class="header-section-number">8.2.3</span> 3. Metodologia Estruturada</h3>
+<p>A metodologia foi organizada em 4 etapas sequenciais e interdependentes, facilitando a compreensão do fluxo de trabalho e a replicação do projeto.</p>
+</section>
+<section id="resultados-quantificados" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="resultados-quantificados"><span class="header-section-number">8.2.4</span> 4. Resultados Quantificados</h3>
+<p>Foram incluídos números-chave que permitem ao leitor ter uma visão rápida do panorama nacional sem precisar abrir os relatórios detalhados.</p>
+</section>
+<section id="limitações-explícitas" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="limitações-explícitas"><span class="header-section-number">8.2.5</span> 5. Limitações Explícitas</h3>
+<p>A inclusão de limitações demonstra maturidade metodológica e orienta o uso consciente dos dados, evitando interpretações equivocadas.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="referências" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Referências</h1>
+<ul>
+<li><p>BRASIL. Ministério da Saúde. Cadastro Nacional de Estabelecimentos de Saúde (CNES). Disponível em: http://cnes.datasus.gov.br</p></li>
+<li><p>ANVISA. RDC nº 7, de 24 de fevereiro de 2010. Requisitos mínimos para funcionamento de UTIs.</p></li>
+<li><p>BRASIL. Portaria GM/MS nº 3.432, de 12 de agosto de 1998. Critérios de classificação de UTIs.</p></li>
+<li><p>BRASIL. Portaria GM/MS nº 930, de 10 de maio de 2012. Diretrizes para organização da atenção integral ao recém-nascido.</p></li>
+</ul>
+<hr>
+<p><strong>Elaborado por:</strong> Cieges - Brasil Estadual<br>
+<strong>Data:</strong> 21/01/2026<br>
+<strong>Versão:</strong> 2.0</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

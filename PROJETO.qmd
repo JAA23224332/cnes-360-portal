@@ -1,0 +1,316 @@
+---
+title: "Projeto CNES 360 v2"
+subtitle: "Inteligência de Dados de Leitos Hospitalares para Gestão em Saúde"
+author: "Cieges - Brasil Estadual"
+date: "2026-01-21"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    documentclass: article
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \usepackage{geometry}
+        \geometry{a4paper, margin=2cm, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{multirow}
+        \usepackage{wrapfig}
+        \usepackage{float}
+        \floatplacement{figure}{H}
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{6pt}
+        \usepackage{adjustbox}
+        \usepackage{tabularx}
+        \usepackage{booktabs}
+    colorlinks: true
+---
+
+# Apresentação do Projeto
+
+## Contexto
+
+O Sistema Único de Saúde (SUS) enfrenta desafios constantes na gestão da capacidade instalada hospitalar. A distribuição desigual de leitos entre regiões, a concentração de serviços de alta complexidade em poucos municípios e a falta de informações consolidadas dificultam o planejamento e a tomada de decisão pelos gestores.
+
+O **Cadastro Nacional de Estabelecimentos de Saúde (CNES)** é a principal fonte de dados sobre a infraestrutura de saúde no Brasil, contendo informações detalhadas sobre leitos hospitalares. No entanto, os dados brutos do CNES são volumosos, fragmentados e de difícil interpretação para uso gerencial.
+
+## O Projeto CNES 360 v2
+
+O **CNES 360 v2** é uma iniciativa de inteligência de dados que transforma os dados brutos de leitos do CNES em informação estratégica, gerando indicadores, classificações e análises prontas para uso na gestão em saúde.
+
+---
+
+# Objetivos
+
+## Objetivo Geral
+
+Desenvolver um conjunto de análises e indicadores sobre leitos hospitalares do Brasil, a partir dos dados do CNES, que subsidiem a tomada de decisão de gestores de saúde na identificação de vazios assistenciais, avaliação de riscos e planejamento de investimentos.
+
+## Objetivos Específicos
+
+1. **Tratar e qualificar os dados** - Realizar processo de ETL para limpeza, padronização e enriquecimento dos dados brutos do CNES
+
+2. **Classificar os leitos** - Desenvolver taxonomia hierárquica de leitos baseada em normativas do Ministério da Saúde (intensidade do cuidado, público-alvo, especialidade)
+
+3. **Identificar padrões** - Aplicar técnicas de clusterização para identificar agrupamentos naturais de especialidades com características similares
+
+4. **Mapear vazios assistenciais** - Calcular indicadores por município que permitam identificar regiões com déficit de leitos e alta concentração de mercado
+
+5. **Gerar produtos para gestão** - Disponibilizar datasets, relatórios e guias de uso que facilitem a aplicação dos dados na prática gerencial
+
+---
+
+# Metodologia
+
+## Fonte de Dados
+
+| Característica | Descrição |
+|----------------|-----------|
+| **Fonte** | CNES - Cadastro Nacional de Estabelecimentos de Saúde |
+| **Competência** | Junho/2025 (202506) |
+| **Extração** | DataSUS / Pinti |
+| **Escopo** | Leitos hospitalares de todo o Brasil |
+
+## Etapas do Projeto
+
+### Etapa 1: ETL (Extração, Transformação e Carga)
+
+**Entrada:** Arquivo bruto do CNES com 309.610 registros (6 meses)
+
+**Transformações realizadas:**
+
+- Filtro de competência única (junho/2025)
+- Remoção de registros com valores nulos
+- Seleção de colunas relevantes
+- Enriquecimento com descrições de tipos e códigos de leito
+- Validação de totais
+
+**Saída:** Arquivo tratado com 49.804 registros
+
+### Etapa 2: Classificação Taxonômica
+
+Desenvolvimento de taxonomia hierárquica em 3 níveis:
+
+```
+NÍVEL 1: Intensidade do Cuidado
+├── INTENSIVO (UTI)
+├── SEMI-INTENSIVO (UCI)
+├── ALTA COMPLEXIDADE
+├── MÉDIA COMPLEXIDADE
+└── BAIXA COMPLEXIDADE
+
+NÍVEL 2: Público-Alvo
+├── ADULTO
+├── PEDIÁTRICO
+├── NEONATAL
+└── OBSTÉTRICO
+
+NÍVEL 3: Grupo de Especialidade
+└── 21 grupos (Cardiologia, Neurologia, Oncologia, etc.)
+```
+
+**Fundamentação:** RDC ANVISA nº 7/2010, Portarias GM/MS nº 3.432/1998, 930/2012, 148/2012, 2.809/2012
+
+### Etapa 3: Clusterização de Especialidades
+
+Aplicação de metodologia híbrida (data-driven + validação clínica):
+
+- Engenharia de 12 features por especialidade
+- Normalização e redução de dimensionalidade (PCA)
+- Clusterização hierárquica (método de Ward)
+- Validação estatística (Silhouette, Calinski-Harabasz, Davies-Bouldin)
+- Rotulação clínica dos clusters
+
+**Resultado:** 8 clusters identificados com interpretação clínica
+
+### Etapa 4: Análise de Vazios Assistenciais
+
+Cálculo de indicadores por município:
+
+| Indicador | Descrição |
+|-----------|-----------|
+| **Total de leitos** | Quantidade absoluta de leitos |
+| **Leitos SUS** | Leitos disponíveis ao sistema público |
+| **Cobertura UTI/UCI** | Presença de leitos intensivos |
+| **Índice HHI** | Concentração de mercado (Herfindahl-Hirschman) |
+| **Classificação de vazio** | COMPLETO, PARCIAL, BÁSICO ou DESERTO |
+
+---
+
+# Produtos Gerados
+
+## Datasets
+
+| Arquivo | Registros | Descrição |
+|---------|-----------|-----------|
+| `arq2_tratado.csv` | 49.804 | Dados de leitos limpos e enriquecidos |
+| `arq3_tipologias.csv` | 49.804 | Leitos com tipologias derivadas |
+| `arq4_perfil_estabelecimentos.csv` | 9.072 | Perfil por estabelecimento |
+| `arq5_taxonomia_leitos.csv` | 49.804 | Leitos com taxonomia hierárquica |
+| `arq6_clusterizacao_especialidades.csv` | 65 | Clusters por especialidade |
+| `arq7_analise_municipios.csv` | 3.597 | Indicadores por município |
+
+## Relatórios Técnicos
+
+| Documento | Conteúdo |
+|-----------|----------|
+| **Nota Técnica ETL** | Descrição do processo de transformação de dados |
+| **Tipologia de Leitos** | Metodologia de criação de tipologias derivadas |
+| **Taxonomia Hierárquica** | Classificação em 3 níveis com fundamentação normativa |
+| **Clusterização Híbrida** | Metodologia data-driven com validação clínica |
+| **Análise de Desertos** | Identificação de vazios assistenciais por município |
+
+## Documentos de Apoio
+
+| Documento | Conteúdo |
+|-----------|----------|
+| **Guia de Tomada de Decisão** | Orientações para uso dos dados na gestão |
+| **Índice do Projeto** | Navegação organizada por todos os produtos |
+
+---
+
+# Resultados Principais
+
+## Panorama Nacional
+
+| Métrica | Valor |
+|---------|-------|
+| **Total de leitos** | 535.133 |
+| **Estabelecimentos** | 9.072 |
+| **Municípios com leitos** | 3.597 |
+| **Especialidades** | 65 |
+
+## Vazios Assistenciais
+
+| Classificação | Municípios | % |
+|---------------|------------|---|
+| **COMPLETO** (tem UTI/UCI) | ~850 | 23% |
+| **PARCIAL** (tem alta complexidade) | ~1.100 | 31% |
+| **BÁSICO** (apenas média/baixa) | ~1.650 | 46% |
+
+## Concentração de Mercado
+
+- **Municípios com monopólio (HHI > 0.8):** ~1.800 (50%)
+- **Municípios com baixa concentração (HHI < 0.25):** ~400 (11%)
+
+## Disparidades Regionais
+
+| Região | % Municípios com UTI | % Leitos SUS |
+|--------|---------------------|--------------|
+| Sul | ~35% | ~65% |
+| Sudeste | ~30% | ~68% |
+| Centro-Oeste | ~25% | ~72% |
+| Nordeste | ~18% | ~78% |
+| Norte | ~12% | ~82% |
+
+---
+
+# Limitações
+
+1. **Dados de cadastro** - Os dados refletem a estrutura cadastrada, não a capacidade operacional em tempo real
+
+2. **Competência única** - A análise considera apenas junho/2025, não permitindo análise de tendência
+
+3. **Ausência de demanda** - Não há cruzamento com dados de internações ou população
+
+4. **Geolocalização** - Não foram calculadas distâncias entre municípios para análise de acesso
+
+---
+
+# Próximos Passos
+
+## Curto Prazo
+
+- Integrar dados de população (IBGE) para cálculo de leitos per capita
+- Cruzar com dados de internações (SIH/SUS) para taxa de ocupação
+
+## Médio Prazo
+
+- Desenvolver Índice de Vulnerabilidade de Leitos (IVL)
+- Criar dashboard interativo para gestores
+
+## Longo Prazo
+
+- Modelo preditivo de demanda de leitos
+- API para integração com sistemas de regulação
+
+---
+
+# Mudanças Realizadas nesta Versão
+
+## Comparativo: Versão Anterior vs. Versão Atual
+
+| Aspecto | Versão Anterior | Versão Atual |
+|---------|-----------------|--------------|
+| **Objetivo** | Genérico ("inteligência de dados") | Específico (subsidiar decisão sobre vazios e investimentos) |
+| **Metodologia** | Implícita nos documentos | Explícita e sequencial (4 etapas) |
+| **Produtos** | Listados sem contexto | Organizados por tipo (datasets, relatórios, apoio) |
+| **Resultados** | Dispersos nos relatórios | Consolidados com números-chave |
+| **Limitações** | Não mencionadas | Explicitadas para uso consciente |
+| **Próximos passos** | Sugestões vagas | Priorizados por horizonte temporal |
+
+## Justificativa das Mudanças
+
+### 1. Objetivo Geral Reformulado
+
+**Antes:** "Transformar dados brutos em informação estratégica"
+
+**Depois:** "Desenvolver análises e indicadores que subsidiem a tomada de decisão na identificação de vazios assistenciais, avaliação de riscos e planejamento de investimentos"
+
+**Motivo:** O objetivo anterior era genérico e não indicava o problema que o projeto resolve. A nova versão explicita o valor entregue ao gestor.
+
+### 2. Objetivos Específicos Alinhados aos Produtos
+
+Cada objetivo específico agora corresponde a um produto concreto:
+
+| Objetivo | Produto |
+|----------|---------|
+| Tratar dados | arq2_tratado.csv + Nota Técnica ETL |
+| Classificar leitos | arq5_taxonomia.csv + Taxonomia Hierárquica |
+| Identificar padrões | arq6_clusterizacao.csv + Clusterização Híbrida |
+| Mapear vazios | arq7_municipios.csv + Análise de Desertos |
+| Gerar produtos | Guia de Tomada de Decisão |
+
+### 3. Metodologia Estruturada
+
+A metodologia foi organizada em 4 etapas sequenciais e interdependentes, facilitando a compreensão do fluxo de trabalho e a replicação do projeto.
+
+### 4. Resultados Quantificados
+
+Foram incluídos números-chave que permitem ao leitor ter uma visão rápida do panorama nacional sem precisar abrir os relatórios detalhados.
+
+### 5. Limitações Explícitas
+
+A inclusão de limitações demonstra maturidade metodológica e orienta o uso consciente dos dados, evitando interpretações equivocadas.
+
+---
+
+# Referências
+
+- BRASIL. Ministério da Saúde. Cadastro Nacional de Estabelecimentos de Saúde (CNES). Disponível em: http://cnes.datasus.gov.br
+
+- ANVISA. RDC nº 7, de 24 de fevereiro de 2010. Requisitos mínimos para funcionamento de UTIs.
+
+- BRASIL. Portaria GM/MS nº 3.432, de 12 de agosto de 1998. Critérios de classificação de UTIs.
+
+- BRASIL. Portaria GM/MS nº 930, de 10 de maio de 2012. Diretrizes para organização da atenção integral ao recém-nascido.
+
+---
+
+**Elaborado por:** Cieges - Brasil Estadual  
+**Data:** 21/01/2026  
+**Versão:** 2.0

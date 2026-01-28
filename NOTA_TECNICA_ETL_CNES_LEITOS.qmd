@@ -1,0 +1,317 @@
+---
+title: "Nota Técnica: Processo de Transformação de Dados de Leitos do CNES"
+subtitle: "Comparativo: Arquivo Original vs. Arquivo Tratado"
+author: "Cieges - Brasil Estadual"
+date: "2026-01-21"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    code-fold: true
+    code-summary: "Ver código"
+    df-print: paged
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    documentclass: article
+    papersize: a3
+    geometry:
+      - margin=1.5cm
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \usepackage{geometry}
+        \geometry{a3paper, margin=1.5cm}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{multirow}
+        \usepackage{wrapfig}
+        \usepackage{float}
+        \floatplacement{figure}{H}
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{4pt}
+        \usepackage{adjustbox}
+        \usepackage{tabularx}
+        \usepackage{booktabs}
+    colorlinks: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Resumo Executivo
+
+Este documento descreve o processo de ETL (Extract, Transform, Load) aplicado aos dados de leitos hospitalares do CNES (Cadastro Nacional de Estabelecimentos de Saúde), detalhando as transformações realizadas entre o arquivo original (`arq1_original.csv`) e o arquivo tratado (`arq2_tratado.csv`).
+
+```{python}
+import pandas as pd
+import warnings
+warnings.filterwarnings('ignore')
+
+# Carregar dados
+df1 = pd.read_csv('arq1_original.csv', sep=';', encoding='latin1', low_memory=False)
+df2 = pd.read_csv('arq2_tratado.csv', sep=';', encoding='latin1', low_memory=False)
+
+# Resumo comparativo
+resumo = pd.DataFrame({
+    'Métrica': ['Registros', 'Colunas', 'Tamanho (MB)', 'Valores Nulos'],
+    'Original': [f'{len(df1):,}', len(df1.columns), '~30', 'Muitos'],
+    'Tratado': [f'{len(df2):,}', len(df2.columns), '~3', 'Zero'],
+    'Variação': ['-83,9%', '-63,3%', '-90%', '-100%']
+})
+resumo
+```
+
+## Descrição dos Arquivos
+
+### Arquivo Original (`arq1_original.csv`)
+
+**Características:**
+
+- **Registros:** 309.610
+- **Colunas:** 30
+- **Período:** Janeiro a Junho de 2025 (202501 a 202506)
+
+```{python}
+# Estrutura do arquivo original
+print(f"Colunas do arquivo original ({len(df1.columns)}):")
+for i, col in enumerate(df1.columns, 1):
+    nulos = df1[col].isnull().sum()
+    pct = (nulos / len(df1)) * 100
+    print(f"  {i:2}. {col:<15} - Nulos: {pct:.1f}%")
+```
+
+### Arquivo Tratado (`arq2_tratado.csv`)
+
+**Características:**
+
+- **Registros:** 49.804
+- **Colunas:** 11
+- **Período:** Apenas Junho de 2025 (202506)
+- **Qualidade:** Zero valores nulos
+
+```{python}
+# Estrutura do arquivo tratado
+print(f"Colunas do arquivo tratado ({len(df2.columns)}):")
+for i, col in enumerate(df2.columns, 1):
+    print(f"  {i:2}. {col}")
+```
+
+## Transformações Realizadas
+
+### Etapa 1: Filtro de Competência
+
+```{python}
+print("Competências no arquivo original:")
+print(sorted(df1['competen'].unique()))
+
+print(f"\nCompetência no arquivo tratado:")
+print(sorted(df2.iloc[:,0].unique()))
+
+print(f"\nRedução: {len(df1):,} → {len(df1[df1['competen']==202506]):,} registros")
+```
+
+### Etapa 2: Remoção de Colunas
+
+**19 colunas removidas:**
+
+```{python}
+cols1_norm = [c.replace('ï»¿', '').lower() for c in df1.columns]
+cols2_norm = [c.replace('ï»¿', '').lower() for c in df2.columns]
+
+removidas = [c for c in df1.columns if c.replace('ï»¿', '').lower() not in cols2_norm]
+print("Colunas removidas:")
+for c in removidas:
+    print(f"  - {c}")
+```
+
+### Etapa 3: Enriquecimento de Dados (JOINs)
+
+#### Mapeamento tp_leito → DS_TP_LEITO
+
+```{python}
+mapa_tp = df2[['tp_leito', 'DS_TP_LEITO']].drop_duplicates().sort_values('tp_leito')
+mapa_tp
+```
+
+#### Mapeamento co_leito → DS_CO_LEITO
+
+```{python}
+mapa_co = df2[['co_leito', 'DS_CO_LEITO']].drop_duplicates().sort_values('co_leito')
+print(f"Total de códigos de leito mapeados: {len(mapa_co)}")
+mapa_co.head(15)
+```
+
+### Etapa 4: Limpeza de Dados
+
+#### Remoção do Código de Leito 66
+
+```{python}
+df1_202506 = df1[df1['competen'] == 202506]
+registros_66 = df1_202506[df1_202506['codleito'] == 66]
+
+print(f"Registros com codleito = 66 removidos: {len(registros_66):,}")
+print(f"Leitos removidos: {registros_66['qt_exist'].sum():,}")
+print(f"Tipo de leito: 3 (COMPLEMENTAR)")
+```
+
+#### Remoção de 5 Estabelecimentos (CNES)
+
+```{python}
+cnes_orig = set(df1_202506['cnes'].unique())
+cnes_trat = set(df2['cnes'].unique())
+cnes_removidos = list(cnes_orig - cnes_trat)
+
+print("CNES removidos:")
+for cnes in cnes_removidos:
+    regs = df1_202506[df1_202506['cnes'] == cnes]
+    print(f"  CNES {cnes}: {len(regs)} registro(s), {regs['qt_exist'].sum()} leito(s)")
+```
+
+## Validação de Totais
+
+```{python}
+validacao = pd.DataFrame({
+    'Indicador': ['Registros', 'qt_exist', 'qt_sus', 'qt_nsus'],
+    'Original (202506)': [
+        f"{len(df1_202506):,}",
+        f"{df1_202506['qt_exist'].sum():,}",
+        f"{df1_202506['qt_sus'].sum():,}",
+        f"{df1_202506['qt_nsus'].sum():,}"
+    ],
+    'Tratado': [
+        f"{len(df2):,}",
+        f"{df2['qt_exist'].sum():,}",
+        f"{df2['qt_sus'].sum():,}",
+        f"{df2['qt_nsus'].sum():,}"
+    ],
+    'Diferença': [
+        f"{len(df1_202506) - len(df2):,}",
+        f"{df1_202506['qt_exist'].sum() - df2['qt_exist'].sum():,}",
+        f"{df1_202506['qt_sus'].sum() - df2['qt_sus'].sum():,}",
+        f"{df1_202506['qt_nsus'].sum() - df2['qt_nsus'].sum():,}"
+    ]
+})
+validacao
+```
+
+## Estatísticas do Arquivo Tratado
+
+### Distribuição por Tipo de Leito
+
+```{python}
+tipo_leito = df2.groupby('DS_TP_LEITO').agg({
+    'cnes': 'count',
+    'qt_exist': 'sum'
+}).rename(columns={'cnes': 'Registros', 'qt_exist': 'Leitos'})
+tipo_leito['% Leitos'] = (tipo_leito['Leitos'] / tipo_leito['Leitos'].sum() * 100).round(1)
+tipo_leito = tipo_leito.sort_values('Leitos', ascending=False)
+tipo_leito
+```
+
+### Top 10 Especialidades (por quantidade de leitos)
+
+```{python}
+especialidades = df2.groupby('DS_CO_LEITO')['qt_exist'].sum().sort_values(ascending=False).head(10)
+especialidades_df = pd.DataFrame({
+    'Especialidade': especialidades.index,
+    'Leitos': especialidades.values
+})
+especialidades_df
+```
+
+### Distribuição SUS vs Não-SUS
+
+```{python}
+sus = df2['qt_sus'].sum()
+nsus = df2['qt_nsus'].sum()
+total = sus + nsus
+
+distribuicao_sus = pd.DataFrame({
+    'Categoria': ['SUS', 'Não-SUS', 'Total'],
+    'Leitos': [f"{sus:,}", f"{nsus:,}", f"{total:,}"],
+    '%': [f"{sus/total*100:.1f}%", f"{nsus/total*100:.1f}%", "100%"]
+})
+distribuicao_sus
+```
+
+### Abrangência Geográfica
+
+```{python}
+print(f"Estabelecimentos (CNES): {df2['cnes'].nunique():,}")
+print(f"Municípios: {df2['codufmun'].nunique():,}")
+```
+
+## Fluxo de Processamento (PINTI)
+
+```
+┌─────────────────┐     ┌─────────────────┐
+│ tbLeito202506   │     │  td_TP_LEITO    │
+│    (entrada)    │     │  (referência)   │
+└────────┬────────┘     └────────┬────────┘
+         │                       │
+         ▼                       │
+    ┌─────────┐                  │
+    │ Limpar 1│ ← Filtro competência
+    └────┬────┘                  │
+         │                       │
+         ▼                       │
+    ┌──────────────┐             │
+    │União de colun│ ◄───────────┘
+    └──────┬───────┘
+           │
+           ▼
+      ┌─────────┐
+      │ Limpar 3│ ← Remoção código 66
+      └────┬────┘
+           │
+           ▼
+      ┌─────────┐
+      │ Limpar 4│ ← Remoção CNES inválidos
+      └────┬────┘
+           │
+           ▼
+    ┌──────────────┐     ┌─────────────────┐
+    │União de colun│ ◄───│       lt        │
+    └──────┬───────┘     │   (referência)  │
+           │             └─────────────────┘
+           ▼
+      ┌─────────┐
+      │ Limpar 5│ ← Seleção colunas finais
+      └────┬────┘
+           │
+           ▼
+      ┌─────────┐
+      │  Saída  │ → arq2_tratado.csv
+      └─────────┘
+```
+
+## Considerações para Tipologia Derivada
+
+Com base na análise realizada, os dados tratados estão prontos para a criação de uma tipologia derivada utilizando:
+
+**Variáveis disponíveis:**
+
+1. `tp_leito` / `DS_TP_LEITO` - 7 categorias
+2. `co_leito` / `DS_CO_LEITO` - 65 categorias
+
+**Possíveis abordagens:**
+
+- Agrupamento hierárquico (Tipo → Especialidade)
+- Clusterização por perfil de estabelecimento
+- Tipologia por complexidade (UTI, Cirúrgico, Clínico)
+- Tipologia por público-alvo (Adulto, Pediátrico, Obstétrico)
+
+---
+
+**Elaborado por:** Cascade AI  
+**Ferramenta ETL:** Pinti  
+**Destino:** Tableau (LT_BR_2501-2510.hyper)

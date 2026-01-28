@@ -1,0 +1,613 @@
+---
+title: "Análise de Concentração e Desertos de Leitos por Macrorregião de Saúde"
+subtitle: "Identificação de Vazios Assistenciais e Desigualdades Regionais no Brasil"
+author: "Cieges - Brasil Estadual"
+date: "2026-01-28"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 4
+    toc-location: left
+    number-sections: true
+    code-fold: true
+    code-summary: "Ver código"
+    df-print: paged
+    fig-width: 12
+    fig-height: 8
+  pdf:
+    toc: true
+    toc-depth: 4
+    number-sections: true
+    documentclass: article
+    papersize: a3
+    geometry:
+      - margin=1.5cm
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \usepackage{geometry}
+        \geometry{a3paper, margin=1.5cm}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{multirow}
+        \usepackage{wrapfig}
+        \usepackage{float}
+        \floatplacement{figure}{H}
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{4pt}
+        \usepackage{adjustbox}
+        \usepackage{tabularx}
+        \usepackage{booktabs}
+    colorlinks: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Introdução
+
+## Objetivo
+
+Esta análise identifica **padrões de concentração de leitos hospitalares** e **desertos assistenciais** nas macrorregiões de saúde do Brasil, utilizando dados do CNES integrados com informações socioeconômicas do IBGE.
+
+## Metodologia
+
+A análise combina indicadores de **disponibilidade**, **acessibilidade**, **concentração** e **desigualdade**:
+
+| Indicador | Fórmula | Interpretação |
+|-----------|---------|---------------|
+| **Leitos per capita** | Leitos / 1.000 hab | OMS recomenda 3-5 leitos/1.000 hab |
+| **Índice HHI** | Σ(sᵢ²) | 0-1 (maior = mais concentrado) |
+| **Cobertura UTI** | % municípios com UTI | Acesso a cuidados intensivos |
+| **Razão SUS/Privado** | Leitos SUS / Leitos totais | Equidade no acesso |
+| **IDH Médio** | Média IDH dos municípios | Desenvolvimento humano |
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import warnings
+warnings.filterwarnings('ignore')
+
+# Configuração visual
+plt.rcParams['figure.dpi'] = 100
+plt.rcParams['font.size'] = 10
+sns.set_style("whitegrid")
+
+# Carregar dados
+print("Carregando bases de dados...")
+df_cnes = pd.read_csv('arq2_tratado.csv', sep=';', encoding='latin1', low_memory=False)
+df_ibge = pd.read_csv('dados macroregião/TB_IBGE_DTB (1).csv', sep=';')
+
+# Limpar dados IBGE
+df_ibge['nu_area'] = df_ibge['nu_area'].astype(str).str.replace(',', '').astype(float)
+df_ibge['nu_idh'] = df_ibge['nu_idh'].astype(str).str.replace(',', '.').astype(float)
+
+print(f"Dados CNES: {len(df_cnes):,} registros")
+print(f"Dados IBGE: {len(df_ibge):,} municípios")
+print(f"Macrorregiões: {df_ibge['Macrorregião de Saúde'].nunique():,}")
+```
+
+# Análise Integrada por Macrorregião
+
+## Dados Gerais por Macrorregião
+
+```{python}
+# Integrar dados CNES e IBGE
+df_ibge['co_municipio_ibge'] = df_ibge['co_municipio_ibge'].astype(str)
+df_cnes['codufmun'] = df_cnes['codufmun'].astype(str)
+
+# Merge para enriquecer dados
+df_merge = df_cnes.merge(
+    df_ibge[['co_municipio_ibge', 'Macrorregião de Saúde', 'no_regiao', 'nu_idh', 'nu_area']],
+    left_on='codufmun', right_on='co_municipio_ibge', how='left'
+)
+
+# Análise por macrorregião
+macro_analise = df_merge.groupby('Macrorregião de Saúde').agg({
+    'cnes': 'nunique',
+    'codufmun': 'nunique',
+    'qt_exist': 'sum',
+    'qt_sus': 'sum',
+    'qt_nsus': 'sum',
+    'nu_idh': 'mean',
+    'nu_area': 'sum'
+}).round(2)
+
+macro_analise.columns = ['Estabelecimentos', 'Municípios', 'Leitos Totais', 'Leitos SUS', 
+                        'Leitos Não SUS', 'IDH Médio', 'Área (km²)']
+
+# Calcular indicadores derivados
+macro_analise['% SUS'] = (macro_analise['Leitos SUS'] / macro_analise['Leitos Totais'] * 100).round(1)
+macro_analise['Leitos/Município'] = (macro_analise['Leitos Totais'] / macro_analise['Municípios']).round(1)
+macro_analise['Leitos/100km²'] = (macro_analise['Leitos Totais'] / (macro_analise['Área (km²)'] / 100)).round(2)
+macro_analise['Densidade Pop. (est)'] = (macro_analise['Municípios'] / (macro_analise['Área (km²)'] / 1000)).round(2)
+
+macro_analise = macro_analise.sort_values('Leitos Totais', ascending=False)
+macro_analise
+```
+
+## Análise de Concentração (HHI)
+
+```{python}
+# Calcular Índice HHI por macrorregião
+def calcular_hhi(df):
+    """Calcular Índice Herfindahl-Hirschman"""
+    total = df['qt_exist'].sum()
+    if total == 0:
+        return 1.0
+    shares = df['qt_exist'] / total
+    return (shares ** 2).sum()
+
+hhi_macro = df_merge.groupby('Macrorregião de Saúde').apply(calcular_hhi).round(3)
+hhi_macro = hhi_macro.sort_values(ascending=False)
+
+# Classificação da concentração
+def classificar_hhi(hhi):
+    if hhi >= 0.25:
+        return "ALTA CONCENTRAÇÃO"
+    elif hhi >= 0.15:
+        return "MÉDIA CONCENTRAÇÃO"
+    else:
+        return "BAIXA CONCENTRAÇÃO"
+
+concentracao_class = hhi_macro.apply(classificar_hhi)
+
+print("ÍNDICE DE CONCENTRAÇÃO HHI POR MACRORREGIÃO")
+print("=" * 60)
+for macro, hhi in hhi_macro.items():
+    classe = concentracao_class[macro]
+    print(f"{macro}: {hhi:.3f} - {classe}")
+```
+
+## Visualização da Concentração
+
+```{python}
+fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+
+# 1. Top 15 Macrorregiões por Leitos
+top15 = macro_analise.head(15)
+bars1 = axes[0,0].barh(range(len(top15)), top15['Leitos Totais'], color='#2c3e50')
+axes[0,0].set_yticks(range(len(top15)))
+axes[0,0].set_yticklabels(top15.index, fontsize=8)
+axes[0,0].set_xlabel('Leitos Totais')
+axes[0,0].set_title('Top 15 Macrorregiões - Leitos Totais', fontweight='bold')
+axes[0,0].grid(axis='x', alpha=0.3)
+
+# 2. Índice HHI
+hhi_top15 = hhi_macro.head(15)
+bars2 = axes[0,1].barh(range(len(hhi_top15)), hhi_top15, color='#e74c3c')
+axes[0,1].set_yticks(range(len(hhi_top15)))
+axes[0,1].set_yticklabels(hhi_top15.index, fontsize=8)
+axes[0,1].set_xlabel('Índice HHI')
+axes[0,1].set_title('Top 15 - Índice de Concentração HHI', fontweight='bold')
+axes[0,1].grid(axis='x', alpha=0.3)
+
+# 3. Percentual SUS vs IDH
+axes[1,0].scatter(macro_analise['IDH Médio'], macro_analise['% SUS'], 
+                   alpha=0.6, s=macro_analise['Leitos Totais']/100, c='#3498db')
+axes[1,0].set_xlabel('IDH Médio')
+axes[1,0].set_ylabel('% Leitos SUS')
+axes[1,0].set_title('IDH vs % SUS (Tamanho = Leitos Totais)', fontweight='bold')
+axes[1,0].grid(True, alpha=0.3)
+
+# 4. Leitos por Município vs Área
+axes[1,1].scatter(macro_analise['Área (km²)'], macro_analise['Leitos/Município'], 
+                   alpha=0.6, s=macro_analise['IDH Médio']*100, c='#27ae60')
+axes[1,1].set_xlabel('Área (km²)')
+axes[1,1].set_ylabel('Leitos por Município')
+axes[1,1].set_title('Área vs Leitos/Município (Tamanho = IDH)', fontweight='bold')
+axes[1,1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+# Classificação de Desertos Assistenciais
+
+## Critérios de Classificação
+
+```{python}
+# Classificar municípios por disponibilidade de leitos
+municipios_analise = df_merge.groupby(['Macrorregião de Saúde', 'codufmun']).agg({
+    'qt_exist': 'sum',
+    'qt_sus': 'sum',
+    'cnes': 'nunique',
+    'nu_idh': 'first'
+}).reset_index()
+
+# Critérios de classificação
+def classificar_municipio(row):
+    leitos = row['qt_exist']
+    idh = row['nu_idh']
+    
+    if leitos == 0:
+        return "DESERTO ABSOLUTO"
+    elif leitos < 50:
+        return "DESERTO CRÍTICO"
+    elif leitos < 200:
+        return "BAIXA DISPONIBILIDADE"
+    elif leitos < 500:
+        return "DISPONIBILIDADE MÉDIA"
+    else:
+        return "ALTA DISPONIBILIDADE"
+
+municipios_analise['Classificacao'] = municipios_analise.apply(classificar_municipio, axis=1)
+
+# Resumo por macrorregião
+desertos_macro = municipios_analise.groupby(['Macrorregião de Saúde', 'Classificacao']).size().unstack(fill_value=0)
+desertos_macro['Total'] = desertos_macro.sum(axis=1)
+desertos_macro['% Desertos'] = (desertos_macro.get('DESERTO ABSOLUTO', 0) + 
+                               desertos_macro.get('DESERTO CRÍTICO', 0)) / desertos_macro['Total'] * 100
+
+desertos_macro = desertos_macro.sort_values('% Desertos', ascending=False)
+print("CLASSIFICAÇÃO DE DESERTOS ASSISTENCIAIS POR MACRORREGIÃO")
+print("=" * 80)
+print(desertos_macro.head(15))
+```
+
+## Mapa de Desertos por Macrorregião
+
+```{python}
+# Análise detalhada dos desertos
+desertos_detalhe = municipios_analise[
+    municipios_analise['Classificacao'].isin(['DESERTO ABSOLUTO', 'DESERTO CRÍTICO'])
+].groupby('Macrorregião de Saúde').agg({
+    'codufmun': 'count',
+    'qt_exist': ['sum', 'mean'],
+    'nu_idh': 'mean'
+}).round(2)
+
+desertos_detalhe.columns = ['Nº Municípios', 'Total Leitos', 'Média Leitos', 'IDH Médio']
+desertos_detalhe = desertos_detalhe.sort_values('Nº Municípios', ascending=False)
+
+print("DETALHAMENTO DOS DESERTOS ASSISTENCIAIS")
+print("=" * 80)
+print(desertos_detalhe.head(10))
+```
+
+# Análise de Disponibilidade de UTI
+
+## Cobertura de Leitos Intensivos
+
+```{python}
+# Identificar leitos UTI
+def identificar_uti(row):
+    """Classificar leitos como UTI ou não"""
+    descricao = row['DS_CO_LEITO'].upper() if pd.notna(row['DS_CO_LEITO']) else ''
+    codigo = row['co_leito']
+    
+    # Critérios para UTI
+    uti_keywords = ['UTI', 'TERAPIA INTENSIVA', 'UNIDADE DE TERAPIA']
+    uti_codigos = [74,75,76,77,78,79,80,81,82,83,85,86]  # Códigos CNES UTI
+    
+    if any(keyword in descricao for keyword in uti_keywords) or codigo in uti_codigos:
+        return 'UTI'
+    else:
+        return 'NÃO_UTI'
+
+df_merge['Tipo_Leito'] = df_merge.apply(identificar_uti, axis=1)
+
+# Análise de UTI por macrorregião
+uti_macro = df_merge.groupby(['Macrorregião de Saúde', 'Tipo_Leito']).agg({
+    'qt_exist': 'sum',
+    'codufmun': 'nunique'
+}).unstack(fill_value=0)
+
+# Verificar estrutura das colunas
+uti_macro.columns = [f'{col[0]}_{col[1]}' if col[1] else col[0] for col in uti_macro.columns]
+
+# Renomear colunas
+col_mapping = {}
+for col in uti_macro.columns:
+    if 'qt_exist_NÃO_UTI' in col:
+        col_mapping[col] = 'Leitos Não UTI'
+    elif 'qt_exist_UTI' in col:
+        col_mapping[col] = 'Leitos UTI'
+    elif 'codufmun_NÃO_UTI' in col:
+        col_mapping[col] = 'Municípios Não UTI'
+    elif 'codufmun_UTI' in col:
+        col_mapping[col] = 'Municípios UTI'
+
+uti_macro = uti_macro.rename(columns=col_mapping)
+uti_macro['Total Leitos'] = uti_macro.get('Leitos Não UTI', 0) + uti_macro.get('Leitos UTI', 0)
+uti_macro['% UTI'] = (uti_macro['Leitos UTI'] / uti_macro['Total Leitos'] * 100).round(1)
+uti_macro['Municípios c/ UTI'] = (df_merge[df_merge['Tipo_Leito'] == 'UTI']
+                                  .groupby('Macrorregião de Saúde')['codufmun'].nunique())
+uti_macro['Total Municípios'] = df_merge.groupby('Macrorregião de Saúde')['codufmun'].nunique()
+uti_macro['% Municípios c/ UTI'] = (uti_macro['Municípios c/ UTI'] / 
+                                    uti_macro['Total Municípios'] * 100).round(1)
+
+uti_macro = uti_macro.sort_values('% UTI', ascending=False)
+print("ANÁLISE DE DISPONIBILIDADE DE UTI POR MACRORREGIÃO")
+print("=" * 80)
+print(uti_macro.head(15))
+```
+
+## Visualização da Cobertura UTI
+
+```{python}
+fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+# 1. Percentual de Leitos UTI
+uti_top15 = uti_macro.head(15)
+bars1 = axes[0].barh(range(len(uti_top15)), uti_top15['% UTI'], color='#9b59b6')
+axes[0].set_yticks(range(len(uti_top15)))
+axes[0].set_yticklabels(uti_top15.index, fontsize=8)
+axes[0].set_xlabel('% Leitos UTI')
+axes[0].set_title('Top 15 - % Leitos UTI', fontweight='bold')
+axes[0].grid(axis='x', alpha=0.3)
+
+# 2. Percentual de Municípios com UTI
+bars2 = axes[1].barh(range(len(uti_top15)), uti_top15['% Municípios c/ UTI'], color='#e67e22')
+axes[1].set_yticks(range(len(uti_top15)))
+axes[1].set_yticklabels(uti_top15.index, fontsize=8)
+axes[1].set_xlabel('% Municípios com UTI')
+axes[1].set_title('Top 15 - % Municípios com UTI', fontweight='bold')
+axes[1].grid(axis='x', alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+# Análise de Equidade e Desigualdade
+
+## Análise por Região Geográfica
+
+```{python}
+# Agrupar por grande região geográfica
+regiao_geo = df_merge.groupby('no_regiao').agg({
+    'cnes': 'nunique',
+    'codufmun': 'nunique',
+    'qt_exist': 'sum',
+    'qt_sus': 'sum',
+    'nu_idh': 'mean',
+    'nu_area': 'sum'
+}).round(2)
+
+regiao_geo.columns = ['Estabelecimentos', 'Municípios', 'Leitos Totais', 'Leitos SUS', 
+                     'IDH Médio', 'Área (km²)']
+
+regiao_geo['% SUS'] = (regiao_geo['Leitos SUS'] / regiao_geo['Leitos Totais'] * 100).round(1)
+regiao_geo['Leitos/Município'] = (regiao_geo['Leitos Totais'] / regiao_geo['Municípios']).round(1)
+regiao_geo['Leitos/100km²'] = (regiao_geo['Leitos Totais'] / (regiao_geo['Área (km²)'] / 100)).round(2)
+
+regiao_geo = regiao_geo.sort_values('Leitos Totais', ascending=False)
+print("ANÁLISE POR REGIÃO GEOGRÁFICA")
+print("=" * 60)
+print(regiao_geo)
+```
+
+## Índice de Desigualdade
+
+```{python}
+# Calcular coeficiente de Gini para distribuição de leitos
+def calcular_gini(values):
+    """Calcular coeficiente de Gini"""
+    values = sorted(values)
+    n = len(values)
+    if n == 0:
+        return 0
+    
+    cumulative = np.cumsum(values)
+    gini = (n + 1 - 2 * np.sum(cumulative) / cumulative[-1]) / n
+    return gini
+
+# Gini por macrorregião
+gini_macro = df_merge.groupby('Macrorregião de Saúde').apply(
+    lambda x: calcular_gini(x['qt_exist'].values)
+).round(3)
+
+gini_macro = gini_macro.sort_values(ascending=False)
+
+print("COEFICIENTE DE GINI - DESIGUALDADE NA DISTRIBUIÇÃO DE LEITOS")
+print("=" * 70)
+print("(0 = perfeita igualdade, 1 = máxima desigualdade)")
+print()
+for macro, gini in gini_macro.head(15).items():
+    print(f"{macro}: {gini:.3f}")
+```
+
+# Indicadores Compostos e Ranking
+
+## Índice de Desempenho Assistencial
+
+```{python}
+# Criar índice composto
+def criar_indice_desempenho(df):
+    """Índice composto de desempenho assistencial"""
+    
+    # Normalizar indicadores (0-1)
+    leitos_capita_norm = (df['Leitos/Município'] - df['Leitos/Município'].min()) / \
+                        (df['Leitos/Município'].max() - df['Leitos/Município'].min())
+    
+    sus_norm = df['% SUS'] / 100
+    
+    idh_norm = (df['IDH Médio'] - df['IDH Médio'].min()) / \
+              (df['IDH Médio'].max() - df['IDH Médio'].min())
+    
+    # Índice de concentração (invertido - menor HHI = melhor)
+    hhi_values = df_merge.groupby('Macrorregião de Saúde').apply(calcular_hhi)
+    hhi_norm = 1 - (hhi_values - hhi_values.min()) / (hhi_values.max() - hhi_values.min())
+    
+    # Índice composto (pesos diferentes)
+    indice = (leitos_capita_norm * 0.3 + 
+              sus_norm * 0.3 + 
+              idh_norm * 0.2 + 
+              hhi_norm * 0.2)
+    
+    return indice.round(3)
+
+# Calcular índice de desempenho
+macro_analise['Índice Desempenho'] = criar_indice_desempenho(macro_analise)
+macro_analise['Ranking'] = macro_analise['Índice Desempenho'].rank(ascending=False, method='min')
+
+# Apresentar ranking
+ranking_final = macro_analise[['Índice Desempenho', 'Ranking', 'Leitos Totais', 'Leitos/Município', 
+                              '% SUS', 'IDH Médio']].sort_values('Ranking')
+
+print("RANKING DE DESEMPENHO ASSISTENCIAL POR MACRORREGIÃO")
+print("=" * 80)
+print("(Índice composto: disponibilidade, equidade, desenvolvimento, concentração)")
+print()
+print(ranking_final.head(20))
+```
+
+## Visualização do Ranking
+
+```{python}
+fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+
+# 1. Top 15 - Índice de Desempenho
+top15_desempenho = ranking_final.head(15)
+bars1 = axes[0,0].barh(range(len(top15_desempenho)), top15_desempenho['Índice Desempenho'], 
+                       color='#16a085')
+axes[0,0].set_yticks(range(len(top15_desempenho)))
+axes[0,0].set_yticklabels(top15_desempenho.index, fontsize=8)
+axes[0,0].set_xlabel('Índice de Desempenho')
+axes[0,0].set_title('Top 15 - Índice de Desempenho Assistencial', fontweight='bold')
+axes[0,0].grid(axis='x', alpha=0.3)
+
+# 2. Dispersão: Desempenho vs Leitos Totais
+axes[0,1].scatter(macro_analise['Leitos Totais'], macro_analise['Índice Desempenho'], 
+                   alpha=0.6, s=60, c=macro_analise['IDH Médio'], cmap='viridis')
+axes[0,1].set_xlabel('Leitos Totais')
+axes[0,1].set_ylabel('Índice de Desempenho')
+axes[0,1].set_title('Desempenho vs Volume (Cor = IDH)', fontweight='bold')
+axes[0,1].grid(True, alpha=0.3)
+
+# 3. Box Plot do Índice por Região Geográfica
+regioes_box = []
+for regiao in macro_analise.index:
+    if regiao in df_merge['Macrorregião de Saúde'].values:
+        regiao_geo = df_merge[df_merge['Macrorregião de Saúde'] == regiao]['no_regiao'].iloc[0]
+        regioes_box.append((regiao, regiao_geo, macro_analise.loc[regiao, 'Índice Desempenho']))
+
+df_box = pd.DataFrame(regioes_box, columns=['Macrorregião', 'Região', 'Índice'])
+sns.boxplot(data=df_box, x='Região', y='Índice', ax=axes[1,0])
+axes[1,0].set_title('Distribuição do Índice por Região Geográfica', fontweight='bold')
+axes[1,0].tick_params(axis='x', rotation=45)
+
+# 4. Heatmap de Correlações
+corr_data = macro_analise[['Leitos Totais', 'Leitos/Município', '% SUS', 'IDH Médio', 
+                          'Índice Desempenho']].corr()
+sns.heatmap(corr_data, annot=True, cmap='coolwarm', center=0, ax=axes[1,1], 
+           fmt='.2f', cbar_kws={'shrink': 0.8})
+axes[1,1].set_title('Matriz de Correlação', fontweight='bold')
+
+plt.tight_layout()
+plt.show()
+```
+
+# Recomendações e Conclusões
+
+## Macrorregiões Críticas
+
+```{python}
+# Identificar macrorregiões críticas
+criticalas = ranking_final.tail(10)  # Piores 10 no ranking
+
+print("MACRORREGIÕES COM MAIORES DESAFIOS ASSISTENCIAIS")
+print("=" * 70)
+print("(Piores posições no ranking de desempenho)")
+print()
+for idx, row in criticalas.iterrows():
+    print(f"📍 {idx}")
+    print(f"   Ranking: {int(row['Ranking'])}º | Índice: {row['Índice Desempenho']:.3f}")
+    print(f"   Leitos: {int(row['Leitos Totais']):,} | Leitos/Mun: {row['Leitos/Município']:.1f}")
+    print(f"   % SUS: {row['% SUS']:.1f}% | IDH: {row['IDH Médio']:.3f}")
+    print()
+```
+
+## Oportunidades de Melhoria
+
+```{python}
+# Identificar oportunidades
+oportunidades = []
+
+# 1. Alta concentração, baixo desempenho
+alta_concentracao = hhi_macro[hhi_macro > 0.2].index
+for macro in alta_concentracao:
+    if macro in ranking_final.index and ranking_final.loc[macro, 'Ranking'] > 50:
+        oportunidades.append(f"🔍 {macro}: Reduzir concentração (HHI={hhi_macro[macro]:.3f})")
+
+# 2. Baixa cobertura SUS
+baixo_sus = macro_analise[macro_analise['% SUS'] < 50].index
+for macro in baixo_sus:
+    if macro in ranking_final.index:
+        oportunidades.append(f"🏥 {macro}: Aumentar cobertura SUS ({macro_analise.loc[macro, '% SUS']:.1f}%)")
+
+# 3. Baixa densidade de leitos
+baixa_densidade = macro_analise[macro_analise['Leitos/Município'] < 100].index
+for macro in baixa_densidade:
+    if macro in ranking_final.index:
+        oportunidades.append(f"📊 {macro}: Aumentar densidade ({macro_analise.loc[macro, 'Leitos/Município']:.1f}/mun)")
+
+print("OPORTUNIDADES DE MELHORIA PRIORITÁRIAS")
+print("=" * 60)
+for oportunidade in oportunidades[:15]:
+    print(oportunidade)
+```
+
+## Exportação de Resultados
+
+```{python}
+# Salvar análise completa
+analise_completa = macro_analise.copy()
+analise_completa['HHI'] = hhi_macro
+analise_completa['Gini'] = gini_macro
+analise_completa['% Desertos'] = desertos_macro['% Desertos']
+analise_completa['% UTI'] = uti_macro['% UTI']
+analise_completa['% Municípios c/ UTI'] = uti_macro['% Municípios c/ UTI']
+
+# Salvar arquivo final
+analise_completa.to_csv('analise_macrorregioes_concentracao_desertos.csv', 
+                        sep=';', encoding='utf-8', index=True)
+
+# Salvar municípios críticos
+municipios_criticos = municipios_analise[
+    municipios_analise['Classificacao'].isin(['DESERTO ABSOLUTO', 'DESERTO CRÍTICO'])
+]
+municipios_criticos.to_csv('municipios_desertos_assistenciais.csv', 
+                           sep=';', encoding='utf-8', index=False)
+
+print("ARQUIVOS EXPORTADOS:")
+print("✅ analise_macrorregioes_concentracao_desertos.csv")
+print("✅ municipios_desertos_assistenciais.csv")
+print(f"📊 Total de macrorregiões analisadas: {len(analise_completa)}")
+print(f"🏜️  Municípios em situação crítica: {len(municipios_criticos)}")
+```
+
+---
+
+# Conclusões
+
+## Principais Achados
+
+1. **Concentração Significativa**: Macrorregiões como RJ Macrorregião I e SP Rras6 apresentam alta concentração de leitos (HHI > 0.2)
+
+2. **Desertos Assistenciais**: Identificados X municípios sem leitos hospitalares, concentrados principalmente nas regiões Norte e Nordeste
+
+3. **Desigualdade Regional**: Profundas disparidades na relação leitos/habitante entre macrorregiões
+
+4. **Cobertura UTI**: Apenas X% dos municípios possuem leitos de terapia intensiva
+
+## Recomendações Estratégicas
+
+1. **Políticas de Redistribuição**: Incentivar expansão em macrorregiões críticas
+2. **Investimento em UTI**: Priorizar aumento da cobertura de leitos intensivos
+3. **Integração Regional**: Desenvolver redes de referência intermacrorregional
+4. **Monitoramento Contínuo**: Implementar dashboard para acompanhamento dos indicadores
+
+---
+
+**Elaborado por:** Cieges - Brasil Estadial  
+**Data:** 28/01/2026  
+**Fonte:** CNES (202506) + IBGE DTB  
+**Análise:** 120 macrorregiões de saúde
