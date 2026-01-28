@@ -1,0 +1,290 @@
+/* CNES 360 v2 - Estilos Personalizados Profissionais */
+
+/* Reset e Base */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%) !important;
+    min-height: 100vh;
+}
+
+/* Header do Título Principal */
+#title-block-header {
+    background: linear-gradient(135deg, #1a5276 0%, #2980b9 100%) !important;
+    color: white !important;
+    padding: 40px 30px !important;
+    border-radius: 0 0 20px 20px !important;
+    margin-bottom: 30px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+}
+
+#title-block-header .title {
+    color: white !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2) !important;
+    margin-bottom: 10px !important;
+}
+
+#title-block-header .subtitle {
+    color: rgba(255,255,255,0.9) !important;
+    font-size: 1.3rem !important;
+    font-weight: 400 !important;
+}
+
+#title-block-header .quarto-title-meta {
+    color: rgba(255,255,255,0.85) !important;
+    margin-top: 20px !important;
+}
+
+#title-block-header .quarto-title-meta-heading {
+    color: rgba(255,255,255,0.7) !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+#title-block-header .quarto-title-meta-contents {
+    color: white !important;
+    font-weight: 500 !important;
+}
+
+/* Sidebar / Table of Contents */
+#quarto-sidebar-toc-left, .sidebar.toc-left {
+    background: white !important;
+    border-radius: 15px !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08) !important;
+    padding: 20px !important;
+    margin: 20px !important;
+}
+
+#toc-title {
+    color: #1a5276 !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    padding-bottom: 15px !important;
+    border-bottom: 3px solid #3498db !important;
+    margin-bottom: 15px !important;
+}
+
+.toc-active .nav-link {
+    color: #2c3e50 !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    margin: 2px 0 !important;
+}
+
+.toc-active .nav-link:hover {
+    background: #ebf5fb !important;
+    color: #2980b9 !important;
+    transform: translateX(5px) !important;
+}
+
+.toc-active .nav-link.active {
+    background: #3498db !important;
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+/* Seção Other Formats / PDF */
+.quarto-alternate-formats {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+    padding: 20px 25px !important;
+    border-radius: 12px !important;
+    margin-top: 25px !important;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3) !important;
+}
+
+.quarto-alternate-formats h2 {
+    color: white !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 12px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.quarto-alternate-formats ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.quarto-alternate-formats a {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: white !important;
+    color: #c0392b !important;
+    padding: 12px 24px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1) !important;
+}
+
+.quarto-alternate-formats a:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+    background: #fff5f5 !important;
+}
+
+.quarto-alternate-formats .bi-file-pdf {
+    font-size: 1.3rem !important;
+}
+
+/* Conteúdo Principal */
+.content {
+    background: white !important;
+    border-radius: 15px !important;
+    padding: 40px !important;
+    margin: 20px !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08) !important;
+}
+
+/* Headings */
+.content h1 {
+    color: #1a5276 !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    padding-bottom: 15px !important;
+    border-bottom: 3px solid #3498db !important;
+    margin-bottom: 25px !important;
+    margin-top: 40px !important;
+}
+
+.content h1:first-of-type {
+    margin-top: 0 !important;
+}
+
+.content h2 {
+    color: #2980b9 !important;
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+    margin-top: 30px !important;
+    margin-bottom: 15px !important;
+    padding-left: 15px !important;
+    border-left: 4px solid #3498db !important;
+}
+
+/* Tabelas */
+.content table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 20px 0 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1) !important;
+}
+
+.content table thead {
+    background: linear-gradient(135deg, #2980b9 0%, #1a5276 100%) !important;
+}
+
+.content table th {
+    color: white !important;
+    padding: 15px !important;
+    text-align: left !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.5px !important;
+}
+
+.content table td {
+    padding: 12px 15px !important;
+    border-bottom: 1px solid #ecf0f1 !important;
+}
+
+.content table tbody tr:hover {
+    background: #ebf5fb !important;
+}
+
+.content table tbody tr:nth-child(even) {
+    background: #f8f9fa !important;
+}
+
+/* Links */
+.content a {
+    color: #2980b9 !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+.content a:hover {
+    color: #1a5276 !important;
+    border-bottom-color: #3498db !important;
+}
+
+/* Listas */
+.content ul, .content ol {
+    padding-left: 25px !important;
+}
+
+.content li {
+    margin: 8px 0 !important;
+    line-height: 1.7 !important;
+}
+
+/* Parágrafos */
+.content p {
+    line-height: 1.8 !important;
+    color: #2c3e50 !important;
+    margin-bottom: 15px !important;
+}
+
+/* Código */
+.content code {
+    background: #ecf0f1 !important;
+    padding: 3px 8px !important;
+    border-radius: 4px !important;
+    font-size: 0.9rem !important;
+    color: #c0392b !important;
+}
+
+/* Cards de Destaque */
+.callout {
+    border-radius: 12px !important;
+    border: none !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+    margin: 20px 0 !important;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+    #title-block-header .title {
+        font-size: 1.8rem !important;
+    }
+    
+    .content {
+        padding: 20px !important;
+        margin: 10px !important;
+    }
+}
+
+/* Animações suaves */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3498db;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2980b9;
+}
