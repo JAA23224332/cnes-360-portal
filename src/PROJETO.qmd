@@ -162,7 +162,6 @@ Cálculo de indicadores por município:
 | `arq4_perfil_estabelecimentos.csv` | 9.072 | Perfil por estabelecimento |
 | `arq5_taxonomia_leitos.csv` | 49.804 | Leitos com taxonomia hierárquica |
 | `arq6_clusterizacao_especialidades.csv` | 65 | Clusters por especialidade |
-| `arq7_analise_municipios.csv` | 3.597 | Indicadores por município |
 
 ## Relatórios Técnicos
 
@@ -282,7 +281,6 @@ Cada objetivo específico agora corresponde a um produto concreto:
 | Tratar dados | arq2_tratado.csv + Nota Técnica ETL |
 | Classificar leitos | arq5_taxonomia.csv + Taxonomia Hierárquica |
 | Identificar padrões | arq6_clusterizacao.csv + Clusterização Híbrida |
-| Mapear vazios | arq7_municipios.csv + Análise de Desertos |
 | Gerar produtos | Guia de Tomada de Decisão |
 
 ### 3. Metodologia Estruturada

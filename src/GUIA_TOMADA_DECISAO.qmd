@@ -80,7 +80,6 @@ O projeto gera **7 arquivos de dados** que podem ser utilizados de forma integra
 │         ├──► arq3_tipologias.csv      (Tipologias derivadas)    │
 │         ├──► arq5_taxonomia_leitos.csv (Classificação 3 níveis) │
 │         ├──► arq6_clusterizacao.csv   (Clusters de especialidade)│
-│         └──► arq7_analise_municipios.csv (Indicadores por mun.) │
 │                                                                  │
 │  arq4_perfil_estabelecimentos.csv ──► Perfil por hospital       │
 │                                                                  │
@@ -89,7 +88,6 @@ O projeto gera **7 arquivos de dados** que podem ser utilizados de forma integra
 
 ## Indicadores Principais
 
-### Por Município (`arq7_analise_municipios.csv`)
 
 | Indicador | Descrição | Uso na Gestão |
 |-----------|-----------|---------------|
@@ -119,7 +117,6 @@ O projeto gera **7 arquivos de dados** que podem ser utilizados de forma integra
 
 ### Solução com os Dados
 
-Utilize o arquivo `arq7_analise_municipios.csv` e filtre:
 
 ```
 classificacao_vazio = "BASICO" ou "PARCIAL"
@@ -148,7 +145,6 @@ Meta: Aumentar de X% para Y% em 2 anos
 
 ### Solução com os Dados
 
-Utilize o arquivo `arq7_analise_municipios.csv` e filtre:
 
 ```
 hhi > 0.8 (alta concentração)
@@ -208,9 +204,9 @@ Criar score de priorização combinando:
 | Fator | Peso | Fonte |
 |-------|------|-------|
 | População do município | 30% | IBGE |
-| Classificação de vazio | 25% | arq7 |
+| Classificação de vazio | 25% | Análise Macrorregião |
 | Distância até UTI mais próxima | 25% | Cálculo |
-| Concentração (HHI) | 20% | arq7 |
+| Concentração (HHI) | 20% | Análise Macrorregião |
 
 ### Ação Gerencial
 
@@ -234,7 +230,6 @@ Meta: +X leitos/ano nas regiões prioritárias
 
 ### Solução com os Dados
 
-Utilize `arq7_analise_municipios.csv`:
 
 ```
 Agrupar por região
@@ -311,8 +306,8 @@ Utilize `arq6_clusterizacao_especialidades.csv` e `arq5_taxonomia_leitos.csv`:
 
 | Componente | Dados | Atualização |
 |------------|-------|-------------|
-| Mapa de calor de leitos | arq7 + geolocalização | Mensal |
-| Lista de municípios críticos | arq7 filtrado | Mensal |
+| Mapa de calor de leitos | arq6 + geolocalização | Mensal |
+| Lista de municípios críticos | arq6 filtrado | Mensal |
 | Ocupação por estabelecimento | Integrar com CNES-Leitos | Diária |
 | Fila de regulação | Sistema de regulação | Tempo real |
 

@@ -303,7 +303,6 @@ NÍVEL 3: Grupo de Especialidade
 | `arq4_perfil_estabelecimentos.csv` | 9.072 | Perfil por estabelecimento |
 | `arq5_taxonomia_leitos.csv` | 49.804 | Leitos com taxonomia hierárquica |
 | `arq6_clusterizacao_especialidades.csv` | 65 | Clusters por especialidade |
-| `arq7_analise_municipios.csv` | 3.597 | Indicadores por município |
 
 #### Relatórios Técnicos
 
@@ -451,7 +450,6 @@ O cronograma do projeto está organizado em **4 fases principais**, distribuída
 - ✅ Dados tratados (`arq2_tratado.csv`)
 - ✅ Taxonomia hierárquica (`arq5_taxonomia_leitos.csv`)
 - ✅ Clusters de especialidades (`arq6_clusterizacao_especialidades.csv`)
-- ✅ Indicadores por município (`arq7_analise_municipios.csv`)
 :::
 
 ## Fase 3: Documentação e Validação
@@ -690,14 +688,12 @@ Terra SUS/
 │   ├── arq4_perfil_estabelecimentos.csv  # Perfil por estabelecimento
 │   ├── arq5_taxonomia_leitos.csv     # Taxonomia hierárquica
 │   ├── arq6_clusterizacao_especialidades.csv  # Clusters
-│   └── arq7_analise_municipios.csv   # Indicadores por município
 │
 ├── 📑 Relatórios/
 │   ├── NOTA_TECNICA_ETL_CNES_LEITOS.qmd
 │   ├── TIPOLOGIA_LEITOS_CNES.qmd
 │   ├── TAXONOMIA_LEITOS_CNES.qmd
 │   ├── CLUSTERIZACAO_LEITOS_CNES.qmd
-│   └── ANALISE_DESERTOS_LEITOS.qmd
 │
 └── 📘 Documentação/
     ├── GUIA_TOMADA_DECISAO.qmd
