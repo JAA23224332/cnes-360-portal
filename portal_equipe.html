@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNES 360 v2 - Portal da Equipe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #004499;
+            --accent-color: #00a86b;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        .main-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 1400px;
+            overflow: hidden;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        .content-section {
+            padding: 40px 30px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .doc-card {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .doc-card .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            border: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .doc-card .card-body {
+            padding: 25px;
+        }
+
+        .doc-card .card-text {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .doc-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .btn-access {
+            background: var(--accent-color);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-access:hover {
+            background: #008c5a;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-analysis { background: #e3f2fd; color: #1976d2; }
+        .badge-technical { background: #f3e5f5; color: #7b1fa2; }
+        .badge-guide { background: #e8f5e8; color: #388e3c; }
+        .badge-project { background: #fff3e0; color: #f57c00; }
+
+        .stats-section {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            border-radius: 25px;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e0e0e0;
+            font-size: 1rem;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .footer-section {
+            background: var(--light-bg);
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            .header-section h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .doc-card .card-header {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header-section">
+            <h1><i class="fas fa-hospital"></i> CNES 360 v2</h1>
+            <p>Portal da Equipe - Documentação Completa do Projeto</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content-section">
+            <!-- Statistics -->
+            <div class="stats-section">
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <div class="stat-item">
+                            <span class="stat-number">9</span>
+                            <div class="stat-label">Documentos</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-item">
+                            <span class="stat-number">6</span>
+                            <div class="stat-label">Análises</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-item">
+                            <span class="stat-number">2</span>
+                            <div class="stat-label">Guias</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-item">
+                            <span class="stat-number">1</span>
+                            <div class="stat-label">Projeto</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar documentos..." onkeyup="filterDocs()">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <!-- Documents Grid -->
+            <h2 class="section-title">Documentos Disponíveis</h2>
+            <div class="row g-4" id="docsGrid">
+                <!-- INDEX -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="índice do projeto">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-home"></i> Índice do Projeto
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Página principal com navegação completa para todas as seções do projeto CNES 360.</p>
+                            <span class="category-badge badge-project">Projeto</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="INDEX.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJETO TERRA SUS -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="projeto terra sus">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-project-diagram"></i> Projeto Terra SUS
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Documentação completa do projeto Terra SUS com objetivos, metodologia e resultados.</p>
+                            <span class="category-badge badge-project">Projeto</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="PROJETO_TERRA_SUS.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANÁLISE DE DESERTOS DE LEITOS -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="análise de desertos de leitos">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-map-marked-alt"></i> Análise de Desertos de Leitos
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Análise espacial identificando áreas com escassez de leitos hospitalares no Brasil.</p>
+                            <span class="category-badge badge-analysis">Análise</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="ANALISE_DESERTOS_LEITOS.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CLUSTERIZAÇÃO DE LEITOS CNES -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="clusterização de leitos">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-network-wired"></i> Clusterização de Leitos CNES
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Agrupamento de especialidades hospitalares usando algoritmos de machine learning.</p>
+                            <span class="category-badge badge-analysis">Análise</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="CLUSTERIZACAO_LEITOS_CNES.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAXONOMIA DE LEITOS CNES -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="taxonomia de leitos">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-sitemap"></i> Taxonomia de Leitos CNES
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Classificação e hierarquia dos tipos de leitos hospitalares segundo o CNES.</p>
+                            <span class="category-badge badge-technical">Técnico</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="TAXONOMIA_LEITOS_CNES.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TIPOLOGIA DE LEITOS CNES -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="tipologia de leitos">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-list-alt"></i> Tipologia de Leitos CNES
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Descrição detalhada dos tipos e categorias de leitos hospitalares cadastrados.</p>
+                            <span class="category-badge badge-technical">Técnico</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="TIPOLOGIA_LEITOS_CNES.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GUIA DE TOMADA DE DECISÃO -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="guia de tomada de decisão">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-compass"></i> Guia de Tomada de Decisão
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Orientações práticas para gestores de saúde baseadas nas análises realizadas.</p>
+                            <span class="category-badge badge-guide">Guia</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="GUIA_TOMADA_DECISAO.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOTA TÉCNICA ETL -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="nota técnica etl">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-cogs"></i> Nota Técnica ETL CNES Leitos
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Documentação do processo de Extração, Transformação e Carga dos dados do CNES.</p>
+                            <span class="category-badge badge-technical">Técnico</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="NOTA_TECNICA_ETL_CNES_LEITOS.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJETO -->
+                <div class="col-lg-4 col-md-6 doc-item" data-title="projeto">
+                    <div class="card doc-card">
+                        <div class="card-header">
+                            <i class="fas fa-info-circle"></i> Projeto CNES 360
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Visão geral do projeto CNES 360 com objetivos e metodologia.</p>
+                            <span class="category-badge badge-project">Projeto</span>
+                            <div class="doc-meta">
+                                <span><i class="fas fa-calendar"></i> 21/01/2026</span>
+                                <span><i class="fas fa-file"></i> HTML</span>
+                            </div>
+                            <a href="PROJETO.html" class="btn-access" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">
+            <p><strong>CNES 360 v2</strong> - Portal da Equipe</p>
+            <p>Desenvolvido por Cieges - Brasil Estadual | 2026</p>
+            <p class="mt-2">
+                <small>
+                    <i class="fas fa-server"></i> Backend: Railway | 
+                    <i class="fas fa-globe"></i> Frontend: Vercel
+                </small>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function filterDocs() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const docItems = document.querySelectorAll('.doc-item');
+            
+            docItems.forEach(item => {
+                const title = item.getAttribute('data-title').toLowerCase();
+                const cardText = item.querySelector('.card-text').textContent.toLowerCase();
+                
+                if (title.includes(searchInput) || cardText.includes(searchInput)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.doc-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

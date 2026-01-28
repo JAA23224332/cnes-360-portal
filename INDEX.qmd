@@ -1,0 +1,291 @@
+---
+title: "CNES 360 v2 - Índice do Projeto"
+subtitle: "Inteligência de Dados de Leitos Hospitalares do Brasil"
+author: "Cieges - Brasil Estadual"
+date: "2026-01-21"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    number-sections: false
+    page-layout: full
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    documentclass: article
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \usepackage{geometry}
+        \geometry{a4paper, margin=2cm, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{multirow}
+        \usepackage{wrapfig}
+        \usepackage{float}
+        \floatplacement{figure}{H}
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{6pt}
+        \usepackage{adjustbox}
+        \usepackage{tabularx}
+        \usepackage{booktabs}
+    colorlinks: true
+---
+
+# 🏥 Visão Geral do Projeto
+
+O **CNES 360 v2** é um projeto de inteligência de dados em saúde que transforma dados brutos de leitos hospitalares do CNES (Cadastro Nacional de Estabelecimentos de Saúde) em informação estratégica para gestão e planejamento.
+
+## Documento do Projeto Terra SUS
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [PROJETO_TERRA_SUS.html](PROJETO_TERRA_SUS.html) | Documento completo do projeto (HTML) |
+| [PROJETO_TERRA_SUS.pdf](PROJETO_TERRA_SUS.pdf) | Versão PDF para impressão |
+| [PROJETO_TERRA_SUS.qmd](PROJETO_TERRA_SUS.qmd) | Código fonte Quarto |
+
+**Conteúdo:** Introdução, objetivos (geral e específicos), metodologia em 4 etapas, especificações do produto, resultados alcançados, cronograma, orçamento, equipe e referências.
+
+## Escopo dos Dados
+
+| Métrica | Valor |
+|---------|-------|
+| **Competência** | Junho/2025 (202506) |
+| **Total de Leitos** | 535.133 |
+| **Estabelecimentos** | 9.072 |
+| **Municípios** | 3.597 |
+| **Especialidades** | 65 |
+
+---
+
+# 📚 Documentação Técnica
+
+## Nota Técnica ETL
+
+Documento que descreve o processo de extração, transformação e carga dos dados do CNES.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [NOTA_TECNICA_ETL_CNES_LEITOS.html](NOTA_TECNICA_ETL_CNES_LEITOS.html) | Relatório HTML interativo |
+| [NOTA_TECNICA_ETL_CNES_LEITOS.pdf](NOTA_TECNICA_ETL_CNES_LEITOS.pdf) | Versão PDF para impressão |
+| [NOTA_TECNICA_ETL_CNES_LEITOS.md](NOTA_TECNICA_ETL_CNES_LEITOS.md) | Versão Markdown |
+| [NOTA_TECNICA_ETL_CNES_LEITOS.qmd](NOTA_TECNICA_ETL_CNES_LEITOS.qmd) | Código fonte Quarto |
+
+**Conteúdo:**
+
+- Comparativo arquivo original vs tratado
+- Transformações realizadas (filtros, remoções, enriquecimentos)
+- Validação de totais
+- Fluxo de processamento
+
+---
+
+# 🔬 Análises e Metodologias
+
+## Tipologia de Leitos
+
+Criação de tipologias derivadas usando quatro abordagens complementares.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [TIPOLOGIA_LEITOS_CNES.html](TIPOLOGIA_LEITOS_CNES.html) | Relatório HTML interativo |
+| [TIPOLOGIA_LEITOS_CNES.qmd](TIPOLOGIA_LEITOS_CNES.qmd) | Código fonte Quarto |
+
+**Tipologias criadas:**
+
+1. **Hierárquica** - Tipo → Especialidade (7 tipos, 65 especialidades)
+2. **Por Complexidade** - UTI, UCI, Cirúrgico, Clínico
+3. **Por Público-Alvo** - Adulto, Pediátrico, Neonatal, Obstétrico
+4. **Perfil de Estabelecimento** - Porte × Natureza (SUS/Privado)
+
+---
+
+## Taxonomia Hierárquica
+
+Classificação determinística em 3 níveis baseada em normativas do Ministério da Saúde.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [TAXONOMIA_LEITOS_CNES.html](TAXONOMIA_LEITOS_CNES.html) | Relatório HTML interativo |
+| [TAXONOMIA_LEITOS_CNES.qmd](TAXONOMIA_LEITOS_CNES.qmd) | Código fonte Quarto |
+
+**Estrutura:**
+
+```
+NÍVEL 1: Intensidade do Cuidado (5 categorias)
+├── NÍVEL 2: Público-Alvo (4 categorias)
+│   └── NÍVEL 3: Grupo de Especialidade (21 grupos)
+```
+
+**Fundamentação normativa:**
+
+- RDC ANVISA nº 7/2010
+- Portaria GM/MS nº 3.432/1998
+- Portaria GM/MS nº 930/2012
+- Portaria GM/MS nº 148/2012
+- Portaria GM/MS nº 2.809/2012
+
+---
+
+## Clusterização Híbrida
+
+Metodologia data-driven com validação clínica para identificar agrupamentos naturais de especialidades.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [CLUSTERIZACAO_LEITOS_CNES.html](CLUSTERIZACAO_LEITOS_CNES.html) | Relatório HTML interativo |
+| [CLUSTERIZACAO_LEITOS_CNES.qmd](CLUSTERIZACAO_LEITOS_CNES.qmd) | Código fonte Quarto |
+
+**Metodologia:**
+
+- Engenharia de 12 features por especialidade
+- Normalização StandardScaler
+- Clusterização Hierárquica (Ward)
+- Validação: Silhouette, Calinski-Harabasz, Davies-Bouldin
+- Rotulação clínica dos clusters
+
+**Resultado:** 8 clusters identificados com interpretação clínica.
+
+---
+
+## Análise de Concentração e Desertos por Macrorregião
+
+Identificação de vazios assistenciais e padrões de concentração nas 120 macrorregiões de saúde do Brasil.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.html](ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.html) | Relatório HTML interativo |
+| [ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.pdf](ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.pdf) | Versão PDF para impressão |
+| [ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.qmd](ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.qmd) | Código fonte Quarto |
+
+**Análises realizadas:**
+
+- **Índice HHI** - Concentração de leitos por macrorregião
+- **Desertos Assistenciais** - Municípios sem leitos ou com baixa disponibilidade
+- **Cobertura UTI** - Distribuição de leitos intensivos
+- **Índice de Gini** - Desigualdade na distribuição
+- **Ranking de Desempenho** - Índice composto assistencial
+
+**Dados integrados:** CNES + IBGE (120 macrorregiões, 5.570 municípios)
+
+---
+
+## Análise de Desertos de Leitos por Município
+
+Análise de vazios assistenciais e concentração da oferta em nível municipal.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [ANALISE_DESERTOS_LEITOS.html](ANALISE_DESERTOS_LEITOS.html) | Relatório HTML interativo |
+| [ANALISE_DESERTOS_LEITOS.qmd](ANALISE_DESERTOS_LEITOS.qmd) | Código fonte Quarto |
+
+**Indicadores calculados:**
+
+- Classificação de vazios: COMPLETO, PARCIAL, BÁSICO, DESERTO
+- Índice de Concentração (HHI)
+- Cobertura de UTI/UCI por município
+- Análise regional comparativa
+
+---
+
+## Guia de Tomada de Decisão
+
+Documento orientador para gestores sobre como utilizar os dados nas decisões estratégicas.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| [GUIA_TOMADA_DECISAO.html](GUIA_TOMADA_DECISAO.html) | Relatório HTML interativo |
+| [GUIA_TOMADA_DECISAO.pdf](GUIA_TOMADA_DECISAO.pdf) | Versão PDF para impressão |
+| [GUIA_TOMADA_DECISAO.qmd](GUIA_TOMADA_DECISAO.qmd) | Código fonte Quarto |
+
+**Conteúdo:**
+
+- 6 casos de uso para gestão (vazios, concentração, redes, investimentos)
+- Indicadores de monitoramento sugeridos
+- Dashboards recomendados
+- Boas práticas de interpretação
+
+---
+
+# 📊 Datasets Gerados
+
+## Pipeline de Dados
+
+```
+arq1_original.csv (30 MB)
+        │
+        ▼ ETL
+arq2_tratado.csv (3 MB)
+        │
+        ├──▶ arq3_tipologias.csv (6 MB)
+        │
+        ├──▶ arq4_perfil_estabelecimentos.csv (463 KB)
+        │
+        ├──▶ arq5_taxonomia_leitos.csv (11 MB)
+        │
+        ├──▶ arq6_clusterizacao_especialidades.csv (12 KB)
+        │
+        └──▶ arq7_analise_municipios.csv (293 KB)
+```
+
+## Dicionário de Arquivos
+
+| Arquivo | Registros | Descrição |
+|---------|-----------|-----------|
+| `arq1_original.csv` | 309.610 | Dados brutos consolidados (6 meses) |
+| `arq2_tratado.csv` | 49.804 | Dados limpos e enriquecidos (jun/2025) |
+| `arq3_tipologias.csv` | 49.804 | Leitos com tipologias derivadas |
+| `arq4_perfil_estabelecimentos.csv` | 9.072 | Perfil por estabelecimento (CNES) |
+| `arq5_taxonomia_leitos.csv` | 49.804 | Leitos com taxonomia hierárquica |
+| `arq6_clusterizacao_especialidades.csv` | 65 | Clusters por especialidade |
+| `arq7_analise_municipios.csv` | 3.597 | Indicadores por município |
+
+---
+
+# 🖼️ Recursos Visuais
+
+## Fluxo ETL
+
+![Fluxo de Importação dos Dados de Leitos do CNES](fluxo_etl_cnes.png)
+
+---
+
+# 📈 Próximos Passos
+
+## Análises Planejadas
+
+1. **Análise SUS vs Privado por Especialidade** - Identificar especialidades com maior dependência do SUS
+2. **Análise Porte vs Diversidade** - Relação entre tamanho do hospital e variedade de serviços
+
+## Evoluções Sugeridas
+
+1. **Índice de Vulnerabilidade de Leitos (IVL)** - Indicador composto de vazios assistenciais
+2. **Modelo Preditivo de Demanda** - Projeção de necessidade de leitos
+3. **API + Dashboard** - Democratização do acesso aos dados
+
+---
+
+# 📋 Informações do Projeto
+
+| Campo | Valor |
+|-------|-------|
+| **Projeto** | CNES 360 v2 |
+| **Autor** | Cieges - Brasil Estadual |
+| **Data** | 21/01/2026 |
+| **Fonte** | CNES - Cadastro Nacional de Estabelecimentos de Saúde |
+| **Competência** | 202506 (Junho/2025) |
+| **Ferramenta ETL** | Pinti |
+| **Destino** | Tableau (LT_BR_2501-2510.hyper) |
+
+---
+
+*Documento gerado automaticamente. Última atualização: 21/01/2026*

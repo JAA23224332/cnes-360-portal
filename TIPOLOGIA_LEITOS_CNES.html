@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Olavo Costa">
+<meta name="dcterms.date" content="2026-01-21">
+
+<title>Tipologia Derivada de Leitos do CNES</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="TIPOLOGIA_LEITOS_CNES_files/libs/clipboard/clipboard.min.js"></script>
+<script src="TIPOLOGIA_LEITOS_CNES_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="TIPOLOGIA_LEITOS_CNES_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="TIPOLOGIA_LEITOS_CNES_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="TIPOLOGIA_LEITOS_CNES_files/libs/quarto-html/popper.min.js"></script>
+<script src="TIPOLOGIA_LEITOS_CNES_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="TIPOLOGIA_LEITOS_CNES_files/libs/quarto-html/anchor.min.js"></script>
+<link href="TIPOLOGIA_LEITOS_CNES_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="TIPOLOGIA_LEITOS_CNES_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="TIPOLOGIA_LEITOS_CNES_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="TIPOLOGIA_LEITOS_CNES_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="TIPOLOGIA_LEITOS_CNES_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a></li>
+  <li><a href="#tipologia-1-agrupamento-hierárquico" id="toc-tipologia-1-agrupamento-hierárquico" class="nav-link" data-scroll-target="#tipologia-1-agrupamento-hierárquico"><span class="header-section-number">2</span> Tipologia 1: Agrupamento Hierárquico</a>
+  <ul class="collapse">
+  <li><a href="#mapeamento-completo" id="toc-mapeamento-completo" class="nav-link" data-scroll-target="#mapeamento-completo"><span class="header-section-number">2.1</span> Mapeamento Completo</a></li>
+  <li><a href="#resumo-por-tipo-de-leito" id="toc-resumo-por-tipo-de-leito" class="nav-link" data-scroll-target="#resumo-por-tipo-de-leito"><span class="header-section-number">2.2</span> Resumo por Tipo de Leito</a></li>
+  </ul></li>
+  <li><a href="#tipologia-2-por-complexidade" id="toc-tipologia-2-por-complexidade" class="nav-link" data-scroll-target="#tipologia-2-por-complexidade"><span class="header-section-number">3</span> Tipologia 2: Por Complexidade</a>
+  <ul class="collapse">
+  <li><a href="#critérios-de-classificação" id="toc-critérios-de-classificação" class="nav-link" data-scroll-target="#critérios-de-classificação"><span class="header-section-number">3.1</span> Critérios de Classificação</a></li>
+  <li><a href="#visualização" id="toc-visualização" class="nav-link" data-scroll-target="#visualização"><span class="header-section-number">3.2</span> Visualização</a></li>
+  </ul></li>
+  <li><a href="#tipologia-3-por-público-alvo" id="toc-tipologia-3-por-público-alvo" class="nav-link" data-scroll-target="#tipologia-3-por-público-alvo"><span class="header-section-number">4</span> Tipologia 3: Por Público-Alvo</a>
+  <ul class="collapse">
+  <li><a href="#critérios-de-classificação-1" id="toc-critérios-de-classificação-1" class="nav-link" data-scroll-target="#critérios-de-classificação-1"><span class="header-section-number">4.1</span> Critérios de Classificação</a></li>
+  <li><a href="#visualização-1" id="toc-visualização-1" class="nav-link" data-scroll-target="#visualização-1"><span class="header-section-number">4.2</span> Visualização</a></li>
+  </ul></li>
+  <li><a href="#tipologia-4-perfil-de-estabelecimento" id="toc-tipologia-4-perfil-de-estabelecimento" class="nav-link" data-scroll-target="#tipologia-4-perfil-de-estabelecimento"><span class="header-section-number">5</span> Tipologia 4: Perfil de Estabelecimento</a>
+  <ul class="collapse">
+  <li><a href="#critérios-de-classificação-2" id="toc-critérios-de-classificação-2" class="nav-link" data-scroll-target="#critérios-de-classificação-2"><span class="header-section-number">5.1</span> Critérios de Classificação</a></li>
+  <li><a href="#visualização-2" id="toc-visualização-2" class="nav-link" data-scroll-target="#visualização-2"><span class="header-section-number">5.2</span> Visualização</a></li>
+  </ul></li>
+  <li><a href="#resumo-das-tipologias" id="toc-resumo-das-tipologias" class="nav-link" data-scroll-target="#resumo-das-tipologias"><span class="header-section-number">6</span> Resumo das Tipologias</a></li>
+  <li><a href="#exportação-dos-dados" id="toc-exportação-dos-dados" class="nav-link" data-scroll-target="#exportação-dos-dados"><span class="header-section-number">7</span> Exportação dos Dados</a></li>
+  <li><a href="#dicionário-das-tipologias" id="toc-dicionário-das-tipologias" class="nav-link" data-scroll-target="#dicionário-das-tipologias"><span class="header-section-number">8</span> Dicionário das Tipologias</a>
+  <ul class="collapse">
+  <li><a href="#tipologia-por-complexidade" id="toc-tipologia-por-complexidade" class="nav-link" data-scroll-target="#tipologia-por-complexidade"><span class="header-section-number">8.1</span> Tipologia por Complexidade</a></li>
+  <li><a href="#tipologia-por-público-alvo" id="toc-tipologia-por-público-alvo" class="nav-link" data-scroll-target="#tipologia-por-público-alvo"><span class="header-section-number">8.2</span> Tipologia por Público-Alvo</a></li>
+  <li><a href="#perfil-de-estabelecimento" id="toc-perfil-de-estabelecimento" class="nav-link" data-scroll-target="#perfil-de-estabelecimento"><span class="header-section-number">8.3</span> Perfil de Estabelecimento</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="TIPOLOGIA_LEITOS_CNES.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tipologia Derivada de Leitos do CNES</h1>
+<p class="subtitle lead">Agrupamento Hierárquico, Complexidade, Público-Alvo e Perfil de Estabelecimento</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Olavo Costa </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">1</span> Introdução</h2>
+<p>Este documento apresenta a criação de <strong>tipologias derivadas</strong> a partir dos dados de leitos hospitalares do CNES, utilizando quatro abordagens complementares:</p>
+<ol type="1">
+<li><strong>Agrupamento Hierárquico</strong> (Tipo → Especialidade)</li>
+<li><strong>Tipologia por Complexidade</strong> (UTI, Cirúrgico, Clínico)</li>
+<li><strong>Tipologia por Público-Alvo</strong> (Adulto, Pediátrico, Obstétrico, Neonatal)</li>
+<li><strong>Perfil de Estabelecimento</strong> (Porte × Natureza)</li>
+</ol>
+<div id="7909d46b" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados tratados</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'arq2_tratado.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'latin1'</span>, low_memory<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Registros: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estabelecimentos: </span><span class="sc">{</span>df[<span class="st">'cnes'</span>]<span class="sc">.</span>nunique()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Leitos: </span><span class="sc">{</span>df[<span class="st">'qt_exist'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Registros: 49,804
+Estabelecimentos: 9,072
+Leitos: 535,133</code></pre>
+</div>
+</div>
+</section>
+<section id="tipologia-1-agrupamento-hierárquico" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="tipologia-1-agrupamento-hierárquico"><span class="header-section-number">2</span> Tipologia 1: Agrupamento Hierárquico</h2>
+<p>Estrutura de dois níveis: <strong>Tipo de Leito → Especialidade</strong></p>
+<section id="mapeamento-completo" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="mapeamento-completo"><span class="header-section-number">2.1</span> Mapeamento Completo</h3>
+<div id="0944d068" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar tipologia hierárquica</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'TIPOLOGIA_HIERARQUICA'</span>] <span class="op">=</span> df[<span class="st">'DS_TP_LEITO'</span>] <span class="op">+</span> <span class="st">' &gt; '</span> <span class="op">+</span> df[<span class="st">'DS_CO_LEITO'</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabela hierárquica</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>hierarquia <span class="op">=</span> []</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tp <span class="kw">in</span> <span class="bu">sorted</span>(df[<span class="st">'tp_leito'</span>].unique()):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    tipo_nome <span class="op">=</span> df[df[<span class="st">'tp_leito'</span>] <span class="op">==</span> tp][<span class="st">'DS_TP_LEITO'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    especialidades <span class="op">=</span> df[df[<span class="st">'tp_leito'</span>] <span class="op">==</span> tp].groupby([<span class="st">'co_leito'</span>, <span class="st">'DS_CO_LEITO'</span>])[<span class="st">'qt_exist'</span>].<span class="bu">sum</span>()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    especialidades <span class="op">=</span> especialidades.reset_index().sort_values(<span class="st">'qt_exist'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, row <span class="kw">in</span> especialidades.iterrows():</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        hierarquia.append({</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">'tp_leito'</span>: tp,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Tipo'</span>: tipo_nome,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">'co_leito'</span>: row[<span class="st">'co_leito'</span>],</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Especialidade'</span>: row[<span class="st">'DS_CO_LEITO'</span>],</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Leitos'</span>: row[<span class="st">'qt_exist'</span>]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>df_hier <span class="op">=</span> pd.DataFrame(hierarquia)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>df_hier</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">tp_leito</th>
+<th data-quarto-table-cell-role="th">Tipo</th>
+<th data-quarto-table-cell-role="th">co_leito</th>
+<th data-quarto-table-cell-role="th">Especialidade</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>CIRURGICO</td>
+<td>3</td>
+<td>CIRURGIA GERAL</td>
+<td>63475</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>CIRURGICO</td>
+<td>13</td>
+<td>ORTOPEDIATRAUMATOLOGIA</td>
+<td>20118</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1</td>
+<td>CIRURGICO</td>
+<td>6</td>
+<td>GINECOLOGIA</td>
+<td>6877</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>1</td>
+<td>CIRURGICO</td>
+<td>2</td>
+<td>CARDIOLOGIA</td>
+<td>5368</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>1</td>
+<td>CIRURGICO</td>
+<td>12</td>
+<td>ONCOLOGIA</td>
+<td>5217</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">60</th>
+<td>7</td>
+<td>HOSPITAL DIA</td>
+<td>73</td>
+<td>SAUDE MENTAL</td>
+<td>3511</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">61</th>
+<td>7</td>
+<td>HOSPITAL DIA</td>
+<td>69</td>
+<td>AIDS</td>
+<td>445</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">62</th>
+<td>7</td>
+<td>HOSPITAL DIA</td>
+<td>71</td>
+<td>INTERCORRENCIA POS-TRANSPLANTE</td>
+<td>385</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">63</th>
+<td>7</td>
+<td>HOSPITAL DIA</td>
+<td>72</td>
+<td>GERIATRIA</td>
+<td>108</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">64</th>
+<td>7</td>
+<td>HOSPITAL DIA</td>
+<td>70</td>
+<td>FIBROSE CISTICA</td>
+<td>23</td>
+</tr>
+</tbody>
+</table>
+
+<p>65 rows × 5 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="resumo-por-tipo-de-leito" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="resumo-por-tipo-de-leito"><span class="header-section-number">2.2</span> Resumo por Tipo de Leito</h3>
+<div id="0519fb2f" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>resumo_tipo <span class="op">=</span> df.groupby(<span class="st">'DS_TP_LEITO'</span>).agg({</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'co_leito'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}).rename(columns<span class="op">=</span>{<span class="st">'co_leito'</span>: <span class="st">'Especialidades'</span>, <span class="st">'qt_exist'</span>: <span class="st">'Leitos'</span>})</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>resumo_tipo[<span class="st">'%'</span>] <span class="op">=</span> (resumo_tipo[<span class="st">'Leitos'</span>] <span class="op">/</span> resumo_tipo[<span class="st">'Leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>resumo_tipo <span class="op">=</span> resumo_tipo.sort_values(<span class="st">'Leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>resumo_tipo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Especialidades</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+<th data-quarto-table-cell-role="th">%</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">DS_TP_LEITO</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">CLINICO</th>
+<td>15</td>
+<td>176667</td>
+<td>33.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CIRURGICO</th>
+<td>17</td>
+<td>123582</td>
+<td>23.1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">COMPLEMENTAR</th>
+<td>18</td>
+<td>77311</td>
+<td>14.4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">OBSTERICO</th>
+<td>2</td>
+<td>50095</td>
+<td>9.4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">PEDIATRICO</th>
+<td>2</td>
+<td>46609</td>
+<td>8.7</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">OUTRAS ESPECIALIDADES</th>
+<td>5</td>
+<td>46267</td>
+<td>8.6</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">HOSPITAL DIA</th>
+<td>6</td>
+<td>14602</td>
+<td>2.7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tipologia-2-por-complexidade" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="tipologia-2-por-complexidade"><span class="header-section-number">3</span> Tipologia 2: Por Complexidade</h2>
+<p>Classificação baseada na <strong>complexidade assistencial</strong> do leito.</p>
+<section id="critérios-de-classificação" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="critérios-de-classificação"><span class="header-section-number">3.1</span> Critérios de Classificação</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tipologia</th>
+<th>Critério</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ALTA_COMPLEXIDADE_UTI</td>
+<td>UTI (todos os tipos)</td>
+</tr>
+<tr class="even">
+<td>ALTA_COMPLEXIDADE_QUEIMADOS</td>
+<td>Leitos de queimados</td>
+</tr>
+<tr class="odd">
+<td>ALTA_COMPLEXIDADE_TRANSPLANTE</td>
+<td>Transplante</td>
+</tr>
+<tr class="even">
+<td>MEDIA_COMPLEXIDADE_UCI</td>
+<td>Unidades de Cuidados Intermediários</td>
+</tr>
+<tr class="odd">
+<td>MEDIA_COMPLEXIDADE_CIRURGICO</td>
+<td>Leitos cirúrgicos</td>
+</tr>
+<tr class="even">
+<td>BAIXA_COMPLEXIDADE_CLINICO</td>
+<td>Demais leitos clínicos</td>
+</tr>
+</tbody>
+</table>
+<div id="b234e8a3" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_complexidade(row):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    co <span class="op">=</span> row[<span class="st">'co_leito'</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> row[<span class="st">'DS_CO_LEITO'</span>].upper() <span class="cf">if</span> pd.notna(row[<span class="st">'DS_CO_LEITO'</span>]) <span class="cf">else</span> <span class="st">''</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># UTI / Alta Complexidade</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'UTI'</span> <span class="kw">in</span> ds <span class="kw">or</span> co <span class="kw">in</span> [<span class="dv">74</span>,<span class="dv">75</span>,<span class="dv">76</span>,<span class="dv">77</span>,<span class="dv">78</span>,<span class="dv">79</span>,<span class="dv">80</span>,<span class="dv">81</span>,<span class="dv">82</span>,<span class="dv">83</span>,<span class="dv">85</span>,<span class="dv">86</span>]:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'ALTA_COMPLEXIDADE_UTI'</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Unidades Intermediárias</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'INTERMEDIARI'</span> <span class="kw">in</span> ds <span class="kw">or</span> <span class="st">'CANGURU'</span> <span class="kw">in</span> ds <span class="kw">or</span> co <span class="kw">in</span> [<span class="dv">65</span>,<span class="dv">92</span>,<span class="dv">93</span>,<span class="dv">94</span>,<span class="dv">95</span>,<span class="dv">96</span>]:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'MEDIA_COMPLEXIDADE_UCI'</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Queimados</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'QUEIMADO'</span> <span class="kw">in</span> ds:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'ALTA_COMPLEXIDADE_QUEIMADOS'</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Transplante</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'TRANSPLANTE'</span> <span class="kw">in</span> ds:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'ALTA_COMPLEXIDADE_TRANSPLANTE'</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cirúrgico</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> row[<span class="st">'tp_leito'</span>] <span class="op">==</span> <span class="dv">1</span> <span class="kw">or</span> <span class="st">'CIRURG'</span> <span class="kw">in</span> ds:</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'MEDIA_COMPLEXIDADE_CIRURGICO'</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Clínico</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'BAIXA_COMPLEXIDADE_CLINICO'</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'TIPOLOGIA_COMPLEXIDADE'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(classificar_complexidade, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>tip_complex <span class="op">=</span> df.groupby(<span class="st">'TIPOLOGIA_COMPLEXIDADE'</span>)[<span class="st">'qt_exist'</span>].agg([<span class="st">'count'</span>, <span class="st">'sum'</span>])</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>tip_complex.columns <span class="op">=</span> [<span class="st">'Registros'</span>, <span class="st">'Leitos'</span>]</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>tip_complex[<span class="st">'%'</span>] <span class="op">=</span> (tip_complex[<span class="st">'Leitos'</span>] <span class="op">/</span> tip_complex[<span class="st">'Leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>tip_complex <span class="op">=</span> tip_complex.sort_values(<span class="st">'Leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>tip_complex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Registros</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+<th data-quarto-table-cell-role="th">%</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">TIPOLOGIA_COMPLEXIDADE</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">BAIXA_COMPLEXIDADE_CLINICO</th>
+<td>23059</td>
+<td>292527</td>
+<td>54.7</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">MEDIA_COMPLEXIDADE_CIRURGICO</th>
+<td>18971</td>
+<td>152890</td>
+<td>28.6</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">ALTA_COMPLEXIDADE_UTI</th>
+<td>5835</td>
+<td>75403</td>
+<td>14.1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">MEDIA_COMPLEXIDADE_UCI</th>
+<td>1545</td>
+<td>12038</td>
+<td>2.2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">ALTA_COMPLEXIDADE_TRANSPLANTE</th>
+<td>289</td>
+<td>1775</td>
+<td>0.3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">ALTA_COMPLEXIDADE_QUEIMADOS</th>
+<td>105</td>
+<td>500</td>
+<td>0.1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="visualização" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="visualização"><span class="header-section-number">3.2</span> Visualização</h3>
+<div id="0afc3331" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>cores <span class="op">=</span> [<span class="st">'#2c3e50'</span>, <span class="st">'#34495e'</span>, <span class="st">'#7f8c8d'</span>, <span class="st">'#95a5a6'</span>, <span class="st">'#bdc3c7'</span>, <span class="st">'#ecf0f1'</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.barh(tip_complex.index, tip_complex[<span class="st">'Leitos'</span>], color<span class="op">=</span>cores[:<span class="bu">len</span>(tip_complex)])</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Quantidade de Leitos'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Distribuição por Nível de Complexidade Assistencial'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(plt.FuncFormatter(<span class="kw">lambda</span> x, p: <span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(x<span class="op">/</span><span class="dv">1000</span>)<span class="sc">}</span><span class="ss">k'</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (v, pct) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(tip_complex[<span class="st">'Leitos'</span>], tip_complex[<span class="st">'%'</span>])):</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ax.text(v <span class="op">+</span> <span class="dv">2000</span>, i, <span class="ss">f'</span><span class="sc">{</span>v<span class="sc">:,}</span><span class="ss"> (</span><span class="sc">{</span>pct<span class="sc">}</span><span class="ss">%)'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TIPOLOGIA_LEITOS_CNES_files/figure-html/cell-6-output-1.png" width="1147" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tipologia-3-por-público-alvo" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="tipologia-3-por-público-alvo"><span class="header-section-number">4</span> Tipologia 3: Por Público-Alvo</h2>
+<p>Classificação baseada no <strong>público atendido</strong>.</p>
+<section id="critérios-de-classificação-1" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="critérios-de-classificação-1"><span class="header-section-number">4.1</span> Critérios de Classificação</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipologia</th>
+<th>Critério</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NEONATAL</td>
+<td>Leitos neonatais e canguru</td>
+</tr>
+<tr class="even">
+<td>PEDIATRICO</td>
+<td>Leitos pediátricos (tp_leito=5) ou com “PEDIATR” na descrição</td>
+</tr>
+<tr class="odd">
+<td>OBSTETRICO</td>
+<td>Leitos obstétricos (tp_leito=4)</td>
+</tr>
+<tr class="even">
+<td>ADULTO</td>
+<td>Demais leitos</td>
+</tr>
+</tbody>
+</table>
+<div id="aa019f21" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_publico(row):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    ds <span class="op">=</span> row[<span class="st">'DS_CO_LEITO'</span>].upper() <span class="cf">if</span> pd.notna(row[<span class="st">'DS_CO_LEITO'</span>]) <span class="cf">else</span> <span class="st">''</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    tp <span class="op">=</span> row[<span class="st">'tp_leito'</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Neonatal</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'NEONAT'</span> <span class="kw">in</span> ds <span class="kw">or</span> <span class="st">'CANGURU'</span> <span class="kw">in</span> ds:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'NEONATAL'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pediátrico</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tp <span class="op">==</span> <span class="dv">5</span> <span class="kw">or</span> <span class="st">'PEDIATR'</span> <span class="kw">in</span> ds:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'PEDIATRICO'</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obstétrico</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tp <span class="op">==</span> <span class="dv">4</span> <span class="kw">or</span> <span class="st">'OBSTETR'</span> <span class="kw">in</span> ds:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'OBSTETRICO'</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Adulto</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'ADULTO'</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'TIPOLOGIA_PUBLICO'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(classificar_publico, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>tip_publico <span class="op">=</span> df.groupby(<span class="st">'TIPOLOGIA_PUBLICO'</span>)[<span class="st">'qt_exist'</span>].agg([<span class="st">'count'</span>, <span class="st">'sum'</span>])</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>tip_publico.columns <span class="op">=</span> [<span class="st">'Registros'</span>, <span class="st">'Leitos'</span>]</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>tip_publico[<span class="st">'%'</span>] <span class="op">=</span> (tip_publico[<span class="st">'Leitos'</span>] <span class="op">/</span> tip_publico[<span class="st">'Leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>tip_publico <span class="op">=</span> tip_publico.sort_values(<span class="st">'Leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>tip_publico</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Registros</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+<th data-quarto-table-cell-role="th">%</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">TIPOLOGIA_PUBLICO</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">ADULTO</th>
+<td>32449</td>
+<td>390494</td>
+<td>73.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PEDIATRICO</th>
+<td>8448</td>
+<td>74920</td>
+<td>14.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">OBSTETRICO</th>
+<td>6670</td>
+<td>50095</td>
+<td>9.4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NEONATAL</th>
+<td>2237</td>
+<td>19624</td>
+<td>3.7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="visualização-1" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="visualização-1"><span class="header-section-number">4.2</span> Visualização</h3>
+<div id="366cef02" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cores_pub <span class="op">=</span> [<span class="st">'#2c3e50'</span>, <span class="st">'#3498db'</span>, <span class="st">'#e74c3c'</span>, <span class="st">'#f39c12'</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> ax.barh(tip_publico.index, tip_publico[<span class="st">'Leitos'</span>], color<span class="op">=</span>cores_pub)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Quantidade de Leitos'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Distribuição por Público-Alvo'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (v, pct) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(tip_publico[<span class="st">'Leitos'</span>], tip_publico[<span class="st">'%'</span>])):</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ax.text(v <span class="op">+</span> <span class="dv">3000</span>, i, <span class="ss">f'</span><span class="sc">{</span>v<span class="sc">:,}</span><span class="ss"> (</span><span class="sc">{</span>pct<span class="sc">}</span><span class="ss">%)'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TIPOLOGIA_LEITOS_CNES_files/figure-html/cell-8-output-1.png" width="950" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tipologia-4-perfil-de-estabelecimento" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="tipologia-4-perfil-de-estabelecimento"><span class="header-section-number">5</span> Tipologia 4: Perfil de Estabelecimento</h2>
+<p>Classificação dos <strong>estabelecimentos</strong> por <strong>Porte × Natureza (SUS/Privado)</strong>.</p>
+<section id="critérios-de-classificação-2" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="critérios-de-classificação-2"><span class="header-section-number">5.1</span> Critérios de Classificação</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Porte</th>
+<th>Critério</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GRANDE_PORTE</td>
+<td>≥ 200 leitos</td>
+</tr>
+<tr class="even">
+<td>MEDIO_PORTE</td>
+<td>50-199 leitos</td>
+</tr>
+<tr class="odd">
+<td>PEQUENO_PORTE</td>
+<td>&lt; 50 leitos</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Natureza</th>
+<th>Critério</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SUS</td>
+<td>≥ 80% leitos SUS</td>
+</tr>
+<tr class="even">
+<td>PRIVADO</td>
+<td>≤ 20% leitos SUS</td>
+</tr>
+<tr class="odd">
+<td>MISTO</td>
+<td>21-79% leitos SUS</td>
+</tr>
+</tbody>
+</table>
+<div id="64a119c1" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar por estabelecimento</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>perfil <span class="op">=</span> df.groupby(<span class="st">'cnes'</span>).agg({</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_sus'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_nsus'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tp_leito'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'co_leito'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>: <span class="st">'first'</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}).reset_index()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>perfil.columns <span class="op">=</span> [<span class="st">'cnes'</span>, <span class="st">'total_leitos'</span>, <span class="st">'leitos_sus'</span>, <span class="st">'leitos_nsus'</span>, <span class="st">'tipos_leito'</span>, <span class="st">'especialidades'</span>, <span class="st">'codufmun'</span>]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>perfil[<span class="st">'pct_sus'</span>] <span class="op">=</span> (perfil[<span class="st">'leitos_sus'</span>] <span class="op">/</span> perfil[<span class="st">'total_leitos'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_perfil(row):</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    leitos <span class="op">=</span> row[<span class="st">'total_leitos'</span>]</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    pct_sus <span class="op">=</span> row[<span class="st">'pct_sus'</span>]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Por porte</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> leitos <span class="op">&gt;=</span> <span class="dv">200</span>:</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        porte <span class="op">=</span> <span class="st">'GRANDE_PORTE'</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> leitos <span class="op">&gt;=</span> <span class="dv">50</span>:</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        porte <span class="op">=</span> <span class="st">'MEDIO_PORTE'</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        porte <span class="op">=</span> <span class="st">'PEQUENO_PORTE'</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Por natureza</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pct_sus <span class="op">&gt;=</span> <span class="dv">80</span>:</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        natureza <span class="op">=</span> <span class="st">'SUS'</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> pct_sus <span class="op">&lt;=</span> <span class="dv">20</span>:</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        natureza <span class="op">=</span> <span class="st">'PRIVADO'</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        natureza <span class="op">=</span> <span class="st">'MISTO'</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f'</span><span class="sc">{</span>porte<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>natureza<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>perfil[<span class="st">'PERFIL_ESTABELECIMENTO'</span>] <span class="op">=</span> perfil.<span class="bu">apply</span>(classificar_perfil, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>resumo_perfil <span class="op">=</span> perfil.groupby(<span class="st">'PERFIL_ESTABELECIMENTO'</span>).agg({</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cnes'</span>: <span class="st">'count'</span>,</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">'total_leitos'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'pct_sus'</span>: <span class="st">'mean'</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>}).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>resumo_perfil.columns <span class="op">=</span> [<span class="st">'Estabelecimentos'</span>, <span class="st">'Leitos'</span>, <span class="st">'Media_SUS%'</span>]</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>resumo_perfil <span class="op">=</span> resumo_perfil.sort_values(<span class="st">'Leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>resumo_perfil</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Estabelecimentos</th>
+<th data-quarto-table-cell-role="th">Leitos</th>
+<th data-quarto-table-cell-role="th">Media_SUS%</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PERFIL_ESTABELECIMENTO</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MEDIO_PORTE_SUS</th>
+<td>1359</td>
+<td>126816</td>
+<td>95.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">GRANDE_PORTE_SUS</th>
+<td>320</td>
+<td>106413</td>
+<td>95.8</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MEDIO_PORTE_PRIVADO</th>
+<td>707</td>
+<td>68535</td>
+<td>0.8</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PEQUENO_PORTE_SUS</th>
+<td>3355</td>
+<td>66388</td>
+<td>98.8</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MEDIO_PORTE_MISTO</th>
+<td>540</td>
+<td>55497</td>
+<td>63.2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">GRANDE_PORTE_MISTO</th>
+<td>121</td>
+<td>39180</td>
+<td>62.3</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">GRANDE_PORTE_PRIVADO</th>
+<td>109</td>
+<td>31217</td>
+<td>1.9</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PEQUENO_PORTE_PRIVADO</th>
+<td>2093</td>
+<td>29226</td>
+<td>0.2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">PEQUENO_PORTE_MISTO</th>
+<td>468</td>
+<td>11861</td>
+<td>60.3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="visualização-2" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="visualização-2"><span class="header-section-number">5.2</span> Visualização</h3>
+<div id="6cc1730e" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Por estabelecimentos</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>bars1 <span class="op">=</span> axes[<span class="dv">0</span>].barh(resumo_perfil.index, resumo_perfil[<span class="st">'Estabelecimentos'</span>], color<span class="op">=</span><span class="st">'#2c3e50'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Estabelecimentos por Perfil'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Quantidade'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(resumo_perfil[<span class="st">'Estabelecimentos'</span>]):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].text(v <span class="op">+</span> <span class="dv">30</span>, i, <span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(v)<span class="sc">:,}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Por leitos</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>bars2 <span class="op">=</span> axes[<span class="dv">1</span>].barh(resumo_perfil.index, resumo_perfil[<span class="st">'Leitos'</span>], color<span class="op">=</span><span class="st">'#c0392b'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Leitos por Perfil'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Quantidade'</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(resumo_perfil[<span class="st">'Leitos'</span>]):</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].text(v <span class="op">+</span> <span class="dv">1000</span>, i, <span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(v)<span class="sc">:,}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TIPOLOGIA_LEITOS_CNES_files/figure-html/cell-10-output-1.png" width="1337" height="566" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="resumo-das-tipologias" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="resumo-das-tipologias"><span class="header-section-number">6</span> Resumo das Tipologias</h2>
+<div id="73383d17" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RESUMO DAS TIPOLOGIAS CRIADAS"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">1. TIPOLOGIA HIERÁRQUICA"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Níveis: 7 tipos → 65 especialidades"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Combinações únicas: </span><span class="sc">{</span>df[<span class="st">'TIPOLOGIA_HIERARQUICA'</span>]<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">2. TIPOLOGIA POR COMPLEXIDADE"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tip <span class="kw">in</span> tip_complex.index:</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   </span><span class="sc">{</span>tip<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>tip_complex<span class="sc">.</span>loc[tip, <span class="st">'Leitos'</span>]<span class="sc">:,}</span><span class="ss"> leitos (</span><span class="sc">{</span>tip_complex<span class="sc">.</span>loc[tip, <span class="st">'%'</span>]<span class="sc">}</span><span class="ss">%)"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">3. TIPOLOGIA POR PÚBLICO-ALVO"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tip <span class="kw">in</span> tip_publico.index:</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   </span><span class="sc">{</span>tip<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>tip_publico<span class="sc">.</span>loc[tip, <span class="st">'Leitos'</span>]<span class="sc">:,}</span><span class="ss"> leitos (</span><span class="sc">{</span>tip_publico<span class="sc">.</span>loc[tip, <span class="st">'%'</span>]<span class="sc">}</span><span class="ss">%)"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">4. PERFIL DE ESTABELECIMENTO"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tip <span class="kw">in</span> resumo_perfil.index:</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   </span><span class="sc">{</span>tip<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">int</span>(resumo_perfil.loc[tip, <span class="st">'Estabelecimentos'</span>])<span class="sc">:,}</span><span class="ss"> estab. / </span><span class="sc">{</span><span class="bu">int</span>(resumo_perfil.loc[tip, <span class="st">'Leitos'</span>])<span class="sc">:,}</span><span class="ss"> leitos"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>======================================================================
+RESUMO DAS TIPOLOGIAS CRIADAS
+======================================================================
+
+1. TIPOLOGIA HIERÁRQUICA
+   Níveis: 7 tipos → 65 especialidades
+   Combinações únicas: 65
+
+2. TIPOLOGIA POR COMPLEXIDADE
+   BAIXA_COMPLEXIDADE_CLINICO: 292,527 leitos (54.7%)
+   MEDIA_COMPLEXIDADE_CIRURGICO: 152,890 leitos (28.6%)
+   ALTA_COMPLEXIDADE_UTI: 75,403 leitos (14.1%)
+   MEDIA_COMPLEXIDADE_UCI: 12,038 leitos (2.2%)
+   ALTA_COMPLEXIDADE_TRANSPLANTE: 1,775 leitos (0.3%)
+   ALTA_COMPLEXIDADE_QUEIMADOS: 500 leitos (0.1%)
+
+3. TIPOLOGIA POR PÚBLICO-ALVO
+   ADULTO: 390,494 leitos (73.0%)
+   PEDIATRICO: 74,920 leitos (14.0%)
+   OBSTETRICO: 50,095 leitos (9.4%)
+   NEONATAL: 19,624 leitos (3.7%)
+
+4. PERFIL DE ESTABELECIMENTO
+   MEDIO_PORTE_SUS: 1,359 estab. / 126,816 leitos
+   GRANDE_PORTE_SUS: 320 estab. / 106,413 leitos
+   MEDIO_PORTE_PRIVADO: 707 estab. / 68,535 leitos
+   PEQUENO_PORTE_SUS: 3,355 estab. / 66,388 leitos
+   MEDIO_PORTE_MISTO: 540 estab. / 55,497 leitos
+   GRANDE_PORTE_MISTO: 121 estab. / 39,180 leitos
+   GRANDE_PORTE_PRIVADO: 109 estab. / 31,217 leitos
+   PEQUENO_PORTE_PRIVADO: 2,093 estab. / 29,226 leitos
+   PEQUENO_PORTE_MISTO: 468 estab. / 11,861 leitos</code></pre>
+</div>
+</div>
+</section>
+<section id="exportação-dos-dados" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="exportação-dos-dados"><span class="header-section-number">7</span> Exportação dos Dados</h2>
+<div id="aee2c6ac" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar dataset com todas as tipologias</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_final <span class="op">=</span> df.copy()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df_final.to_csv(<span class="st">'arq3_tipologias.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar perfil de estabelecimentos</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>perfil.to_csv(<span class="st">'arq4_perfil_estabelecimentos.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Arquivos exportados:"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  - arq3_tipologias.csv (leitos com tipologias)"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  - arq4_perfil_estabelecimentos.csv (perfil por CNES)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Arquivos exportados:
+  - arq3_tipologias.csv (leitos com tipologias)
+  - arq4_perfil_estabelecimentos.csv (perfil por CNES)</code></pre>
+</div>
+</div>
+</section>
+<section id="dicionário-das-tipologias" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="dicionário-das-tipologias"><span class="header-section-number">8</span> Dicionário das Tipologias</h2>
+<section id="tipologia-por-complexidade" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="tipologia-por-complexidade"><span class="header-section-number">8.1</span> Tipologia por Complexidade</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 37%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Descrição</th>
+<th>Critério</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ALTA_COMPLEXIDADE_UTI</td>
+<td>Unidades de Terapia Intensiva</td>
+<td>UTI Adulto, Pediátrica, Neonatal, Coronariana, Queimados</td>
+</tr>
+<tr class="even">
+<td>ALTA_COMPLEXIDADE_QUEIMADOS</td>
+<td>Leitos de Queimados</td>
+<td>Queimado Adulto/Pediátrico (não UTI)</td>
+</tr>
+<tr class="odd">
+<td>ALTA_COMPLEXIDADE_TRANSPLANTE</td>
+<td>Transplantes</td>
+<td>Intercorrência pós-transplante</td>
+</tr>
+<tr class="even">
+<td>MEDIA_COMPLEXIDADE_UCI</td>
+<td>Unidades de Cuidados Intermediários</td>
+<td>UCI Adulto, Pediátrico, Neonatal, Canguru</td>
+</tr>
+<tr class="odd">
+<td>MEDIA_COMPLEXIDADE_CIRURGICO</td>
+<td>Leitos Cirúrgicos</td>
+<td>Tipo de leito = 1 (Cirúrgico)</td>
+</tr>
+<tr class="even">
+<td>BAIXA_COMPLEXIDADE_CLINICO</td>
+<td>Leitos Clínicos</td>
+<td>Demais leitos</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tipologia-por-público-alvo" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="tipologia-por-público-alvo"><span class="header-section-number">8.2</span> Tipologia por Público-Alvo</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 37%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Descrição</th>
+<th>Critério</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ADULTO</td>
+<td>Leitos para adultos</td>
+<td>Padrão (não neonatal, pediátrico ou obstétrico)</td>
+</tr>
+<tr class="even">
+<td>PEDIATRICO</td>
+<td>Leitos pediátricos</td>
+<td>tp_leito=5 ou descrição contém “PEDIATR”</td>
+</tr>
+<tr class="odd">
+<td>OBSTETRICO</td>
+<td>Leitos obstétricos</td>
+<td>tp_leito=4</td>
+</tr>
+<tr class="even">
+<td>NEONATAL</td>
+<td>Leitos neonatais</td>
+<td>Descrição contém “NEONAT” ou “CANGURU”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="perfil-de-estabelecimento" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="perfil-de-estabelecimento"><span class="header-section-number">8.3</span> Perfil de Estabelecimento</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Porte</th>
+<th>Natureza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GRANDE_PORTE_SUS</td>
+<td>≥200 leitos</td>
+<td>≥80% SUS</td>
+</tr>
+<tr class="even">
+<td>GRANDE_PORTE_MISTO</td>
+<td>≥200 leitos</td>
+<td>21-79% SUS</td>
+</tr>
+<tr class="odd">
+<td>GRANDE_PORTE_PRIVADO</td>
+<td>≥200 leitos</td>
+<td>≤20% SUS</td>
+</tr>
+<tr class="even">
+<td>MEDIO_PORTE_SUS</td>
+<td>50-199 leitos</td>
+<td>≥80% SUS</td>
+</tr>
+<tr class="odd">
+<td>MEDIO_PORTE_MISTO</td>
+<td>50-199 leitos</td>
+<td>21-79% SUS</td>
+</tr>
+<tr class="even">
+<td>MEDIO_PORTE_PRIVADO</td>
+<td>50-199 leitos</td>
+<td>≤20% SUS</td>
+</tr>
+<tr class="odd">
+<td>PEQUENO_PORTE_SUS</td>
+<td>&lt;50 leitos</td>
+<td>≥80% SUS</td>
+</tr>
+<tr class="even">
+<td>PEQUENO_PORTE_MISTO</td>
+<td>&lt;50 leitos</td>
+<td>21-79% SUS</td>
+</tr>
+<tr class="odd">
+<td>PEQUENO_PORTE_PRIVADO</td>
+<td>&lt;50 leitos</td>
+<td>≤20% SUS</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>Elaborado por:</strong> Olavo Costa<br>
+<strong>Data:</strong> 21/01/2026<br>
+<strong>Fonte:</strong> CNES - Competência 202506</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

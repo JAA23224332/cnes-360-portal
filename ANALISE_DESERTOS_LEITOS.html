@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cieges - Brasil Estadual">
+<meta name="dcterms.date" content="2026-01-21">
+
+<title>Análise de Concentração e Desertos de Leitos por Município</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="ANALISE_DESERTOS_LEITOS_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ANALISE_DESERTOS_LEITOS_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="ANALISE_DESERTOS_LEITOS_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="ANALISE_DESERTOS_LEITOS_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="ANALISE_DESERTOS_LEITOS_files/libs/quarto-html/popper.min.js"></script>
+<script src="ANALISE_DESERTOS_LEITOS_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ANALISE_DESERTOS_LEITOS_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ANALISE_DESERTOS_LEITOS_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ANALISE_DESERTOS_LEITOS_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ANALISE_DESERTOS_LEITOS_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ANALISE_DESERTOS_LEITOS_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ANALISE_DESERTOS_LEITOS_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a>
+  <ul>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link" data-scroll-target="#objetivo"><span class="header-section-number">1.1</span> Objetivo</a></li>
+  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">1.2</span> Metodologia</a></li>
+  <li><a href="#classificação-de-municípios" id="toc-classificação-de-municípios" class="nav-link" data-scroll-target="#classificação-de-municípios"><span class="header-section-number">1.3</span> Classificação de Municípios</a></li>
+  </ul></li>
+  <li><a href="#carregamento-e-preparação-dos-dados" id="toc-carregamento-e-preparação-dos-dados" class="nav-link" data-scroll-target="#carregamento-e-preparação-dos-dados"><span class="header-section-number">2</span> Carregamento e Preparação dos Dados</a>
+  <ul>
+  <li><a href="#extração-de-uf-e-região" id="toc-extração-de-uf-e-região" class="nav-link" data-scroll-target="#extração-de-uf-e-região"><span class="header-section-number">2.1</span> Extração de UF e Região</a></li>
+  <li><a href="#classificação-de-intensidade-dos-leitos" id="toc-classificação-de-intensidade-dos-leitos" class="nav-link" data-scroll-target="#classificação-de-intensidade-dos-leitos"><span class="header-section-number">2.2</span> Classificação de Intensidade dos Leitos</a></li>
+  </ul></li>
+  <li><a href="#análise-por-município" id="toc-análise-por-município" class="nav-link" data-scroll-target="#análise-por-município"><span class="header-section-number">3</span> Análise por Município</a>
+  <ul>
+  <li><a href="#agregação-de-indicadores" id="toc-agregação-de-indicadores" class="nav-link" data-scroll-target="#agregação-de-indicadores"><span class="header-section-number">3.1</span> Agregação de Indicadores</a></li>
+  <li><a href="#presença-de-leitos-por-intensidade" id="toc-presença-de-leitos-por-intensidade" class="nav-link" data-scroll-target="#presença-de-leitos-por-intensidade"><span class="header-section-number">3.2</span> Presença de Leitos por Intensidade</a></li>
+  <li><a href="#classificação-de-vazios-assistenciais" id="toc-classificação-de-vazios-assistenciais" class="nav-link" data-scroll-target="#classificação-de-vazios-assistenciais"><span class="header-section-number">3.3</span> Classificação de Vazios Assistenciais</a></li>
+  </ul></li>
+  <li><a href="#visualizações" id="toc-visualizações" class="nav-link" data-scroll-target="#visualizações"><span class="header-section-number">4</span> Visualizações</a>
+  <ul>
+  <li><a href="#distribuição-de-leitos-por-uf" id="toc-distribuição-de-leitos-por-uf" class="nav-link" data-scroll-target="#distribuição-de-leitos-por-uf"><span class="header-section-number">4.1</span> Distribuição de Leitos por UF</a>
+  <ul class="collapse">
+  <li><a href="#análise-distribuição-de-leitos-e-vazios" id="toc-análise-distribuição-de-leitos-e-vazios" class="nav-link" data-scroll-target="#análise-distribuição-de-leitos-e-vazios"><span class="header-section-number">4.1.1</span> Análise: Distribuição de Leitos e Vazios</a></li>
+  </ul></li>
+  <li><a href="#vazios-assistenciais-por-região" id="toc-vazios-assistenciais-por-região" class="nav-link" data-scroll-target="#vazios-assistenciais-por-região"><span class="header-section-number">4.2</span> Vazios Assistenciais por Região</a>
+  <ul class="collapse">
+  <li><a href="#análise-desigualdade-regional" id="toc-análise-desigualdade-regional" class="nav-link" data-scroll-target="#análise-desigualdade-regional"><span class="header-section-number">4.2.1</span> Análise: Desigualdade Regional</a></li>
+  </ul></li>
+  <li><a href="#concentração-hhi-por-uf" id="toc-concentração-hhi-por-uf" class="nav-link" data-scroll-target="#concentração-hhi-por-uf"><span class="header-section-number">4.3</span> Concentração (HHI) por UF</a>
+  <ul class="collapse">
+  <li><a href="#análise-concentração-de-mercado" id="toc-análise-concentração-de-mercado" class="nav-link" data-scroll-target="#análise-concentração-de-mercado"><span class="header-section-number">4.3.1</span> Análise: Concentração de Mercado</a></li>
+  </ul></li>
+  <li><a href="#relação-leitos-concentração" id="toc-relação-leitos-concentração" class="nav-link" data-scroll-target="#relação-leitos-concentração"><span class="header-section-number">4.4</span> Relação: Leitos × Concentração</a>
+  <ul class="collapse">
+  <li><a href="#análise-relação-porte-concentração" id="toc-análise-relação-porte-concentração" class="nav-link" data-scroll-target="#análise-relação-porte-concentração"><span class="header-section-number">4.4.1</span> Análise: Relação Porte × Concentração</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#rankings" id="toc-rankings" class="nav-link" data-scroll-target="#rankings"><span class="header-section-number">5</span> Rankings</a>
+  <ul>
+  <li><a href="#top-20-municípios-com-mais-leitos" id="toc-top-20-municípios-com-mais-leitos" class="nav-link" data-scroll-target="#top-20-municípios-com-mais-leitos"><span class="header-section-number">5.1</span> Top 20 Municípios com Mais Leitos</a></li>
+  <li><a href="#municípios-sem-uti-por-uf" id="toc-municípios-sem-uti-por-uf" class="nav-link" data-scroll-target="#municípios-sem-uti-por-uf"><span class="header-section-number">5.2</span> Municípios sem UTI por UF</a></li>
+  <li><a href="#municípios-com-alta-concentração-hhi-0.8" id="toc-municípios-com-alta-concentração-hhi-0.8" class="nav-link" data-scroll-target="#municípios-com-alta-concentração-hhi-0.8"><span class="header-section-number">5.3</span> Municípios com Alta Concentração (HHI &gt; 0.8)</a></li>
+  </ul></li>
+  <li><a href="#análise-por-região" id="toc-análise-por-região" class="nav-link" data-scroll-target="#análise-por-região"><span class="header-section-number">6</span> Análise por Região</a>
+  <ul>
+  <li><a href="#perfil-regional-detalhado" id="toc-perfil-regional-detalhado" class="nav-link" data-scroll-target="#perfil-regional-detalhado"><span class="header-section-number">6.1</span> Perfil Regional Detalhado</a></li>
+  <li><a href="#visualização-comparativa-regional" id="toc-visualização-comparativa-regional" class="nav-link" data-scroll-target="#visualização-comparativa-regional"><span class="header-section-number">6.2</span> Visualização Comparativa Regional</a>
+  <ul class="collapse">
+  <li><a href="#análise-perfil-comparativo-regional" id="toc-análise-perfil-comparativo-regional" class="nav-link" data-scroll-target="#análise-perfil-comparativo-regional"><span class="header-section-number">6.2.1</span> Análise: Perfil Comparativo Regional</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exportação-dos-resultados" id="toc-exportação-dos-resultados" class="nav-link" data-scroll-target="#exportação-dos-resultados"><span class="header-section-number">7</span> Exportação dos Resultados</a></li>
+  <li><a href="#resumo-executivo" id="toc-resumo-executivo" class="nav-link" data-scroll-target="#resumo-executivo"><span class="header-section-number">8</span> Resumo Executivo</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ANALISE_DESERTOS_LEITOS.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Análise de Concentração e Desertos de Leitos por Município</h1>
+<p class="subtitle lead">Identificação de Vazios Assistenciais no Brasil</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cieges - Brasil Estadual </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
+<section id="objetivo" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">1.1</span> Objetivo</h2>
+<p>Esta análise identifica <strong>municípios com déficit de leitos hospitalares</strong> (desertos assistenciais) e avalia a <strong>concentração da oferta</strong> por tipo de complexidade. O objetivo é fornecer subsídios para planejamento e priorização de investimentos em saúde.</p>
+</section>
+<section id="metodologia" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="metodologia"><span class="header-section-number">1.2</span> Metodologia</h2>
+<p>A análise utiliza os seguintes indicadores:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Indicador</th>
+<th>Descrição</th>
+<th>Interpretação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Leitos per capita</strong></td>
+<td>Leitos / 1.000 hab</td>
+<td>OMS recomenda 3-5 leitos/1.000 hab</td>
+</tr>
+<tr class="even">
+<td><strong>Cobertura UTI</strong></td>
+<td>Presença de leitos intensivos</td>
+<td>Binário: Sim/Não</td>
+</tr>
+<tr class="odd">
+<td><strong>Índice HHI</strong></td>
+<td>Concentração em poucos estabelecimentos</td>
+<td>0-1 (maior = mais concentrado)</td>
+</tr>
+<tr class="even">
+<td><strong>Razão SUS</strong></td>
+<td>% de leitos disponíveis ao SUS</td>
+<td>0-100%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classificação-de-municípios" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="classificação-de-municípios"><span class="header-section-number">1.3</span> Classificação de Municípios</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│              CLASSIFICAÇÃO DE VAZIOS ASSISTENCIAIS          │
+├─────────────────────────────────────────────────────────────┤
+│ COMPLETO      │ Possui leitos de todas as complexidades     │
+│ PARCIAL       │ Possui leitos, mas sem alta complexidade    │
+│ BÁSICO        │ Possui apenas leitos de baixa complexidade  │
+│ DESERTO       │ Não possui nenhum leito hospitalar          │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+</section>
+</section>
+<section id="carregamento-e-preparação-dos-dados" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Carregamento e Preparação dos Dados</h1>
+<div id="3f175009" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuração visual</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.size'</span>] <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados tratados</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'arq2_tratado.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'latin1'</span>, low_memory<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar taxonomia para classificação de intensidade</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>df_tax <span class="op">=</span> pd.read_csv(<span class="st">'arq5_taxonomia_leitos.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DADOS CARREGADOS"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Registros de leitos: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de leitos: </span><span class="sc">{</span>df[<span class="st">'qt_exist'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estabelecimentos (CNES): </span><span class="sc">{</span>df[<span class="st">'cnes'</span>]<span class="sc">.</span>nunique()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Municípios: </span><span class="sc">{</span>df[<span class="st">'codufmun'</span>]<span class="sc">.</span>nunique()<span class="sc">:,}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>======================================================================
+DADOS CARREGADOS
+======================================================================
+Registros de leitos: 49,804
+Total de leitos: 535,133
+Estabelecimentos (CNES): 9,072
+Municípios: 3,597</code></pre>
+</div>
+</div>
+<section id="extração-de-uf-e-região" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="extração-de-uf-e-região"><span class="header-section-number">2.1</span> Extração de UF e Região</h2>
+<div id="b0db4510" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extrair código da UF (2 primeiros dígitos do código IBGE)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cod_uf'</span>] <span class="op">=</span> df[<span class="st">'codufmun'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">2</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapeamento UF</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>UF_NOME <span class="op">=</span> {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>: <span class="st">'RO'</span>, <span class="dv">12</span>: <span class="st">'AC'</span>, <span class="dv">13</span>: <span class="st">'AM'</span>, <span class="dv">14</span>: <span class="st">'RR'</span>, <span class="dv">15</span>: <span class="st">'PA'</span>, <span class="dv">16</span>: <span class="st">'AP'</span>, <span class="dv">17</span>: <span class="st">'TO'</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">21</span>: <span class="st">'MA'</span>, <span class="dv">22</span>: <span class="st">'PI'</span>, <span class="dv">23</span>: <span class="st">'CE'</span>, <span class="dv">24</span>: <span class="st">'RN'</span>, <span class="dv">25</span>: <span class="st">'PB'</span>, <span class="dv">26</span>: <span class="st">'PE'</span>, <span class="dv">27</span>: <span class="st">'AL'</span>, <span class="dv">28</span>: <span class="st">'SE'</span>, <span class="dv">29</span>: <span class="st">'BA'</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">31</span>: <span class="st">'MG'</span>, <span class="dv">32</span>: <span class="st">'ES'</span>, <span class="dv">33</span>: <span class="st">'RJ'</span>, <span class="dv">35</span>: <span class="st">'SP'</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">41</span>: <span class="st">'PR'</span>, <span class="dv">42</span>: <span class="st">'SC'</span>, <span class="dv">43</span>: <span class="st">'RS'</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="dv">50</span>: <span class="st">'MS'</span>, <span class="dv">51</span>: <span class="st">'MT'</span>, <span class="dv">52</span>: <span class="st">'GO'</span>, <span class="dv">53</span>: <span class="st">'DF'</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>REGIAO <span class="op">=</span> {</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>: <span class="st">'Norte'</span>, <span class="dv">12</span>: <span class="st">'Norte'</span>, <span class="dv">13</span>: <span class="st">'Norte'</span>, <span class="dv">14</span>: <span class="st">'Norte'</span>, <span class="dv">15</span>: <span class="st">'Norte'</span>, <span class="dv">16</span>: <span class="st">'Norte'</span>, <span class="dv">17</span>: <span class="st">'Norte'</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="dv">21</span>: <span class="st">'Nordeste'</span>, <span class="dv">22</span>: <span class="st">'Nordeste'</span>, <span class="dv">23</span>: <span class="st">'Nordeste'</span>, <span class="dv">24</span>: <span class="st">'Nordeste'</span>, <span class="dv">25</span>: <span class="st">'Nordeste'</span>, </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="dv">26</span>: <span class="st">'Nordeste'</span>, <span class="dv">27</span>: <span class="st">'Nordeste'</span>, <span class="dv">28</span>: <span class="st">'Nordeste'</span>, <span class="dv">29</span>: <span class="st">'Nordeste'</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="dv">31</span>: <span class="st">'Sudeste'</span>, <span class="dv">32</span>: <span class="st">'Sudeste'</span>, <span class="dv">33</span>: <span class="st">'Sudeste'</span>, <span class="dv">35</span>: <span class="st">'Sudeste'</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="dv">41</span>: <span class="st">'Sul'</span>, <span class="dv">42</span>: <span class="st">'Sul'</span>, <span class="dv">43</span>: <span class="st">'Sul'</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="dv">50</span>: <span class="st">'Centro-Oeste'</span>, <span class="dv">51</span>: <span class="st">'Centro-Oeste'</span>, <span class="dv">52</span>: <span class="st">'Centro-Oeste'</span>, <span class="dv">53</span>: <span class="st">'Centro-Oeste'</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'uf'</span>] <span class="op">=</span> df[<span class="st">'cod_uf'</span>].<span class="bu">map</span>(UF_NOME)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'regiao'</span>] <span class="op">=</span> df[<span class="st">'cod_uf'</span>].<span class="bu">map</span>(REGIAO)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DISTRIBUIÇÃO POR REGIÃO"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.groupby(<span class="st">'regiao'</span>)[<span class="st">'qt_exist'</span>].<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+DISTRIBUIÇÃO POR REGIÃO
+==================================================
+regiao
+Sudeste         221530
+Nordeste        142405
+Sul              83637
+Centro-Oeste     47677
+Norte            39884
+Name: qt_exist, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="classificação-de-intensidade-dos-leitos" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="classificação-de-intensidade-dos-leitos"><span class="header-section-number">2.2</span> Classificação de Intensidade dos Leitos</h2>
+<div id="03892bed" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificar leitos por intensidade (usando lógica da taxonomia)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_intensidade(row):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Classifica o leito quanto à intensidade do cuidado."""</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    co <span class="op">=</span> row[<span class="st">'co_leito'</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># INTENSIVO (UTI)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    LEITOS_UTI <span class="op">=</span> [<span class="dv">74</span>, <span class="dv">75</span>, <span class="dv">76</span>, <span class="dv">77</span>, <span class="dv">78</span>, <span class="dv">79</span>, <span class="dv">80</span>, <span class="dv">81</span>, <span class="dv">82</span>, <span class="dv">83</span>, <span class="dv">85</span>, <span class="dv">86</span>]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> LEITOS_UTI:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'INTENSIVO'</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># SEMI-INTENSIVO (UCI)</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    LEITOS_UCI <span class="op">=</span> [<span class="dv">65</span>, <span class="dv">92</span>, <span class="dv">93</span>, <span class="dv">94</span>, <span class="dv">95</span>, <span class="dv">96</span>]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> LEITOS_UCI:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'SEMI_INTENSIVO'</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ALTA COMPLEXIDADE</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    LEITOS_ALTA <span class="op">=</span> [<span class="dv">67</span>, <span class="dv">71</span>, <span class="dv">88</span>, <span class="dv">89</span>, <span class="dv">90</span>, <span class="dv">91</span>]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> co <span class="kw">in</span> LEITOS_ALTA:</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'ALTA_COMPLEXIDADE'</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># MÉDIA/BAIXA COMPLEXIDADE</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'MEDIA_BAIXA'</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'intensidade'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(classificar_intensidade, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DISTRIBUIÇÃO POR INTENSIDADE"</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>intensidade_resumo <span class="op">=</span> df.groupby(<span class="st">'intensidade'</span>)[<span class="st">'qt_exist'</span>].agg([<span class="st">'count'</span>, <span class="st">'sum'</span>])</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>intensidade_resumo.columns <span class="op">=</span> [<span class="st">'Registros'</span>, <span class="st">'Leitos'</span>]</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>intensidade_resumo[<span class="st">'%'</span>] <span class="op">=</span> (intensidade_resumo[<span class="st">'Leitos'</span>] <span class="op">/</span> intensidade_resumo[<span class="st">'Leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(intensidade_resumo.sort_values(<span class="st">'Leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+DISTRIBUIÇÃO POR INTENSIDADE
+==================================================
+                   Registros  Leitos     %
+intensidade                               
+MEDIA_BAIXA            43500  455547  85.1
+INTENSIVO               4365   65273  12.2
+SEMI_INTENSIVO          1545   12038   2.2
+ALTA_COMPLEXIDADE        394    2275   0.4</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="análise-por-município" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Análise por Município</h1>
+<section id="agregação-de-indicadores" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="agregação-de-indicadores"><span class="header-section-number">3.1</span> Agregação de Indicadores</h2>
+<div id="c22ca157" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar por município</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_hhi(series):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calcula Índice Herfindahl-Hirschman de concentração."""</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> series.<span class="bu">sum</span>()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> total <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    shares <span class="op">=</span> series <span class="op">/</span> total</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (shares <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregação básica por município</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>mun_basico <span class="op">=</span> df.groupby([<span class="st">'codufmun'</span>, <span class="st">'uf'</span>, <span class="st">'regiao'</span>]).agg({</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cnes'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_sus'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_nsus'</span>: <span class="st">'sum'</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>}).reset_index()</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>mun_basico.columns <span class="op">=</span> [<span class="st">'codufmun'</span>, <span class="st">'uf'</span>, <span class="st">'regiao'</span>, <span class="st">'n_estabelecimentos'</span>, </span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'total_leitos'</span>, <span class="st">'leitos_sus'</span>, <span class="st">'leitos_nsus'</span>]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular HHI por município</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>hhi_por_mun <span class="op">=</span> df.groupby(<span class="st">'codufmun'</span>).<span class="bu">apply</span>(</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: calcular_hhi(x.groupby(<span class="st">'cnes'</span>)[<span class="st">'qt_exist'</span>].<span class="bu">sum</span>())</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>hhi_por_mun.columns <span class="op">=</span> [<span class="st">'codufmun'</span>, <span class="st">'hhi'</span>]</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>municipios <span class="op">=</span> mun_basico.merge(hhi_por_mun, on<span class="op">=</span><span class="st">'codufmun'</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular métricas derivadas</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>municipios[<span class="st">'pct_sus'</span>] <span class="op">=</span> (municipios[<span class="st">'leitos_sus'</span>] <span class="op">/</span> municipios[<span class="st">'total_leitos'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>municipios[<span class="st">'media_leitos_estab'</span>] <span class="op">=</span> (municipios[<span class="st">'total_leitos'</span>] <span class="op">/</span> municipios[<span class="st">'n_estabelecimentos'</span>]).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AGREGAÇÃO POR MUNICÍPIO"</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Municípios com leitos: </span><span class="sc">{</span><span class="bu">len</span>(municipios)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total de leitos: </span><span class="sc">{</span>municipios[<span class="st">'total_leitos'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Média de leitos por município: </span><span class="sc">{</span>municipios[<span class="st">'total_leitos'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mediana de leitos por município: </span><span class="sc">{</span>municipios[<span class="st">'total_leitos'</span>]<span class="sc">.</span>median()<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>======================================================================
+AGREGAÇÃO POR MUNICÍPIO
+======================================================================
+Municípios com leitos: 3,597
+Total de leitos: 535,133
+Média de leitos por município: 148.8
+Mediana de leitos por município: 35.0</code></pre>
+</div>
+</div>
+</section>
+<section id="presença-de-leitos-por-intensidade" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="presença-de-leitos-por-intensidade"><span class="header-section-number">3.2</span> Presença de Leitos por Intensidade</h2>
+<div id="2cf0b5d3" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar presença de cada tipo de intensidade por município</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>intensidade_pivot <span class="op">=</span> df.groupby([<span class="st">'codufmun'</span>, <span class="st">'intensidade'</span>])[<span class="st">'qt_exist'</span>].<span class="bu">sum</span>().unstack(fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>intensidade_pivot.columns <span class="op">=</span> [<span class="st">'leitos_'</span> <span class="op">+</span> col.lower() <span class="cf">for</span> col <span class="kw">in</span> intensidade_pivot.columns]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>intensidade_pivot <span class="op">=</span> intensidade_pivot.reset_index()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge com dados do município</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>municipios <span class="op">=</span> municipios.merge(intensidade_pivot, on<span class="op">=</span><span class="st">'codufmun'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Preencher NaN com 0</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">'leitos_intensivo'</span>, <span class="st">'leitos_semi_intensivo'</span>, <span class="st">'leitos_alta_complexidade'</span>, <span class="st">'leitos_media_baixa'</span>]:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> municipios.columns:</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        municipios[col] <span class="op">=</span> municipios[col].fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        municipios[col] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Flags de presença</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>municipios[<span class="st">'tem_uti'</span>] <span class="op">=</span> municipios[<span class="st">'leitos_intensivo'</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>municipios[<span class="st">'tem_uci'</span>] <span class="op">=</span> municipios[<span class="st">'leitos_semi_intensivo'</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>municipios[<span class="st">'tem_alta'</span>] <span class="op">=</span> municipios[<span class="st">'leitos_alta_complexidade'</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">PRESENÇA DE LEITOS POR INTENSIDADE"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Municípios com UTI: </span><span class="sc">{</span>municipios[<span class="st">'tem_uti'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss"> (</span><span class="sc">{</span>municipios[<span class="st">'tem_uti'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Municípios com UCI: </span><span class="sc">{</span>municipios[<span class="st">'tem_uci'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss"> (</span><span class="sc">{</span>municipios[<span class="st">'tem_uci'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Municípios com Alta Complexidade: </span><span class="sc">{</span>municipios[<span class="st">'tem_alta'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss"> (</span><span class="sc">{</span>municipios[<span class="st">'tem_alta'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+PRESENÇA DE LEITOS POR INTENSIDADE
+==================================================
+Municípios com UTI: 711 (19.8%)
+Municípios com UCI: 601 (16.7%)
+Municípios com Alta Complexidade: 112 (3.1%)</code></pre>
+</div>
+</div>
+</section>
+<section id="classificação-de-vazios-assistenciais" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="classificação-de-vazios-assistenciais"><span class="header-section-number">3.3</span> Classificação de Vazios Assistenciais</h2>
+<div id="f4c3f1b1" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificar municípios</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_vazio(row):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Classifica o município quanto ao vazio assistencial.</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">    COMPLETO: Tem UTI ou UCI (alta/semi intensivo)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    PARCIAL: Tem leitos, mas sem UTI/UCI</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    BÁSICO: Tem apenas leitos de média/baixa complexidade</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> row[<span class="st">'tem_uti'</span>] <span class="kw">or</span> row[<span class="st">'tem_uci'</span>]:</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'COMPLETO'</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> row[<span class="st">'tem_alta'</span>]:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'PARCIAL'</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> row[<span class="st">'total_leitos'</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'BASICO'</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'DESERTO'</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>municipios[<span class="st">'classificacao_vazio'</span>] <span class="op">=</span> municipios.<span class="bu">apply</span>(classificar_vazio, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">CLASSIFICAÇÃO DE VAZIOS ASSISTENCIAIS"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>vazio_resumo <span class="op">=</span> municipios.groupby(<span class="st">'classificacao_vazio'</span>).agg({</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>: <span class="st">'count'</span>,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'total_leitos'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">'n_estabelecimentos'</span>: <span class="st">'sum'</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>}).rename(columns<span class="op">=</span>{<span class="st">'codufmun'</span>: <span class="st">'Municipios'</span>})</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>vazio_resumo[<span class="st">'%_Municipios'</span>] <span class="op">=</span> (vazio_resumo[<span class="st">'Municipios'</span>] <span class="op">/</span> vazio_resumo[<span class="st">'Municipios'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>vazio_resumo[<span class="st">'%_Leitos'</span>] <span class="op">=</span> (vazio_resumo[<span class="st">'total_leitos'</span>] <span class="op">/</span> vazio_resumo[<span class="st">'total_leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>vazio_resumo <span class="op">=</span> vazio_resumo.sort_values(<span class="st">'Municipios'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vazio_resumo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+CLASSIFICAÇÃO DE VAZIOS ASSISTENCIAIS
+======================================================================
+                     Municipios  total_leitos  n_estabelecimentos  \
+classificacao_vazio                                                 
+BASICO                     2678         90990                3147   
+COMPLETO                    912        443768                5915   
+PARCIAL                       7           375                  10   
+
+                     %_Municipios  %_Leitos  
+classificacao_vazio                          
+BASICO                       74.5      17.0  
+COMPLETO                     25.4      82.9  
+PARCIAL                       0.2       0.1  </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="visualizações" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Visualizações</h1>
+<section id="distribuição-de-leitos-por-uf" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="distribuição-de-leitos-por-uf"><span class="header-section-number">4.1</span> Distribuição de Leitos por UF</h2>
+<div id="cd6f40b0" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">6</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Leitos por UF</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>leitos_uf <span class="op">=</span> municipios.groupby(<span class="st">'uf'</span>)[<span class="st">'total_leitos'</span>].<span class="bu">sum</span>().sort_values(ascending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>colors_uf <span class="op">=</span> plt.cm.Blues(np.linspace(<span class="fl">0.3</span>, <span class="fl">0.9</span>, <span class="bu">len</span>(leitos_uf)))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].barh(leitos_uf.index, leitos_uf.values, color<span class="op">=</span>colors_uf)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'Total de Leitos'</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Distribuição de Leitos por UF'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(leitos_uf.values):</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].text(v <span class="op">+</span> <span class="dv">1000</span>, i, <span class="ss">f'</span><span class="sc">{</span>v<span class="sc">:,}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Municípios por classificação de vazio</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>vazio_plot <span class="op">=</span> municipios[<span class="st">'classificacao_vazio'</span>].value_counts()</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>colors_vazio <span class="op">=</span> {<span class="st">'COMPLETO'</span>: <span class="st">'#27ae60'</span>, <span class="st">'PARCIAL'</span>: <span class="st">'#f39c12'</span>, <span class="st">'BASICO'</span>: <span class="st">'#e74c3c'</span>, <span class="st">'DESERTO'</span>: <span class="st">'#2c3e50'</span>}</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].pie(vazio_plot.values, labels<span class="op">=</span>vazio_plot.index, autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>            colors<span class="op">=</span>[colors_vazio.get(x, <span class="st">'#95a5a6'</span>) <span class="cf">for</span> x <span class="kw">in</span> vazio_plot.index],</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>            explode<span class="op">=</span>[<span class="fl">0.02</span>]<span class="op">*</span><span class="bu">len</span>(vazio_plot), startangle<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Classificação de Vazios Assistenciais</span><span class="ch">\n</span><span class="st">(por número de municípios)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANALISE_DESERTOS_LEITOS_files/figure-html/cell-8-output-1.png" width="1444" height="588" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="análise-distribuição-de-leitos-e-vazios" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="análise-distribuição-de-leitos-e-vazios"><span class="header-section-number">4.1.1</span> Análise: Distribuição de Leitos e Vazios</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Principais Achados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Distribuição por UF:</strong></p>
+<ul>
+<li><strong>São Paulo</strong> concentra a maior oferta de leitos do país, seguido por Minas Gerais e Rio de Janeiro, refletindo a concentração populacional e econômica do Sudeste.</li>
+<li>Estados do Norte e Centro-Oeste apresentam menor oferta absoluta, mas isso deve ser relativizado pela menor população.</li>
+<li>A disparidade entre o maior (SP) e o menor estado é de mais de 10x, indicando forte assimetria regional.</li>
+</ul>
+<p><strong>Classificação de Vazios:</strong></p>
+<ul>
+<li>A maioria dos municípios brasileiros possui cobertura <strong>BÁSICA</strong> ou <strong>PARCIAL</strong>, indicando que a alta complexidade (UTI/UCI) está concentrada em poucos municípios.</li>
+<li>Municípios classificados como <strong>COMPLETO</strong> (com UTI ou UCI) representam uma minoria, geralmente capitais e cidades de médio/grande porte.</li>
+<li>Esta distribuição sugere que a maioria da população precisa se deslocar para acessar leitos de alta complexidade.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="vazios-assistenciais-por-região" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="vazios-assistenciais-por-região"><span class="header-section-number">4.2</span> Vazios Assistenciais por Região</h2>
+<div id="43a26670" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cruzamento: Região × Classificação</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>matriz_regiao <span class="op">=</span> pd.crosstab(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    municipios[<span class="st">'regiao'</span>], </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    municipios[<span class="st">'classificacao_vazio'</span>],</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    margins<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    margins_name<span class="op">=</span><span class="st">'TOTAL'</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Reordenar colunas</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>ordem_cols <span class="op">=</span> [<span class="st">'COMPLETO'</span>, <span class="st">'PARCIAL'</span>, <span class="st">'BASICO'</span>, <span class="st">'DESERTO'</span>, <span class="st">'TOTAL'</span>]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>matriz_regiao <span class="op">=</span> matriz_regiao[[c <span class="cf">for</span> c <span class="kw">in</span> ordem_cols <span class="cf">if</span> c <span class="kw">in</span> matriz_regiao.columns]]</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">MATRIZ: REGIÃO × CLASSIFICAÇÃO DE VAZIO"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matriz_regiao)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualização</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>matriz_plot <span class="op">=</span> matriz_regiao.drop(<span class="st">'TOTAL'</span>, axis<span class="op">=</span><span class="dv">0</span>).drop(<span class="st">'TOTAL'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>matriz_plot_pct <span class="op">=</span> matriz_plot.div(matriz_plot.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>), axis<span class="op">=</span><span class="dv">0</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>matriz_plot_pct.plot(kind<span class="op">=</span><span class="st">'barh'</span>, stacked<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax, </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>                      color<span class="op">=</span>[<span class="st">'#27ae60'</span>, <span class="st">'#f39c12'</span>, <span class="st">'#e74c3c'</span>, <span class="st">'#2c3e50'</span>])</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'</span><span class="sc">% d</span><span class="st">e Municípios'</span>)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Classificação de Vazios Assistenciais por Região'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">'Classificação'</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">1.02</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionar linha de 50%</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>ax.axvline(x<span class="op">=</span><span class="dv">50</span>, color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+MATRIZ: REGIÃO × CLASSIFICAÇÃO DE VAZIO
+======================================================================
+classificacao_vazio  COMPLETO  PARCIAL  BASICO  TOTAL
+regiao                                               
+Centro-Oeste               79        1     281    361
+Nordeste                  214        3    1138   1355
+Norte                      83        3     247    333
+Sudeste                   347        0     567    914
+Sul                       189        0     445    634
+TOTAL                     912        7    2678   3597</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANALISE_DESERTOS_LEITOS_files/figure-html/cell-9-output-2.png" width="1189" height="589" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="análise-desigualdade-regional" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="análise-desigualdade-regional"><span class="header-section-number">4.2.1</span> Análise: Desigualdade Regional</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Disparidades Regionais Críticas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Norte e Nordeste:</strong></p>
+<ul>
+<li>Apresentam a <strong>maior proporção de municípios com cobertura BÁSICA</strong>, ou seja, sem leitos de média/alta complexidade.</li>
+<li>A distância geográfica até centros com UTI pode ultrapassar centenas de quilômetros, comprometendo o atendimento de emergências.</li>
+<li>Estas regiões devem ser <strong>prioridade para investimentos</strong> em expansão de leitos de alta complexidade.</li>
+</ul>
+<p><strong>Sul e Sudeste:</strong></p>
+<ul>
+<li>Maior proporção de municípios com cobertura <strong>COMPLETA</strong>, refletindo maior desenvolvimento da rede hospitalar.</li>
+<li>Ainda assim, municípios menores nestas regiões também apresentam vazios assistenciais.</li>
+</ul>
+<p><strong>Implicação para Política Pública:</strong></p>
+<ul>
+<li>A regionalização da saúde (criação de redes de referência) é essencial para garantir acesso à alta complexidade.</li>
+<li>Investimentos em SAMU e transporte aeromédico podem mitigar parcialmente os vazios em regiões remotas.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="concentração-hhi-por-uf" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="concentração-hhi-por-uf"><span class="header-section-number">4.3</span> Concentração (HHI) por UF</h2>
+<div id="34887c93" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">6</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># HHI médio por UF</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>hhi_uf <span class="op">=</span> municipios.groupby(<span class="st">'uf'</span>)[<span class="st">'hhi'</span>].mean().sort_values(ascending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>colors_hhi <span class="op">=</span> plt.cm.RdYlGn_r(np.linspace(<span class="fl">0.2</span>, <span class="fl">0.8</span>, <span class="bu">len</span>(hhi_uf)))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].barh(hhi_uf.index, hhi_uf.values, color<span class="op">=</span>colors_hhi)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'HHI Médio (0=disperso, 1=concentrado)'</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Índice de Concentração (HHI) por UF'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(x<span class="op">=</span><span class="fl">0.25</span>, color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Baixa concentração'</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axvline(x<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, label<span class="op">=</span><span class="st">'Alta concentração'</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuição do HHI</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].hist(municipios[<span class="st">'hhi'</span>], bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">'#3498db'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(x<span class="op">=</span>municipios[<span class="st">'hhi'</span>].mean(), color<span class="op">=</span><span class="st">'#e74c3c'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>                linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"Média: </span><span class="sc">{</span>municipios[<span class="st">'hhi'</span>]<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].axvline(x<span class="op">=</span>municipios[<span class="st">'hhi'</span>].median(), color<span class="op">=</span><span class="st">'#2ecc71'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, </span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>                linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"Mediana: </span><span class="sc">{</span>municipios[<span class="st">'hhi'</span>]<span class="sc">.</span>median()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'Índice HHI'</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Frequência'</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Distribuição do Índice de Concentração (HHI)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend()</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">INTERPRETAÇÃO DO HHI:"</span>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • HHI &lt; 0.15: Mercado competitivo (baixa concentração)"</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • HHI 0.15-0.25: Concentração moderada"</span>)</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"  • HHI &gt; 0.25: Alta concentração"</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">  Média nacional: </span><span class="sc">{</span>municipios[<span class="st">'hhi'</span>]<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>(municipios[<span class="st">'hhi'</span>] <span class="op">&gt;</span> <span class="fl">0.5</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> municípios com HHI &gt; 0.5 (monopólio/duopólio)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANALISE_DESERTOS_LEITOS_files/figure-html/cell-10-output-1.png" width="1589" height="589" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+INTERPRETAÇÃO DO HHI:
+  • HHI &lt; 0.15: Mercado competitivo (baixa concentração)
+  • HHI 0.15-0.25: Concentração moderada
+  • HHI &gt; 0.25: Alta concentração
+
+  Média nacional: 0.872
+  3167 municípios com HHI &gt; 0.5 (monopólio/duopólio)</code></pre>
+</div>
+</div>
+<section id="análise-concentração-de-mercado" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="análise-concentração-de-mercado"><span class="header-section-number">4.3.1</span> Análise: Concentração de Mercado</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Riscos da Alta Concentração
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>O que o HHI revela:</strong></p>
+<ul>
+<li>Um <strong>HHI alto</strong> (&gt;0.5) indica que os leitos do município estão concentrados em poucos estabelecimentos (monopólio ou duopólio).</li>
+<li>Isso representa <strong>risco de desassistência</strong> caso o estabelecimento dominante enfrente problemas (fechamento, greve, desastre).</li>
+<li>Municípios com HHI próximo de 1.0 possuem <strong>um único hospital</strong>, criando dependência total.</li>
+</ul>
+<p><strong>Padrão observado:</strong></p>
+<ul>
+<li>A maioria dos municípios brasileiros apresenta <strong>alta concentração</strong>, pois são pequenos e possuem apenas 1-2 hospitais.</li>
+<li>Estados com maior pulverização (mais hospitais por município) tendem a ter HHI menor.</li>
+<li>O histograma mostra distribuição bimodal: muitos municípios com HHI muito alto (monopólio) e alguns com HHI baixo (mercado competitivo).</li>
+</ul>
+<p><strong>Recomendação:</strong></p>
+<ul>
+<li>Municípios com HHI &gt; 0.8 e população significativa devem ser avaliados para <strong>expansão de rede</strong> ou <strong>fortalecimento de consórcios intermunicipais</strong>.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="relação-leitos-concentração" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="relação-leitos-concentração"><span class="header-section-number">4.4</span> Relação: Leitos × Concentração</h2>
+<div id="13af42be" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot com cores por classificação</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>colors_scatter <span class="op">=</span> {<span class="st">'COMPLETO'</span>: <span class="st">'#27ae60'</span>, <span class="st">'PARCIAL'</span>: <span class="st">'#f39c12'</span>, <span class="st">'BASICO'</span>: <span class="st">'#e74c3c'</span>, <span class="st">'DESERTO'</span>: <span class="st">'#2c3e50'</span>}</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> classif <span class="kw">in</span> [<span class="st">'COMPLETO'</span>, <span class="st">'PARCIAL'</span>, <span class="st">'BASICO'</span>]:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    subset <span class="op">=</span> municipios[municipios[<span class="st">'classificacao_vazio'</span>] <span class="op">==</span> classif]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    ax.scatter(subset[<span class="st">'total_leitos'</span>], subset[<span class="st">'hhi'</span>], </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>               c<span class="op">=</span>colors_scatter[classif], label<span class="op">=</span>classif, alpha<span class="op">=</span><span class="fl">0.6</span>, s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Total de Leitos no Município'</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Índice de Concentração (HHI)'</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Relação entre Oferta de Leitos e Concentração'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">'log'</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">'Classificação'</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Linhas de referência</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'Alta concentração'</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANALISE_DESERTOS_LEITOS_files/figure-html/cell-11-output-1.png" width="1190" height="785" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="análise-relação-porte-concentração" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="análise-relação-porte-concentração"><span class="header-section-number">4.4.1</span> Análise: Relação Porte × Concentração</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Padrão Identificado
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Correlação negativa clara:</strong></p>
+<ul>
+<li>Municípios com <strong>mais leitos</strong> tendem a ter <strong>menor concentração</strong> (HHI baixo), pois possuem múltiplos estabelecimentos competindo.</li>
+<li>Municípios com <strong>poucos leitos</strong> apresentam <strong>alta concentração</strong> (HHI alto), geralmente com apenas 1 hospital.</li>
+</ul>
+<p><strong>Interpretação por classificação:</strong></p>
+<ul>
+<li><strong>COMPLETO (verde):</strong> Concentrados no quadrante inferior direito (muitos leitos, baixa concentração). São os grandes centros urbanos.</li>
+<li><strong>PARCIAL (amarelo):</strong> Distribuídos no meio do gráfico, com porte e concentração intermediários.</li>
+<li><strong>BÁSICO (vermelho):</strong> Concentrados no quadrante superior esquerdo (poucos leitos, alta concentração). São municípios pequenos com hospital único.</li>
+</ul>
+<p><strong>Insight estratégico:</strong></p>
+<ul>
+<li>A escala logarítmica no eixo X evidencia que a transição de “alta concentração” para “baixa concentração” ocorre aproximadamente a partir de <strong>100-200 leitos</strong> no município.</li>
+<li>Municípios abaixo deste limiar dificilmente terão mercado competitivo e dependem de regulação e consórcios.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="rankings" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Rankings</h1>
+<section id="top-20-municípios-com-mais-leitos" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="top-20-municípios-com-mais-leitos"><span class="header-section-number">5.1</span> Top 20 Municípios com Mais Leitos</h2>
+<div id="3a5bae48" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>top_leitos <span class="op">=</span> municipios.nlargest(<span class="dv">20</span>, <span class="st">'total_leitos'</span>)[</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'codufmun'</span>, <span class="st">'uf'</span>, <span class="st">'total_leitos'</span>, <span class="st">'leitos_sus'</span>, <span class="st">'pct_sus'</span>, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>     <span class="st">'n_estabelecimentos'</span>, <span class="st">'tem_uti'</span>, <span class="st">'hhi'</span>, <span class="st">'classificacao_vazio'</span>]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>top_leitos[<span class="st">'codufmun'</span>] <span class="op">=</span> top_leitos[<span class="st">'codufmun'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"TOP 20 MUNICÍPIOS COM MAIS LEITOS"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>top_leitos</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>TOP 20 MUNICÍPIOS COM MAIS LEITOS
+======================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">codufmun</th>
+<th data-quarto-table-cell-role="th">uf</th>
+<th data-quarto-table-cell-role="th">total_leitos</th>
+<th data-quarto-table-cell-role="th">leitos_sus</th>
+<th data-quarto-table-cell-role="th">pct_sus</th>
+<th data-quarto-table-cell-role="th">n_estabelecimentos</th>
+<th data-quarto-table-cell-role="th">tem_uti</th>
+<th data-quarto-table-cell-role="th">hhi</th>
+<th data-quarto-table-cell-role="th">classificacao_vazio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2554</th>
+<td>355030</td>
+<td>SP</td>
+<td>38123</td>
+<td>18238</td>
+<td>47.8</td>
+<td>342</td>
+<td>True</td>
+<td>0.009451</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2222</th>
+<td>330455</td>
+<td>RJ</td>
+<td>21109</td>
+<td>9811</td>
+<td>46.5</td>
+<td>288</td>
+<td>True</td>
+<td>0.009187</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1209</th>
+<td>261160</td>
+<td>PE</td>
+<td>11691</td>
+<td>7289</td>
+<td>62.3</td>
+<td>104</td>
+<td>True</td>
+<td>0.033493</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1722</th>
+<td>310620</td>
+<td>MG</td>
+<td>11647</td>
+<td>6414</td>
+<td>55.1</td>
+<td>114</td>
+<td>True</td>
+<td>0.032195</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3596</th>
+<td>530010</td>
+<td>DF</td>
+<td>10788</td>
+<td>5574</td>
+<td>51.7</td>
+<td>111</td>
+<td>True</td>
+<td>0.027547</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1616</th>
+<td>292740</td>
+<td>BA</td>
+<td>9952</td>
+<td>6563</td>
+<td>65.9</td>
+<td>129</td>
+<td>True</td>
+<td>0.028439</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">715</th>
+<td>230440</td>
+<td>CE</td>
+<td>9906</td>
+<td>6441</td>
+<td>65.0</td>
+<td>109</td>
+<td>True</td>
+<td>0.026255</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3142</th>
+<td>431490</td>
+<td>RS</td>
+<td>8233</td>
+<td>4871</td>
+<td>59.2</td>
+<td>44</td>
+<td>True</td>
+<td>0.068492</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3479</th>
+<td>520870</td>
+<td>GO</td>
+<td>7544</td>
+<td>3875</td>
+<td>51.4</td>
+<td>132</td>
+<td>True</td>
+<td>0.020315</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2661</th>
+<td>410690</td>
+<td>PR</td>
+<td>5980</td>
+<td>3128</td>
+<td>52.3</td>
+<td>72</td>
+<td>True</td>
+<td>0.041616</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">507</th>
+<td>211130</td>
+<td>MA</td>
+<td>5473</td>
+<td>3892</td>
+<td>71.1</td>
+<td>61</td>
+<td>True</td>
+<td>0.033877</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">161</th>
+<td>150140</td>
+<td>PA</td>
+<td>5242</td>
+<td>3135</td>
+<td>59.8</td>
+<td>64</td>
+<td>True</td>
+<td>0.041576</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">106</th>
+<td>130260</td>
+<td>AM</td>
+<td>5009</td>
+<td>3551</td>
+<td>70.9</td>
+<td>67</td>
+<td>True</td>
+<td>0.034004</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">910</th>
+<td>240810</td>
+<td>RN</td>
+<td>4113</td>
+<td>2631</td>
+<td>64.0</td>
+<td>61</td>
+<td>True</td>
+<td>0.038520</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1025</th>
+<td>250750</td>
+<td>PB</td>
+<td>3974</td>
+<td>2428</td>
+<td>61.1</td>
+<td>69</td>
+<td>True</td>
+<td>0.039467</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1284</th>
+<td>270430</td>
+<td>AL</td>
+<td>3831</td>
+<td>2520</td>
+<td>65.8</td>
+<td>49</td>
+<td>True</td>
+<td>0.046866</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2306</th>
+<td>350950</td>
+<td>SP</td>
+<td>3709</td>
+<td>1722</td>
+<td>46.4</td>
+<td>50</td>
+<td>True</td>
+<td>0.068854</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">654</th>
+<td>221100</td>
+<td>PI</td>
+<td>3415</td>
+<td>2354</td>
+<td>68.9</td>
+<td>45</td>
+<td>True</td>
+<td>0.054450</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1315</th>
+<td>280030</td>
+<td>SE</td>
+<td>3097</td>
+<td>1918</td>
+<td>61.9</td>
+<td>51</td>
+<td>True</td>
+<td>0.085911</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3254</th>
+<td>500270</td>
+<td>MS</td>
+<td>3094</td>
+<td>1826</td>
+<td>59.0</td>
+<td>37</td>
+<td>True</td>
+<td>0.098742</td>
+<td>COMPLETO</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="municípios-sem-uti-por-uf" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="municípios-sem-uti-por-uf"><span class="header-section-number">5.2</span> Municípios sem UTI por UF</h2>
+<div id="c1a76734" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Municípios sem UTI</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sem_uti <span class="op">=</span> municipios[<span class="op">~</span>municipios[<span class="st">'tem_uti'</span>]]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>sem_uti_por_uf <span class="op">=</span> sem_uti.groupby(<span class="st">'uf'</span>).agg({</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>: <span class="st">'count'</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'total_leitos'</span>: <span class="st">'sum'</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>}).rename(columns<span class="op">=</span>{<span class="st">'codufmun'</span>: <span class="st">'Municipios_sem_UTI'</span>})</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Total de municípios por UF</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>total_por_uf <span class="op">=</span> municipios.groupby(<span class="st">'uf'</span>)[<span class="st">'codufmun'</span>].count()</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>sem_uti_por_uf[<span class="st">'Total_Municipios'</span>] <span class="op">=</span> total_por_uf</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>sem_uti_por_uf[<span class="st">'%_sem_UTI'</span>] <span class="op">=</span> (sem_uti_por_uf[<span class="st">'Municipios_sem_UTI'</span>] <span class="op">/</span> sem_uti_por_uf[<span class="st">'Total_Municipios'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>sem_uti_por_uf <span class="op">=</span> sem_uti_por_uf.sort_values(<span class="st">'%_sem_UTI'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">MUNICÍPIOS SEM UTI POR UF"</span>)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>sem_uti_por_uf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+MUNICÍPIOS SEM UTI POR UF
+======================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Municipios_sem_UTI</th>
+<th data-quarto-table-cell-role="th">total_leitos</th>
+<th data-quarto-table-cell-role="th">Total_Municipios</th>
+<th data-quarto-table-cell-role="th">%_sem_UTI</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">uf</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RN</th>
+<td>129</td>
+<td>2504</td>
+<td>139</td>
+<td>92.8</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PI</th>
+<td>114</td>
+<td>2566</td>
+<td>123</td>
+<td>92.7</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">AM</th>
+<td>57</td>
+<td>2294</td>
+<td>62</td>
+<td>91.9</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">RR</th>
+<td>11</td>
+<td>254</td>
+<td>12</td>
+<td>91.7</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MA</th>
+<td>182</td>
+<td>6430</td>
+<td>204</td>
+<td>89.2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">BA</th>
+<td>313</td>
+<td>11361</td>
+<td>351</td>
+<td>89.2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">AC</th>
+<td>16</td>
+<td>498</td>
+<td>18</td>
+<td>88.9</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PB</th>
+<td>90</td>
+<td>2246</td>
+<td>103</td>
+<td>87.4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">TO</th>
+<td>40</td>
+<td>1112</td>
+<td>46</td>
+<td>87.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CE</th>
+<td>154</td>
+<td>6044</td>
+<td>177</td>
+<td>87.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">GO</th>
+<td>167</td>
+<td>5240</td>
+<td>193</td>
+<td>86.5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">MS</th>
+<td>61</td>
+<td>1690</td>
+<td>71</td>
+<td>85.9</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">PE</th>
+<td>157</td>
+<td>6083</td>
+<td>183</td>
+<td>85.8</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">AP</th>
+<td>11</td>
+<td>308</td>
+<td>13</td>
+<td>84.6</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RO</th>
+<td>43</td>
+<td>1257</td>
+<td>51</td>
+<td>84.3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">AL</th>
+<td>43</td>
+<td>1381</td>
+<td>52</td>
+<td>82.7</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">PR</th>
+<td>200</td>
+<td>7699</td>
+<td>242</td>
+<td>82.6</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">SE</th>
+<td>19</td>
+<td>519</td>
+<td>23</td>
+<td>82.6</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MT</th>
+<td>79</td>
+<td>2386</td>
+<td>96</td>
+<td>82.3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PA</th>
+<td>107</td>
+<td>4620</td>
+<td>131</td>
+<td>81.7</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MG</th>
+<td>319</td>
+<td>10495</td>
+<td>415</td>
+<td>76.9</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">SC</th>
+<td>116</td>
+<td>4956</td>
+<td>154</td>
+<td>75.3</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RS</th>
+<td>175</td>
+<td>8609</td>
+<td>238</td>
+<td>73.5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">ES</th>
+<td>39</td>
+<td>1796</td>
+<td>56</td>
+<td>69.6</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">SP</th>
+<td>207</td>
+<td>9616</td>
+<td>356</td>
+<td>58.1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">RJ</th>
+<td>37</td>
+<td>1554</td>
+<td>87</td>
+<td>42.5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="municípios-com-alta-concentração-hhi-0.8" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="municípios-com-alta-concentração-hhi-0.8"><span class="header-section-number">5.3</span> Municípios com Alta Concentração (HHI &gt; 0.8)</h2>
+<div id="b978cb66" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Municípios com monopólio (HHI muito alto)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>monopolio <span class="op">=</span> municipios[municipios[<span class="st">'hhi'</span>] <span class="op">&gt;</span> <span class="fl">0.8</span>].sort_values(<span class="st">'total_leitos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">MUNICÍPIOS COM ALTA CONCENTRAÇÃO (HHI &gt; 0.8): </span><span class="sc">{</span><span class="bu">len</span>(monopolio)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(Leitos concentrados em 1-2 estabelecimentos)"</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>monopolio_display <span class="op">=</span> monopolio.head(<span class="dv">20</span>)[</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'codufmun'</span>, <span class="st">'uf'</span>, <span class="st">'total_leitos'</span>, <span class="st">'n_estabelecimentos'</span>, <span class="st">'hhi'</span>, <span class="st">'pct_sus'</span>, <span class="st">'classificacao_vazio'</span>]</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>monopolio_display[<span class="st">'codufmun'</span>] <span class="op">=</span> monopolio_display[<span class="st">'codufmun'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>monopolio_display</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+MUNICÍPIOS COM ALTA CONCENTRAÇÃO (HHI &gt; 0.8): 2801
+======================================================================
+(Leitos concentrados em 1-2 estabelecimentos)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">codufmun</th>
+<th data-quarto-table-cell-role="th">uf</th>
+<th data-quarto-table-cell-role="th">total_leitos</th>
+<th data-quarto-table-cell-role="th">n_estabelecimentos</th>
+<th data-quarto-table-cell-role="th">hhi</th>
+<th data-quarto-table-cell-role="th">pct_sus</th>
+<th data-quarto-table-cell-role="th">classificacao_vazio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2633</th>
+<td>410400</td>
+<td>PR</td>
+<td>580</td>
+<td>1</td>
+<td>1.000000</td>
+<td>80.0</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1273</th>
+<td>270230</td>
+<td>AL</td>
+<td>488</td>
+<td>3</td>
+<td>0.991828</td>
+<td>98.2</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2813</th>
+<td>412570</td>
+<td>PR</td>
+<td>360</td>
+<td>2</td>
+<td>0.847222</td>
+<td>55.3</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2169</th>
+<td>330060</td>
+<td>RJ</td>
+<td>315</td>
+<td>1</td>
+<td>1.000000</td>
+<td>72.4</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2401</th>
+<td>352310</td>
+<td>SP</td>
+<td>303</td>
+<td>4</td>
+<td>0.832958</td>
+<td>98.0</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3185</th>
+<td>431870</td>
+<td>RS</td>
+<td>285</td>
+<td>3</td>
+<td>0.809074</td>
+<td>89.1</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3082</th>
+<td>430920</td>
+<td>RS</td>
+<td>264</td>
+<td>1</td>
+<td>1.000000</td>
+<td>80.3</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3017</th>
+<td>430210</td>
+<td>RS</td>
+<td>263</td>
+<td>1</td>
+<td>1.000000</td>
+<td>49.0</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1918</th>
+<td>313940</td>
+<td>MG</td>
+<td>256</td>
+<td>2</td>
+<td>0.924927</td>
+<td>70.7</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2352</th>
+<td>351570</td>
+<td>SP</td>
+<td>255</td>
+<td>1</td>
+<td>1.000000</td>
+<td>88.2</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2412</th>
+<td>352450</td>
+<td>SP</td>
+<td>249</td>
+<td>1</td>
+<td>1.000000</td>
+<td>69.5</td>
+<td>BASICO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3002</th>
+<td>430040</td>
+<td>RS</td>
+<td>231</td>
+<td>1</td>
+<td>1.000000</td>
+<td>80.5</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2817</th>
+<td>412625</td>
+<td>PR</td>
+<td>221</td>
+<td>1</td>
+<td>1.000000</td>
+<td>71.9</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1091</th>
+<td>260110</td>
+<td>PE</td>
+<td>218</td>
+<td>1</td>
+<td>1.000000</td>
+<td>88.5</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3360</th>
+<td>510622</td>
+<td>MT</td>
+<td>213</td>
+<td>1</td>
+<td>1.000000</td>
+<td>77.5</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3026</th>
+<td>430300</td>
+<td>RS</td>
+<td>207</td>
+<td>1</td>
+<td>1.000000</td>
+<td>68.6</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3180</th>
+<td>431830</td>
+<td>RS</td>
+<td>205</td>
+<td>1</td>
+<td>1.000000</td>
+<td>78.5</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">406</th>
+<td>210467</td>
+<td>MA</td>
+<td>204</td>
+<td>1</td>
+<td>1.000000</td>
+<td>98.0</td>
+<td>BASICO</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3104</th>
+<td>431140</td>
+<td>RS</td>
+<td>201</td>
+<td>1</td>
+<td>1.000000</td>
+<td>70.1</td>
+<td>COMPLETO</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3585</th>
+<td>522130</td>
+<td>GO</td>
+<td>200</td>
+<td>1</td>
+<td>1.000000</td>
+<td>0.0</td>
+<td>BASICO</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="análise-por-região" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Análise por Região</h1>
+<section id="perfil-regional-detalhado" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="perfil-regional-detalhado"><span class="header-section-number">6.1</span> Perfil Regional Detalhado</h2>
+<div id="a876828b" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perfil por região</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>perfil_regiao <span class="op">=</span> municipios.groupby(<span class="st">'regiao'</span>).agg({</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>: <span class="st">'count'</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'total_leitos'</span>: [<span class="st">'sum'</span>, <span class="st">'mean'</span>, <span class="st">'median'</span>],</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'leitos_sus'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'n_estabelecimentos'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'hhi'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tem_uti'</span>: <span class="st">'sum'</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>}).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>perfil_regiao.columns <span class="op">=</span> [<span class="st">'N_Municipios'</span>, <span class="st">'Total_Leitos'</span>, <span class="st">'Media_Leitos'</span>, <span class="st">'Mediana_Leitos'</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'Leitos_SUS'</span>, <span class="st">'N_Estabelecimentos'</span>, <span class="st">'HHI_Medio'</span>, <span class="st">'Municipios_com_UTI'</span>]</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>perfil_regiao[<span class="st">'%_SUS'</span>] <span class="op">=</span> (perfil_regiao[<span class="st">'Leitos_SUS'</span>] <span class="op">/</span> perfil_regiao[<span class="st">'Total_Leitos'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>perfil_regiao[<span class="st">'%_com_UTI'</span>] <span class="op">=</span> (perfil_regiao[<span class="st">'Municipios_com_UTI'</span>] <span class="op">/</span> perfil_regiao[<span class="st">'N_Municipios'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PERFIL REGIONAL"</span>)</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>perfil_regiao</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>PERFIL REGIONAL
+======================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">N_Municipios</th>
+<th data-quarto-table-cell-role="th">Total_Leitos</th>
+<th data-quarto-table-cell-role="th">Media_Leitos</th>
+<th data-quarto-table-cell-role="th">Mediana_Leitos</th>
+<th data-quarto-table-cell-role="th">Leitos_SUS</th>
+<th data-quarto-table-cell-role="th">N_Estabelecimentos</th>
+<th data-quarto-table-cell-role="th">HHI_Medio</th>
+<th data-quarto-table-cell-role="th">Municipios_com_UTI</th>
+<th data-quarto-table-cell-role="th">%_SUS</th>
+<th data-quarto-table-cell-role="th">%_com_UTI</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">regiao</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Centro-Oeste</th>
+<td>361</td>
+<td>47677</td>
+<td>132.1</td>
+<td>25.0</td>
+<td>30102</td>
+<td>973</td>
+<td>0.8</td>
+<td>54</td>
+<td>63.1</td>
+<td>15.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Nordeste</th>
+<td>1355</td>
+<td>142405</td>
+<td>105.1</td>
+<td>28.0</td>
+<td>108138</td>
+<td>2955</td>
+<td>0.9</td>
+<td>154</td>
+<td>75.9</td>
+<td>11.4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Norte</th>
+<td>333</td>
+<td>39884</td>
+<td>119.8</td>
+<td>32.0</td>
+<td>30980</td>
+<td>795</td>
+<td>0.9</td>
+<td>48</td>
+<td>77.7</td>
+<td>14.4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Sudeste</th>
+<td>914</td>
+<td>221530</td>
+<td>242.4</td>
+<td>50.0</td>
+<td>128125</td>
+<td>3132</td>
+<td>0.8</td>
+<td>312</td>
+<td>57.8</td>
+<td>34.1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Sul</th>
+<td>634</td>
+<td>83637</td>
+<td>131.9</td>
+<td>48.0</td>
+<td>57834</td>
+<td>1217</td>
+<td>0.9</td>
+<td>143</td>
+<td>69.1</td>
+<td>22.6</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="visualização-comparativa-regional" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="visualização-comparativa-regional"><span class="header-section-number">6.2</span> Visualização Comparativa Regional</h2>
+<div id="7ac962c0" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Total de leitos por região</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>leitos_regiao <span class="op">=</span> municipios.groupby(<span class="st">'regiao'</span>)[<span class="st">'total_leitos'</span>].<span class="bu">sum</span>().sort_values()</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>colors_reg <span class="op">=</span> [<span class="st">'#3498db'</span>, <span class="st">'#2ecc71'</span>, <span class="st">'#e74c3c'</span>, <span class="st">'#f39c12'</span>, <span class="st">'#9b59b6'</span>]</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>ax1.barh(leitos_regiao.index, leitos_regiao.values, color<span class="op">=</span>colors_reg)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Total de Leitos'</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Total de Leitos por Região'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>ax1.spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>ax1.spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, v <span class="kw">in</span> <span class="bu">enumerate</span>(leitos_regiao.values):</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    ax1.text(v <span class="op">+</span> <span class="dv">2000</span>, i, <span class="ss">f'</span><span class="sc">{</span>v<span class="sc">:,}</span><span class="ss">'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. % de municípios com UTI</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> axes[<span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>pct_uti <span class="op">=</span> (municipios.groupby(<span class="st">'regiao'</span>)[<span class="st">'tem_uti'</span>].<span class="bu">sum</span>() <span class="op">/</span> municipios.groupby(<span class="st">'regiao'</span>)[<span class="st">'tem_uti'</span>].count() <span class="op">*</span> <span class="dv">100</span>).sort_values()</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>ax2.barh(pct_uti.index, pct_uti.values, color<span class="op">=</span>colors_reg)</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">'</span><span class="sc">% d</span><span class="st">e Municípios com UTI'</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">'Cobertura de UTI por Região'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>ax2.axvline(x<span class="op">=</span>pct_uti.mean(), color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'Média: </span><span class="sc">{</span>pct_uti<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">%'</span>)</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>ax2.legend()</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>ax2.spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>ax2.spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. HHI médio por região</span></span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>hhi_regiao <span class="op">=</span> municipios.groupby(<span class="st">'regiao'</span>)[<span class="st">'hhi'</span>].mean().sort_values()</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>ax3.barh(hhi_regiao.index, hhi_regiao.values, color<span class="op">=</span>colors_reg)</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>ax3.set_xlabel(<span class="st">'HHI Médio'</span>)</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>ax3.set_title(<span class="st">'Concentração Média (HHI) por Região'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>ax3.axvline(x<span class="op">=</span><span class="fl">0.25</span>, color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>ax3.axvline(x<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>ax3.spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>ax3.spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. % SUS por região</span></span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>ax4 <span class="op">=</span> axes[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>pct_sus_reg <span class="op">=</span> (municipios.groupby(<span class="st">'regiao'</span>)[<span class="st">'leitos_sus'</span>].<span class="bu">sum</span>() <span class="op">/</span> municipios.groupby(<span class="st">'regiao'</span>)[<span class="st">'total_leitos'</span>].<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span>).sort_values()</span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>ax4.barh(pct_sus_reg.index, pct_sus_reg.values, color<span class="op">=</span>colors_reg)</span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>ax4.set_xlabel(<span class="st">'</span><span class="sc">% d</span><span class="st">e Leitos SUS'</span>)</span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a>ax4.set_title(<span class="st">'Proporção de Leitos SUS por Região'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>ax4.axvline(x<span class="op">=</span>pct_sus_reg.mean(), color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'Média: </span><span class="sc">{</span>pct_sus_reg<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">%'</span>)</span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>ax4.legend()</span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>ax4.spines[<span class="st">'top'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>ax4.spines[<span class="st">'right'</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANALISE_DESERTOS_LEITOS_files/figure-html/cell-16-output-1.png" width="1389" height="989" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="análise-perfil-comparativo-regional" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="análise-perfil-comparativo-regional"><span class="header-section-number">6.2.1</span> Análise: Perfil Comparativo Regional</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Síntese Regional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Total de Leitos:</strong></p>
+<ul>
+<li>O <strong>Sudeste</strong> concentra mais da metade dos leitos do país, seguido pelo Nordeste e Sul.</li>
+<li>Norte e Centro-Oeste possuem menor oferta absoluta, mas também menor população.</li>
+</ul>
+<p><strong>Cobertura de UTI:</strong></p>
+<ul>
+<li>O <strong>Sul</strong> apresenta a maior proporção de municípios com UTI, refletindo rede hospitalar mais capilarizada.</li>
+<li>O <strong>Norte</strong> tem a menor cobertura, com grandes distâncias entre municípios com UTI.</li>
+<li>A média nacional de cobertura UTI é baixa, indicando que a maioria dos municípios depende de referência para outros.</li>
+</ul>
+<p><strong>Concentração (HHI):</strong></p>
+<ul>
+<li>Todas as regiões apresentam HHI médio acima de 0.25 (concentração moderada a alta).</li>
+<li>Isso reflete a realidade de municípios pequenos com poucos estabelecimentos.</li>
+</ul>
+<p><strong>Natureza (SUS):</strong></p>
+<ul>
+<li><strong>Norte e Nordeste</strong> apresentam maior proporção de leitos SUS, refletindo menor presença do setor privado.</li>
+<li><strong>Sudeste e Sul</strong> têm maior participação privada, especialmente em capitais e regiões metropolitanas.</li>
+<li>Esta diferença tem implicações para políticas de financiamento e regulação.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="exportação-dos-resultados" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Exportação dos Resultados</h1>
+<div id="a2b3ecc0" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparar dataset final</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>municipios_export <span class="op">=</span> municipios[[</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>, <span class="st">'uf'</span>, <span class="st">'regiao'</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'n_estabelecimentos'</span>, <span class="st">'total_leitos'</span>, <span class="st">'leitos_sus'</span>, <span class="st">'leitos_nsus'</span>, <span class="st">'pct_sus'</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'leitos_intensivo'</span>, <span class="st">'leitos_semi_intensivo'</span>, <span class="st">'leitos_alta_complexidade'</span>, <span class="st">'leitos_media_baixa'</span>,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'tem_uti'</span>, <span class="st">'tem_uci'</span>, <span class="st">'tem_alta'</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'hhi'</span>, <span class="st">'media_leitos_estab'</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'classificacao_vazio'</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>]].copy()</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>municipios_export[<span class="st">'codufmun'</span>] <span class="op">=</span> municipios_export[<span class="st">'codufmun'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>municipios_export.to_csv(<span class="st">'arq7_analise_municipios.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"EXPORTAÇÃO CONCLUÍDA"</span>)</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Arquivo: arq7_analise_municipios.csv"</span>)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Registros: </span><span class="sc">{</span><span class="bu">len</span>(municipios_export)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Colunas: </span><span class="sc">{</span><span class="bu">len</span>(municipios_export.columns)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>EXPORTAÇÃO CONCLUÍDA
+======================================================================
+Arquivo: arq7_analise_municipios.csv
+Registros: 3,597
+Colunas: 18</code></pre>
+</div>
+</div>
+</section>
+<section id="resumo-executivo" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Resumo Executivo</h1>
+<div id="4dd09373" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RESUMO EXECUTIVO - ANÁLISE DE DESERTOS DE LEITOS"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📊 DADOS ANALISADOS"</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios com leitos: </span><span class="sc">{</span><span class="bu">len</span>(municipios)<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Total de leitos: </span><span class="sc">{</span>municipios[<span class="st">'total_leitos'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Estabelecimentos: </span><span class="sc">{</span>municipios[<span class="st">'n_estabelecimentos'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🏥 COBERTURA DE ALTA COMPLEXIDADE"</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios com UTI: </span><span class="sc">{</span>municipios[<span class="st">'tem_uti'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss"> (</span><span class="sc">{</span>municipios[<span class="st">'tem_uti'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios com UCI: </span><span class="sc">{</span>municipios[<span class="st">'tem_uci'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss"> (</span><span class="sc">{</span>municipios[<span class="st">'tem_uci'</span>]<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios sem alta complexidade: </span><span class="sc">{</span>(<span class="op">~</span>municipios[<span class="st">'tem_uti'</span>] <span class="op">&amp;</span> <span class="op">~</span>municipios[<span class="st">'tem_uci'</span>])<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📍 CLASSIFICAÇÃO DE VAZIOS"</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> classif <span class="kw">in</span> [<span class="st">'COMPLETO'</span>, <span class="st">'PARCIAL'</span>, <span class="st">'BASICO'</span>]:</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> (municipios[<span class="st">'classificacao_vazio'</span>] <span class="op">==</span> classif).<span class="bu">sum</span>()</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    pct <span class="op">=</span> n <span class="op">/</span> <span class="bu">len</span>(municipios) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   </span><span class="sc">{</span>classif<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>n<span class="sc">:,}</span><span class="ss"> municípios (</span><span class="sc">{</span>pct<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">📈 CONCENTRAÇÃO (HHI)"</span>)</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   HHI médio nacional: </span><span class="sc">{</span>municipios[<span class="st">'hhi'</span>]<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios com monopólio (HHI&gt;0.8): </span><span class="sc">{</span>(municipios[<span class="st">'hhi'</span>] <span class="op">&gt;</span> <span class="fl">0.8</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios com baixa concentração (HHI&lt;0.25): </span><span class="sc">{</span>(municipios[<span class="st">'hhi'</span>] <span class="op">&lt;</span> <span class="fl">0.25</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🏛️ NATUREZA (SUS vs PRIVADO)"</span>)</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   % médio de leitos SUS: </span><span class="sc">{</span>municipios[<span class="st">'pct_sus'</span>]<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios &gt;80% SUS: </span><span class="sc">{</span>(municipios[<span class="st">'pct_sus'</span>] <span class="op">&gt;</span> <span class="dv">80</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Municípios &lt;50% SUS: </span><span class="sc">{</span>(municipios[<span class="st">'pct_sus'</span>] <span class="op">&lt;</span> <span class="dv">50</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">🚨 ALERTAS"</span>)</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • </span><span class="sc">{</span>(<span class="op">~</span>municipios[<span class="st">'tem_uti'</span>])<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss"> municípios sem leitos de UTI"</span>)</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • </span><span class="sc">{</span>(municipios[<span class="st">'hhi'</span>] <span class="op">&gt;</span> <span class="fl">0.8</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss"> municípios com alta concentração (risco de desassistência)"</span>)</span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Região com menor cobertura UTI: </span><span class="sc">{</span>pct_uti<span class="sc">.</span>idxmin()<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>pct_uti<span class="sc">.</span><span class="bu">min</span>()<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================
+RESUMO EXECUTIVO - ANÁLISE DE DESERTOS DE LEITOS
+================================================================================
+
+📊 DADOS ANALISADOS
+   Municípios com leitos: 3,597
+   Total de leitos: 535,133
+   Estabelecimentos: 9,072
+
+🏥 COBERTURA DE ALTA COMPLEXIDADE
+   Municípios com UTI: 711 (19.8%)
+   Municípios com UCI: 601 (16.7%)
+   Municípios sem alta complexidade: 2,685
+
+📍 CLASSIFICAÇÃO DE VAZIOS
+   COMPLETO: 912 municípios (25.4%)
+   PARCIAL: 7 municípios (0.2%)
+   BASICO: 2,678 municípios (74.5%)
+
+📈 CONCENTRAÇÃO (HHI)
+   HHI médio nacional: 0.872
+   Municípios com monopólio (HHI&gt;0.8): 2,801
+   Municípios com baixa concentração (HHI&lt;0.25): 147
+
+🏛️ NATUREZA (SUS vs PRIVADO)
+   % médio de leitos SUS: 87.6%
+   Municípios &gt;80% SUS: 2,661
+   Municípios &lt;50% SUS: 180
+
+🚨 ALERTAS
+   • 2,886 municípios sem leitos de UTI
+   • 2,801 municípios com alta concentração (risco de desassistência)
+   • Região com menor cobertura UTI: Nordeste (11.4%)</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Elaborado por:</strong> Cieges - Brasil Estadual<br>
+<strong>Data:</strong> 21/01/2026<br>
+<strong>Fonte:</strong> CNES - Competência 202506<br>
+<strong>Metodologia:</strong> Análise de Concentração e Vazios Assistenciais</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

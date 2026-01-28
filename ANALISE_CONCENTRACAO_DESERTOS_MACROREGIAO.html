@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cieges - Brasil Estadual">
+<meta name="dcterms.date" content="2026-01-28">
+
+<title>Análise de Concentração e Desertos de Leitos por Macrorregião de Saúde</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/quarto-html/popper.min.js"></script>
+<script src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">1</span> Introdução</a>
+  <ul>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link" data-scroll-target="#objetivo"><span class="header-section-number">1.1</span> Objetivo</a></li>
+  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">1.2</span> Metodologia</a></li>
+  </ul></li>
+  <li><a href="#análise-integrada-por-macrorregião" id="toc-análise-integrada-por-macrorregião" class="nav-link" data-scroll-target="#análise-integrada-por-macrorregião"><span class="header-section-number">2</span> Análise Integrada por Macrorregião</a>
+  <ul>
+  <li><a href="#dados-gerais-por-macrorregião" id="toc-dados-gerais-por-macrorregião" class="nav-link" data-scroll-target="#dados-gerais-por-macrorregião"><span class="header-section-number">2.1</span> Dados Gerais por Macrorregião</a></li>
+  <li><a href="#análise-de-concentração-hhi" id="toc-análise-de-concentração-hhi" class="nav-link" data-scroll-target="#análise-de-concentração-hhi"><span class="header-section-number">2.2</span> Análise de Concentração (HHI)</a></li>
+  <li><a href="#visualização-da-concentração" id="toc-visualização-da-concentração" class="nav-link" data-scroll-target="#visualização-da-concentração"><span class="header-section-number">2.3</span> Visualização da Concentração</a></li>
+  </ul></li>
+  <li><a href="#classificação-de-desertos-assistenciais" id="toc-classificação-de-desertos-assistenciais" class="nav-link" data-scroll-target="#classificação-de-desertos-assistenciais"><span class="header-section-number">3</span> Classificação de Desertos Assistenciais</a>
+  <ul>
+  <li><a href="#critérios-de-classificação" id="toc-critérios-de-classificação" class="nav-link" data-scroll-target="#critérios-de-classificação"><span class="header-section-number">3.1</span> Critérios de Classificação</a></li>
+  <li><a href="#mapa-de-desertos-por-macrorregião" id="toc-mapa-de-desertos-por-macrorregião" class="nav-link" data-scroll-target="#mapa-de-desertos-por-macrorregião"><span class="header-section-number">3.2</span> Mapa de Desertos por Macrorregião</a></li>
+  </ul></li>
+  <li><a href="#análise-de-disponibilidade-de-uti" id="toc-análise-de-disponibilidade-de-uti" class="nav-link" data-scroll-target="#análise-de-disponibilidade-de-uti"><span class="header-section-number">4</span> Análise de Disponibilidade de UTI</a>
+  <ul>
+  <li><a href="#cobertura-de-leitos-intensivos" id="toc-cobertura-de-leitos-intensivos" class="nav-link" data-scroll-target="#cobertura-de-leitos-intensivos"><span class="header-section-number">4.1</span> Cobertura de Leitos Intensivos</a></li>
+  <li><a href="#visualização-da-cobertura-uti" id="toc-visualização-da-cobertura-uti" class="nav-link" data-scroll-target="#visualização-da-cobertura-uti"><span class="header-section-number">4.2</span> Visualização da Cobertura UTI</a></li>
+  </ul></li>
+  <li><a href="#análise-de-equidade-e-desigualdade" id="toc-análise-de-equidade-e-desigualdade" class="nav-link" data-scroll-target="#análise-de-equidade-e-desigualdade"><span class="header-section-number">5</span> Análise de Equidade e Desigualdade</a>
+  <ul>
+  <li><a href="#análise-por-região-geográfica" id="toc-análise-por-região-geográfica" class="nav-link" data-scroll-target="#análise-por-região-geográfica"><span class="header-section-number">5.1</span> Análise por Região Geográfica</a></li>
+  <li><a href="#índice-de-desigualdade" id="toc-índice-de-desigualdade" class="nav-link" data-scroll-target="#índice-de-desigualdade"><span class="header-section-number">5.2</span> Índice de Desigualdade</a></li>
+  </ul></li>
+  <li><a href="#indicadores-compostos-e-ranking" id="toc-indicadores-compostos-e-ranking" class="nav-link" data-scroll-target="#indicadores-compostos-e-ranking"><span class="header-section-number">6</span> Indicadores Compostos e Ranking</a>
+  <ul>
+  <li><a href="#índice-de-desempenho-assistencial" id="toc-índice-de-desempenho-assistencial" class="nav-link" data-scroll-target="#índice-de-desempenho-assistencial"><span class="header-section-number">6.1</span> Índice de Desempenho Assistencial</a></li>
+  <li><a href="#visualização-do-ranking" id="toc-visualização-do-ranking" class="nav-link" data-scroll-target="#visualização-do-ranking"><span class="header-section-number">6.2</span> Visualização do Ranking</a></li>
+  </ul></li>
+  <li><a href="#recomendações-e-conclusões" id="toc-recomendações-e-conclusões" class="nav-link" data-scroll-target="#recomendações-e-conclusões"><span class="header-section-number">7</span> Recomendações e Conclusões</a>
+  <ul>
+  <li><a href="#macrorregiões-críticas" id="toc-macrorregiões-críticas" class="nav-link" data-scroll-target="#macrorregiões-críticas"><span class="header-section-number">7.1</span> Macrorregiões Críticas</a></li>
+  <li><a href="#oportunidades-de-melhoria" id="toc-oportunidades-de-melhoria" class="nav-link" data-scroll-target="#oportunidades-de-melhoria"><span class="header-section-number">7.2</span> Oportunidades de Melhoria</a></li>
+  <li><a href="#exportação-de-resultados" id="toc-exportação-de-resultados" class="nav-link" data-scroll-target="#exportação-de-resultados"><span class="header-section-number">7.3</span> Exportação de Resultados</a></li>
+  </ul></li>
+  <li><a href="#conclusões" id="toc-conclusões" class="nav-link" data-scroll-target="#conclusões"><span class="header-section-number">8</span> Conclusões</a>
+  <ul>
+  <li><a href="#principais-achados" id="toc-principais-achados" class="nav-link" data-scroll-target="#principais-achados"><span class="header-section-number">8.1</span> Principais Achados</a></li>
+  <li><a href="#recomendações-estratégicas" id="toc-recomendações-estratégicas" class="nav-link" data-scroll-target="#recomendações-estratégicas"><span class="header-section-number">8.2</span> Recomendações Estratégicas</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Análise de Concentração e Desertos de Leitos por Macrorregião de Saúde</h1>
+<p class="subtitle lead">Identificação de Vazios Assistenciais e Desigualdades Regionais no Brasil</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cieges - Brasil Estadual </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 28, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
+<section id="objetivo" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">1.1</span> Objetivo</h2>
+<p>Esta análise identifica <strong>padrões de concentração de leitos hospitalares</strong> e <strong>desertos assistenciais</strong> nas macrorregiões de saúde do Brasil, utilizando dados do CNES integrados com informações socioeconômicas do IBGE.</p>
+</section>
+<section id="metodologia" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="metodologia"><span class="header-section-number">1.2</span> Metodologia</h2>
+<p>A análise combina indicadores de <strong>disponibilidade</strong>, <strong>acessibilidade</strong>, <strong>concentração</strong> e <strong>desigualdade</strong>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 25%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Indicador</th>
+<th>Fórmula</th>
+<th>Interpretação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Leitos per capita</strong></td>
+<td>Leitos / 1.000 hab</td>
+<td>OMS recomenda 3-5 leitos/1.000 hab</td>
+</tr>
+<tr class="even">
+<td><strong>Índice HHI</strong></td>
+<td>Σ(sᵢ²)</td>
+<td>0-1 (maior = mais concentrado)</td>
+</tr>
+<tr class="odd">
+<td><strong>Cobertura UTI</strong></td>
+<td>% municípios com UTI</td>
+<td>Acesso a cuidados intensivos</td>
+</tr>
+<tr class="even">
+<td><strong>Razão SUS/Privado</strong></td>
+<td>Leitos SUS / Leitos totais</td>
+<td>Equidade no acesso</td>
+</tr>
+<tr class="odd">
+<td><strong>IDH Médio</strong></td>
+<td>Média IDH dos municípios</td>
+<td>Desenvolvimento humano</td>
+</tr>
+</tbody>
+</table>
+<div id="f88b093e" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuração visual</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.dpi'</span>] <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.size'</span>] <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Carregando bases de dados..."</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>df_cnes <span class="op">=</span> pd.read_csv(<span class="st">'arq2_tratado.csv'</span>, sep<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'latin1'</span>, low_memory<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>df_ibge <span class="op">=</span> pd.read_csv(<span class="st">'dados macroregião/TB_IBGE_DTB (1).csv'</span>, sep<span class="op">=</span><span class="st">';'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Limpar dados IBGE</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>df_ibge[<span class="st">'nu_area'</span>] <span class="op">=</span> df_ibge[<span class="st">'nu_area'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">','</span>, <span class="st">''</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>df_ibge[<span class="st">'nu_idh'</span>] <span class="op">=</span> df_ibge[<span class="st">'nu_idh'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.replace(<span class="st">','</span>, <span class="st">'.'</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dados CNES: </span><span class="sc">{</span><span class="bu">len</span>(df_cnes)<span class="sc">:,}</span><span class="ss"> registros"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dados IBGE: </span><span class="sc">{</span><span class="bu">len</span>(df_ibge)<span class="sc">:,}</span><span class="ss"> municípios"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Macrorregiões: </span><span class="sc">{</span>df_ibge[<span class="st">'Macrorregião de Saúde'</span>]<span class="sc">.</span>nunique()<span class="sc">:,}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Carregando bases de dados...
+Dados CNES: 49,804 registros
+Dados IBGE: 5,570 municípios
+Macrorregiões: 120</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="análise-integrada-por-macrorregião" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Análise Integrada por Macrorregião</h1>
+<section id="dados-gerais-por-macrorregião" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="dados-gerais-por-macrorregião"><span class="header-section-number">2.1</span> Dados Gerais por Macrorregião</h2>
+<div id="eb597f95" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Integrar dados CNES e IBGE</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_ibge[<span class="st">'co_municipio_ibge'</span>] <span class="op">=</span> df_ibge[<span class="st">'co_municipio_ibge'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_cnes[<span class="st">'codufmun'</span>] <span class="op">=</span> df_cnes[<span class="st">'codufmun'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge para enriquecer dados</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_merge <span class="op">=</span> df_cnes.merge(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    df_ibge[[<span class="st">'co_municipio_ibge'</span>, <span class="st">'Macrorregião de Saúde'</span>, <span class="st">'no_regiao'</span>, <span class="st">'nu_idh'</span>, <span class="st">'nu_area'</span>]],</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    left_on<span class="op">=</span><span class="st">'codufmun'</span>, right_on<span class="op">=</span><span class="st">'co_municipio_ibge'</span>, how<span class="op">=</span><span class="st">'left'</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise por macrorregião</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>macro_analise <span class="op">=</span> df_merge.groupby(<span class="st">'Macrorregião de Saúde'</span>).agg({</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cnes'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_sus'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_nsus'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nu_idh'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nu_area'</span>: <span class="st">'sum'</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>}).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>macro_analise.columns <span class="op">=</span> [<span class="st">'Estabelecimentos'</span>, <span class="st">'Municípios'</span>, <span class="st">'Leitos Totais'</span>, <span class="st">'Leitos SUS'</span>, </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                        <span class="st">'Leitos Não SUS'</span>, <span class="st">'IDH Médio'</span>, <span class="st">'Área (km²)'</span>]</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular indicadores derivados</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>macro_analise[<span class="st">'% SUS'</span>] <span class="op">=</span> (macro_analise[<span class="st">'Leitos SUS'</span>] <span class="op">/</span> macro_analise[<span class="st">'Leitos Totais'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>macro_analise[<span class="st">'Leitos/Município'</span>] <span class="op">=</span> (macro_analise[<span class="st">'Leitos Totais'</span>] <span class="op">/</span> macro_analise[<span class="st">'Municípios'</span>]).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>macro_analise[<span class="st">'Leitos/100km²'</span>] <span class="op">=</span> (macro_analise[<span class="st">'Leitos Totais'</span>] <span class="op">/</span> (macro_analise[<span class="st">'Área (km²)'</span>] <span class="op">/</span> <span class="dv">100</span>)).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>macro_analise[<span class="st">'Densidade Pop. (est)'</span>] <span class="op">=</span> (macro_analise[<span class="st">'Municípios'</span>] <span class="op">/</span> (macro_analise[<span class="st">'Área (km²)'</span>] <span class="op">/</span> <span class="dv">1000</span>)).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>macro_analise <span class="op">=</span> macro_analise.sort_values(<span class="st">'Leitos Totais'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>macro_analise</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Estabelecimentos</th>
+<th data-quarto-table-cell-role="th">Municípios</th>
+<th data-quarto-table-cell-role="th">Leitos Totais</th>
+<th data-quarto-table-cell-role="th">Leitos SUS</th>
+<th data-quarto-table-cell-role="th">Leitos Não SUS</th>
+<th data-quarto-table-cell-role="th">IDH Médio</th>
+<th data-quarto-table-cell-role="th">Área (km²)</th>
+<th data-quarto-table-cell-role="th">% SUS</th>
+<th data-quarto-table-cell-role="th">Leitos/Município</th>
+<th data-quarto-table-cell-role="th">Leitos/100km²</th>
+<th data-quarto-table-cell-role="th">Densidade Pop. (est)</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Macrorregião de Saúde</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RJ Macrorregiao I</th>
+<td>654</td>
+<td>87</td>
+<td>44911</td>
+<td>24187</td>
+<td>20724</td>
+<td>0.76</td>
+<td>2.891021e+09</td>
+<td>53.9</td>
+<td>516.2</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">SP Rras6</th>
+<td>342</td>
+<td>1</td>
+<td>38123</td>
+<td>18238</td>
+<td>19885</td>
+<td>0.80</td>
+<td>2.907380e+09</td>
+<td>47.8</td>
+<td>38123.0</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">PE Metropolitana</th>
+<td>258</td>
+<td>71</td>
+<td>18581</td>
+<td>11686</td>
+<td>6895</td>
+<td>0.72</td>
+<td>2.408993e+08</td>
+<td>62.9</td>
+<td>261.7</td>
+<td>0.01</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">MG Centro</th>
+<td>219</td>
+<td>50</td>
+<td>17461</td>
+<td>10176</td>
+<td>7285</td>
+<td>0.78</td>
+<td>5.559649e+08</td>
+<td>58.3</td>
+<td>349.2</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RS Metropolitana</th>
+<td>113</td>
+<td>45</td>
+<td>14021</td>
+<td>9450</td>
+<td>4571</td>
+<td>0.76</td>
+<td>3.439050e+08</td>
+<td>67.4</td>
+<td>311.6</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MS Costa Leste</th>
+<td>24</td>
+<td>11</td>
+<td>913</td>
+<td>630</td>
+<td>283</td>
+<td>0.72</td>
+<td>5.044781e+08</td>
+<td>69.0</td>
+<td>83.0</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">AM Leste</th>
+<td>19</td>
+<td>16</td>
+<td>884</td>
+<td>847</td>
+<td>37</td>
+<td>0.61</td>
+<td>2.484347e+09</td>
+<td>95.8</td>
+<td>55.2</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MT Macrorregiao Oeste</th>
+<td>17</td>
+<td>12</td>
+<td>762</td>
+<td>632</td>
+<td>130</td>
+<td>0.70</td>
+<td>9.018125e+08</td>
+<td>82.9</td>
+<td>63.5</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">MT Macrorregiao Leste</th>
+<td>34</td>
+<td>21</td>
+<td>685</td>
+<td>556</td>
+<td>129</td>
+<td>0.69</td>
+<td>1.212429e+09</td>
+<td>81.2</td>
+<td>32.6</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MS Pantanal</th>
+<td>6</td>
+<td>3</td>
+<td>215</td>
+<td>165</td>
+<td>50</td>
+<td>0.69</td>
+<td>1.527999e+09</td>
+<td>76.7</td>
+<td>71.7</td>
+<td>0.00</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>120 rows × 11 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="análise-de-concentração-hhi" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="análise-de-concentração-hhi"><span class="header-section-number">2.2</span> Análise de Concentração (HHI)</h2>
+<div id="bd254c72" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular Índice HHI por macrorregião</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_hhi(df):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calcular Índice Herfindahl-Hirschman"""</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> df[<span class="st">'qt_exist'</span>].<span class="bu">sum</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> total <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">1.0</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    shares <span class="op">=</span> df[<span class="st">'qt_exist'</span>] <span class="op">/</span> total</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (shares <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>hhi_macro <span class="op">=</span> df_merge.groupby(<span class="st">'Macrorregião de Saúde'</span>).<span class="bu">apply</span>(calcular_hhi).<span class="bu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>hhi_macro <span class="op">=</span> hhi_macro.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação da concentração</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_hhi(hhi):</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hhi <span class="op">&gt;=</span> <span class="fl">0.25</span>:</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"ALTA CONCENTRAÇÃO"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> hhi <span class="op">&gt;=</span> <span class="fl">0.15</span>:</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"MÉDIA CONCENTRAÇÃO"</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"BAIXA CONCENTRAÇÃO"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>concentracao_class <span class="op">=</span> hhi_macro.<span class="bu">apply</span>(classificar_hhi)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ÍNDICE DE CONCENTRAÇÃO HHI POR MACRORREGIÃO"</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> macro, hhi <span class="kw">in</span> hhi_macro.items():</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    classe <span class="op">=</span> concentracao_class[macro]</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>macro<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>hhi<span class="sc">:.3f}</span><span class="ss"> - </span><span class="sc">{</span>classe<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>ÍNDICE DE CONCENTRAÇÃO HHI POR MACRORREGIÃO
+============================================================
+MS Pantanal: 0.080 - BAIXA CONCENTRAÇÃO
+SP Rras3: 0.060 - BAIXA CONCENTRAÇÃO
+MG Vale Do Aco: 0.041 - BAIXA CONCENTRAÇÃO
+RR Macro-Roraima: 0.035 - BAIXA CONCENTRAÇÃO
+MT Macrorregiao Oeste: 0.024 - BAIXA CONCENTRAÇÃO
+SC Serra Catarinense: 0.023 - BAIXA CONCENTRAÇÃO
+SP Rras2: 0.023 - BAIXA CONCENTRAÇÃO
+SC Foz Do Rio Itajai: 0.022 - BAIXA CONCENTRAÇÃO
+AP Macro Unica - Ap: 0.022 - BAIXA CONCENTRAÇÃO
+MG Leste: 0.019 - BAIXA CONCENTRAÇÃO
+SP Rras4: 0.019 - BAIXA CONCENTRAÇÃO
+SP Rras11: 0.018 - BAIXA CONCENTRAÇÃO
+SP Rras 18: 0.017 - BAIXA CONCENTRAÇÃO
+MG Jequitinhonha: 0.016 - BAIXA CONCENTRAÇÃO
+MS Costa Leste: 0.016 - BAIXA CONCENTRAÇÃO
+RS Serra: 0.016 - BAIXA CONCENTRAÇÃO
+TO Macrorregiao De Saude Norte: 0.016 - BAIXA CONCENTRAÇÃO
+MG Noroeste: 0.016 - BAIXA CONCENTRAÇÃO
+AM Leste: 0.016 - BAIXA CONCENTRAÇÃO
+AL 2ª Macrorregiao De Saude: 0.016 - BAIXA CONCENTRAÇÃO
+CE Sertao Central: 0.015 - BAIXA CONCENTRAÇÃO
+MG Sudoeste: 0.015 - BAIXA CONCENTRAÇÃO
+MG Centro Sul: 0.015 - BAIXA CONCENTRAÇÃO
+PI Litoral: 0.015 - BAIXA CONCENTRAÇÃO
+CE Litoral Leste/Jaguaribe: 0.015 - BAIXA CONCENTRAÇÃO
+RS Sul: 0.014 - BAIXA CONCENTRAÇÃO
+SP Rras10: 0.014 - BAIXA CONCENTRAÇÃO
+ES Sul: 0.014 - BAIXA CONCENTRAÇÃO
+MG Triangulo Do Sul: 0.014 - BAIXA CONCENTRAÇÃO
+MT Macrorregiao Sul: 0.014 - BAIXA CONCENTRAÇÃO
+MG Leste Do Sul: 0.013 - BAIXA CONCENTRAÇÃO
+PI Cerrados: 0.013 - BAIXA CONCENTRAÇÃO
+MT Macrorregiao Centro-Noroeste: 0.013 - BAIXA CONCENTRAÇÃO
+MT Macrorregiao Leste: 0.013 - BAIXA CONCENTRAÇÃO
+SC Vale Do Itajai: 0.013 - BAIXA CONCENTRAÇÃO
+AM Oeste: 0.013 - BAIXA CONCENTRAÇÃO
+SC Sul: 0.012 - BAIXA CONCENTRAÇÃO
+SP Rras16: 0.012 - BAIXA CONCENTRAÇÃO
+SP Rras14: 0.012 - BAIXA CONCENTRAÇÃO
+PE Sertao: 0.012 - BAIXA CONCENTRAÇÃO
+SP Rras12: 0.012 - BAIXA CONCENTRAÇÃO
+AC Macro Unica - Ac: 0.012 - BAIXA CONCENTRAÇÃO
+BA Nordeste (Nrs - Alagoinhas): 0.012 - BAIXA CONCENTRAÇÃO
+GO Macrorregiao Nordeste: 0.011 - BAIXA CONCENTRAÇÃO
+SP Rras15: 0.011 - BAIXA CONCENTRAÇÃO
+BA Norte - (Nrs - Juazeiro): 0.011 - BAIXA CONCENTRAÇÃO
+BA Oeste (Nbs - Barreiras): 0.011 - BAIXA CONCENTRAÇÃO
+SC Grande Florianopolis: 0.011 - BAIXA CONCENTRAÇÃO
+RS Centro-Oeste: 0.011 - BAIXA CONCENTRAÇÃO
+PI Semi-Arido: 0.011 - BAIXA CONCENTRAÇÃO
+MT Macrorregiao Norte: 0.011 - BAIXA CONCENTRAÇÃO
+GO Macrorregiao Centro Sudeste: 0.011 - BAIXA CONCENTRAÇÃO
+MG Oeste: 0.010 - BAIXA CONCENTRAÇÃO
+SP Rras9: 0.010 - BAIXA CONCENTRAÇÃO
+SP Rras5: 0.010 - BAIXA CONCENTRAÇÃO
+SE Macro Unica: 0.010 - BAIXA CONCENTRAÇÃO
+SC Planalto Norte E Nordeste: 0.010 - BAIXA CONCENTRAÇÃO
+PI Meio Norte: 0.010 - BAIXA CONCENTRAÇÃO
+RO Macrorregiao I - Porto Velho: 0.010 - BAIXA CONCENTRAÇÃO
+GO Macrorregiao Sudoeste: 0.010 - BAIXA CONCENTRAÇÃO
+MG Nordeste: 0.010 - BAIXA CONCENTRAÇÃO
+MT Macrorregiao Centro-Norte: 0.010 - BAIXA CONCENTRAÇÃO
+ES Central Norte: 0.009 - BAIXA CONCENTRAÇÃO
+SC Meio Oeste: 0.009 - BAIXA CONCENTRAÇÃO
+PE Vale Do S.Francisco E Araripe: 0.009 - BAIXA CONCENTRAÇÃO
+RS Vales: 0.008 - BAIXA CONCENTRAÇÃO
+MS Centro: 0.008 - BAIXA CONCENTRAÇÃO
+PR Macrorregional Norte: 0.008 - BAIXA CONCENTRAÇÃO
+MS Cone Sul: 0.008 - BAIXA CONCENTRAÇÃO
+BA Extremo Sul (Nrs - Teixeira Freitas): 0.008 - BAIXA CONCENTRAÇÃO
+SP Rras17: 0.008 - BAIXA CONCENTRAÇÃO
+BA Centro - Norte (Nrs - Jacobina): 0.008 - BAIXA CONCENTRAÇÃO
+MG Sudeste: 0.008 - BAIXA CONCENTRAÇÃO
+SC Grande Oeste: 0.008 - BAIXA CONCENTRAÇÃO
+PB Macrorregiao Iii - Sertao/Alto Sertao: 0.008 - BAIXA CONCENTRAÇÃO
+PB Macrorregiao Ii - Campina Grande: 0.008 - BAIXA CONCENTRAÇÃO
+SP Rras8: 0.008 - BAIXA CONCENTRAÇÃO
+RN Macrorregiao Ii: 0.008 - BAIXA CONCENTRAÇÃO
+BA Sul (Nbs - Ilheus): 0.007 - BAIXA CONCENTRAÇÃO
+SP Rras1: 0.007 - BAIXA CONCENTRAÇÃO
+MA Macrorregiao Sul: 0.007 - BAIXA CONCENTRAÇÃO
+PA Macrorregional Ii: 0.007 - BAIXA CONCENTRAÇÃO
+MG Extremo Sul: 0.007 - BAIXA CONCENTRAÇÃO
+CE Sobral: 0.007 - BAIXA CONCENTRAÇÃO
+AM Central: 0.007 - BAIXA CONCENTRAÇÃO
+MG Sul: 0.007 - BAIXA CONCENTRAÇÃO
+MG Triangulo Do Norte: 0.007 - BAIXA CONCENTRAÇÃO
+SP Rras13: 0.006 - BAIXA CONCENTRAÇÃO
+SP Rras7: 0.006 - BAIXA CONCENTRAÇÃO
+MG Norte: 0.006 - BAIXA CONCENTRAÇÃO
+TO Macrorregiao Centro-Sul: 0.006 - BAIXA CONCENTRAÇÃO
+DF Distrito Federal: 0.006 - BAIXA CONCENTRAÇÃO
+AL 1ª Macrorregiao De Saude: 0.006 - BAIXA CONCENTRAÇÃO
+RS Metropolitana: 0.006 - BAIXA CONCENTRAÇÃO
+GO Macrorregiao Centro-Norte: 0.006 - BAIXA CONCENTRAÇÃO
+PE Agreste: 0.006 - BAIXA CONCENTRAÇÃO
+RO Macrorregional Ii (Cacoal): 0.006 - BAIXA CONCENTRAÇÃO
+RN Macrorregiao I: 0.006 - BAIXA CONCENTRAÇÃO
+PA Macrorregional Iii: 0.006 - BAIXA CONCENTRAÇÃO
+RS Missioneira: 0.006 - BAIXA CONCENTRAÇÃO
+PB Macrorregiao I - Joao Pessoa: 0.006 - BAIXA CONCENTRAÇÃO
+CE Cariri: 0.005 - BAIXA CONCENTRAÇÃO
+BA Sudoeste (Nbs - Vitoria Conquista): 0.005 - BAIXA CONCENTRAÇÃO
+ES Metropolitana: 0.005 - BAIXA CONCENTRAÇÃO
+CE Fortaleza: 0.005 - BAIXA CONCENTRAÇÃO
+PR Macrorregional Noroeste: 0.005 - BAIXA CONCENTRAÇÃO
+RS Norte: 0.005 - BAIXA CONCENTRAÇÃO
+MA Macrorregiao Leste: 0.005 - BAIXA CONCENTRAÇÃO
+BA Centro-Leste (Nrs - Feira Santana): 0.005 - BAIXA CONCENTRAÇÃO
+MA Macrorregiao Norte: 0.004 - BAIXA CONCENTRAÇÃO
+PA Macrorregional Iv: 0.004 - BAIXA CONCENTRAÇÃO
+PR Macrorregional Leste: 0.004 - BAIXA CONCENTRAÇÃO
+PR Macrorregiao Oeste: 0.004 - BAIXA CONCENTRAÇÃO
+GO Macrorregiao Centro-Oeste: 0.004 - BAIXA CONCENTRAÇÃO
+BA Leste - (Nrs - Salvador): 0.003 - BAIXA CONCENTRAÇÃO
+PE Metropolitana: 0.003 - BAIXA CONCENTRAÇÃO
+MG Centro: 0.003 - BAIXA CONCENTRAÇÃO
+PA Macrorregional I: 0.003 - BAIXA CONCENTRAÇÃO
+SP Rras6: 0.002 - BAIXA CONCENTRAÇÃO
+RJ Macrorregiao I: 0.001 - BAIXA CONCENTRAÇÃO</code></pre>
+</div>
+</div>
+</section>
+<section id="visualização-da-concentração" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="visualização-da-concentração"><span class="header-section-number">2.3</span> Visualização da Concentração</h2>
+<div id="cc6c6017" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Top 15 Macrorregiões por Leitos</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>top15 <span class="op">=</span> macro_analise.head(<span class="dv">15</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>bars1 <span class="op">=</span> axes[<span class="dv">0</span>,<span class="dv">0</span>].barh(<span class="bu">range</span>(<span class="bu">len</span>(top15)), top15[<span class="st">'Leitos Totais'</span>], color<span class="op">=</span><span class="st">'#2c3e50'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(top15)))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_yticklabels(top15.index, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'Leitos Totais'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_title(<span class="st">'Top 15 Macrorregiões - Leitos Totais'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].grid(axis<span class="op">=</span><span class="st">'x'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Índice HHI</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>hhi_top15 <span class="op">=</span> hhi_macro.head(<span class="dv">15</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>bars2 <span class="op">=</span> axes[<span class="dv">0</span>,<span class="dv">1</span>].barh(<span class="bu">range</span>(<span class="bu">len</span>(hhi_top15)), hhi_top15, color<span class="op">=</span><span class="st">'#e74c3c'</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(hhi_top15)))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_yticklabels(hhi_top15.index, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'Índice HHI'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Top 15 - Índice de Concentração HHI'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].grid(axis<span class="op">=</span><span class="st">'x'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Percentual SUS vs IDH</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].scatter(macro_analise[<span class="st">'IDH Médio'</span>], macro_analise[<span class="st">'% SUS'</span>], </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>                   alpha<span class="op">=</span><span class="fl">0.6</span>, s<span class="op">=</span>macro_analise[<span class="st">'Leitos Totais'</span>]<span class="op">/</span><span class="dv">100</span>, c<span class="op">=</span><span class="st">'#3498db'</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'IDH Médio'</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].set_ylabel(<span class="st">'</span><span class="sc">% Le</span><span class="st">itos SUS'</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].set_title(<span class="st">'IDH vs % SUS (Tamanho = Leitos Totais)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Leitos por Município vs Área</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].scatter(macro_analise[<span class="st">'Área (km²)'</span>], macro_analise[<span class="st">'Leitos/Município'</span>], </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>                   alpha<span class="op">=</span><span class="fl">0.6</span>, s<span class="op">=</span>macro_analise[<span class="st">'IDH Médio'</span>]<span class="op">*</span><span class="dv">100</span>, c<span class="op">=</span><span class="st">'#27ae60'</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'Área (km²)'</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'Leitos por Município'</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].set_title(<span class="st">'Área vs Leitos/Município (Tamanho = IDH)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/figure-html/cell-5-output-1.png" width="1489" height="989" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="classificação-de-desertos-assistenciais" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Classificação de Desertos Assistenciais</h1>
+<section id="critérios-de-classificação" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="critérios-de-classificação"><span class="header-section-number">3.1</span> Critérios de Classificação</h2>
+<div id="82fc8949" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificar municípios por disponibilidade de leitos</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>municipios_analise <span class="op">=</span> df_merge.groupby([<span class="st">'Macrorregião de Saúde'</span>, <span class="st">'codufmun'</span>]).agg({</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_sus'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cnes'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nu_idh'</span>: <span class="st">'first'</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}).reset_index()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Critérios de classificação</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classificar_municipio(row):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    leitos <span class="op">=</span> row[<span class="st">'qt_exist'</span>]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    idh <span class="op">=</span> row[<span class="st">'nu_idh'</span>]</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> leitos <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"DESERTO ABSOLUTO"</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> leitos <span class="op">&lt;</span> <span class="dv">50</span>:</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"DESERTO CRÍTICO"</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> leitos <span class="op">&lt;</span> <span class="dv">200</span>:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"BAIXA DISPONIBILIDADE"</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> leitos <span class="op">&lt;</span> <span class="dv">500</span>:</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"DISPONIBILIDADE MÉDIA"</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"ALTA DISPONIBILIDADE"</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>municipios_analise[<span class="st">'Classificacao'</span>] <span class="op">=</span> municipios_analise.<span class="bu">apply</span>(classificar_municipio, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumo por macrorregião</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>desertos_macro <span class="op">=</span> municipios_analise.groupby([<span class="st">'Macrorregião de Saúde'</span>, <span class="st">'Classificacao'</span>]).size().unstack(fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>desertos_macro[<span class="st">'Total'</span>] <span class="op">=</span> desertos_macro.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>desertos_macro[<span class="st">'% Desertos'</span>] <span class="op">=</span> (desertos_macro.get(<span class="st">'DESERTO ABSOLUTO'</span>, <span class="dv">0</span>) <span class="op">+</span> </span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>                               desertos_macro.get(<span class="st">'DESERTO CRÍTICO'</span>, <span class="dv">0</span>)) <span class="op">/</span> desertos_macro[<span class="st">'Total'</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>desertos_macro <span class="op">=</span> desertos_macro.sort_values(<span class="st">'% Desertos'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CLASSIFICAÇÃO DE DESERTOS ASSISTENCIAIS POR MACRORREGIÃO"</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(desertos_macro.head(<span class="dv">15</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>CLASSIFICAÇÃO DE DESERTOS ASSISTENCIAIS POR MACRORREGIÃO
+================================================================================
+Classificacao                             ALTA DISPONIBILIDADE  \
+Macrorregião de Saúde                                            
+PI Semi-Arido                                                1   
+PI Cerrados                                                  0   
+PI Meio Norte                                                1   
+RN Macrorregiao Ii                                           1   
+RN Macrorregiao I                                            1   
+RR Macro-Roraima                                             1   
+GO Macrorregiao Centro-Oeste                                 2   
+MT Macrorregiao Leste                                        0   
+MS Centro                                                    1   
+BA Centro - Norte (Nrs - Jacobina)                           0   
+TO Macrorregiao Centro-Sul                                   1   
+AM Central                                                   1   
+BA Oeste (Nbs - Barreiras)                                   1   
+PB Macrorregiao I - Joao Pessoa                              1   
+PB Macrorregiao Iii - Sertao/Alto Sertao                     0   
+
+Classificacao                             BAIXA DISPONIBILIDADE  \
+Macrorregião de Saúde                                             
+PI Semi-Arido                                                 3   
+PI Cerrados                                                   4   
+PI Meio Norte                                                 2   
+RN Macrorregiao Ii                                            6   
+RN Macrorregiao I                                            10   
+RR Macro-Roraima                                              1   
+GO Macrorregiao Centro-Oeste                                  9   
+MT Macrorregiao Leste                                         4   
+MS Centro                                                     4   
+BA Centro - Norte (Nrs - Jacobina)                            6   
+TO Macrorregiao Centro-Sul                                    4   
+AM Central                                                    4   
+BA Oeste (Nbs - Barreiras)                                    5   
+PB Macrorregiao I - Joao Pessoa                               3   
+PB Macrorregiao Iii - Sertao/Alto Sertao                      6   
+
+Classificacao                             DESERTO CRÍTICO  \
+Macrorregião de Saúde                                       
+PI Semi-Arido                                          32   
+PI Cerrados                                            37   
+PI Meio Norte                                          22   
+RN Macrorregiao Ii                                     51   
+RN Macrorregiao I                                      69   
+RR Macro-Roraima                                       10   
+GO Macrorregiao Centro-Oeste                           49   
+MT Macrorregiao Leste                                  17   
+MS Centro                                              21   
+BA Centro - Norte (Nrs - Jacobina)                     29   
+TO Macrorregiao Centro-Sul                             24   
+AM Central                                             20   
+BA Oeste (Nbs - Barreiras)                             27   
+PB Macrorregiao I - Joao Pessoa                        23   
+PB Macrorregiao Iii - Sertao/Alto Sertao               34   
+
+Classificacao                             DISPONIBILIDADE MÉDIA  Total  \
+Macrorregião de Saúde                                                    
+PI Semi-Arido                                                 0     36   
+PI Cerrados                                                   1     42   
+PI Meio Norte                                                 0     25   
+RN Macrorregiao Ii                                            0     58   
+RN Macrorregiao I                                             1     81   
+RR Macro-Roraima                                              0     12   
+GO Macrorregiao Centro-Oeste                                  0     60   
+MT Macrorregiao Leste                                         0     21   
+MS Centro                                                     0     26   
+BA Centro - Norte (Nrs - Jacobina)                            1     36   
+TO Macrorregiao Centro-Sul                                    1     30   
+AM Central                                                    0     25   
+BA Oeste (Nbs - Barreiras)                                    1     34   
+PB Macrorregiao I - Joao Pessoa                               2     29   
+PB Macrorregiao Iii - Sertao/Alto Sertao                      3     43   
+
+Classificacao                             % Desertos  
+Macrorregião de Saúde                                 
+PI Semi-Arido                              88.888889  
+PI Cerrados                                88.095238  
+PI Meio Norte                              88.000000  
+RN Macrorregiao Ii                         87.931034  
+RN Macrorregiao I                          85.185185  
+RR Macro-Roraima                           83.333333  
+GO Macrorregiao Centro-Oeste               81.666667  
+MT Macrorregiao Leste                      80.952381  
+MS Centro                                  80.769231  
+BA Centro - Norte (Nrs - Jacobina)         80.555556  
+TO Macrorregiao Centro-Sul                 80.000000  
+AM Central                                 80.000000  
+BA Oeste (Nbs - Barreiras)                 79.411765  
+PB Macrorregiao I - Joao Pessoa            79.310345  
+PB Macrorregiao Iii - Sertao/Alto Sertao   79.069767  </code></pre>
+</div>
+</div>
+</section>
+<section id="mapa-de-desertos-por-macrorregião" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="mapa-de-desertos-por-macrorregião"><span class="header-section-number">3.2</span> Mapa de Desertos por Macrorregião</h2>
+<div id="9fc79b41" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise detalhada dos desertos</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>desertos_detalhe <span class="op">=</span> municipios_analise[</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    municipios_analise[<span class="st">'Classificacao'</span>].isin([<span class="st">'DESERTO ABSOLUTO'</span>, <span class="st">'DESERTO CRÍTICO'</span>])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>].groupby(<span class="st">'Macrorregião de Saúde'</span>).agg({</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>: <span class="st">'count'</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: [<span class="st">'sum'</span>, <span class="st">'mean'</span>],</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nu_idh'</span>: <span class="st">'mean'</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>}).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>desertos_detalhe.columns <span class="op">=</span> [<span class="st">'Nº Municípios'</span>, <span class="st">'Total Leitos'</span>, <span class="st">'Média Leitos'</span>, <span class="st">'IDH Médio'</span>]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>desertos_detalhe <span class="op">=</span> desertos_detalhe.sort_values(<span class="st">'Nº Municípios'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DETALHAMENTO DOS DESERTOS ASSISTENCIAIS"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(desertos_detalhe.head(<span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>DETALHAMENTO DOS DESERTOS ASSISTENCIAIS
+================================================================================
+                                       Nº Municípios  Total Leitos  \
+Macrorregião de Saúde                                                
+MA Macrorregiao Norte                             76          2002   
+RN Macrorregiao I                                 69          1015   
+RN Macrorregiao Ii                                51           828   
+PR Macrorregional Norte                           51          1116   
+GO Macrorregiao Centro-Oeste                      49           936   
+PE Metropolitana                                  48           981   
+BA Centro-Leste (Nrs - Feira Santana)             48          1026   
+PR Macrorregional Noroeste                        46           912   
+BA Sudoeste (Nbs - Vitoria Conquista)             45          1091   
+MA Macrorregiao Leste                             41          1004   
+
+                                       Média Leitos  IDH Médio  
+Macrorregião de Saúde                                           
+MA Macrorregiao Norte                         26.34       0.57  
+RN Macrorregiao I                             14.71       0.60  
+RN Macrorregiao Ii                            16.24       0.61  
+PR Macrorregional Norte                       21.88       0.70  
+GO Macrorregiao Centro-Oeste                  19.10       0.70  
+PE Metropolitana                              20.44       0.59  
+BA Centro-Leste (Nrs - Feira Santana)         21.38       0.58  
+PR Macrorregional Noroeste                    19.83       0.70  
+BA Sudoeste (Nbs - Vitoria Conquista)         24.24       0.58  
+MA Macrorregiao Leste                         24.49       0.56  </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="análise-de-disponibilidade-de-uti" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Análise de Disponibilidade de UTI</h1>
+<section id="cobertura-de-leitos-intensivos" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="cobertura-de-leitos-intensivos"><span class="header-section-number">4.1</span> Cobertura de Leitos Intensivos</h2>
+<div id="84d73b60" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar leitos UTI</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> identificar_uti(row):</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Classificar leitos como UTI ou não"""</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    descricao <span class="op">=</span> row[<span class="st">'DS_CO_LEITO'</span>].upper() <span class="cf">if</span> pd.notna(row[<span class="st">'DS_CO_LEITO'</span>]) <span class="cf">else</span> <span class="st">''</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    codigo <span class="op">=</span> row[<span class="st">'co_leito'</span>]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Critérios para UTI</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    uti_keywords <span class="op">=</span> [<span class="st">'UTI'</span>, <span class="st">'TERAPIA INTENSIVA'</span>, <span class="st">'UNIDADE DE TERAPIA'</span>]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    uti_codigos <span class="op">=</span> [<span class="dv">74</span>,<span class="dv">75</span>,<span class="dv">76</span>,<span class="dv">77</span>,<span class="dv">78</span>,<span class="dv">79</span>,<span class="dv">80</span>,<span class="dv">81</span>,<span class="dv">82</span>,<span class="dv">83</span>,<span class="dv">85</span>,<span class="dv">86</span>]  <span class="co"># Códigos CNES UTI</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">any</span>(keyword <span class="kw">in</span> descricao <span class="cf">for</span> keyword <span class="kw">in</span> uti_keywords) <span class="kw">or</span> codigo <span class="kw">in</span> uti_codigos:</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'UTI'</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'NÃO_UTI'</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>df_merge[<span class="st">'Tipo_Leito'</span>] <span class="op">=</span> df_merge.<span class="bu">apply</span>(identificar_uti, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de UTI por macrorregião</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>uti_macro <span class="op">=</span> df_merge.groupby([<span class="st">'Macrorregião de Saúde'</span>, <span class="st">'Tipo_Leito'</span>]).agg({</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>: <span class="st">'nunique'</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>}).unstack(fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar estrutura das colunas</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>uti_macro.columns <span class="op">=</span> [<span class="ss">f'</span><span class="sc">{</span>col[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>col[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">'</span> <span class="cf">if</span> col[<span class="dv">1</span>] <span class="cf">else</span> col[<span class="dv">0</span>] <span class="cf">for</span> col <span class="kw">in</span> uti_macro.columns]</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Renomear colunas</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>col_mapping <span class="op">=</span> {}</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> uti_macro.columns:</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'qt_exist_NÃO_UTI'</span> <span class="kw">in</span> col:</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>        col_mapping[col] <span class="op">=</span> <span class="st">'Leitos Não UTI'</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">'qt_exist_UTI'</span> <span class="kw">in</span> col:</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>        col_mapping[col] <span class="op">=</span> <span class="st">'Leitos UTI'</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">'codufmun_NÃO_UTI'</span> <span class="kw">in</span> col:</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        col_mapping[col] <span class="op">=</span> <span class="st">'Municípios Não UTI'</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">'codufmun_UTI'</span> <span class="kw">in</span> col:</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>        col_mapping[col] <span class="op">=</span> <span class="st">'Municípios UTI'</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>uti_macro <span class="op">=</span> uti_macro.rename(columns<span class="op">=</span>col_mapping)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>uti_macro[<span class="st">'Total Leitos'</span>] <span class="op">=</span> uti_macro.get(<span class="st">'Leitos Não UTI'</span>, <span class="dv">0</span>) <span class="op">+</span> uti_macro.get(<span class="st">'Leitos UTI'</span>, <span class="dv">0</span>)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>uti_macro[<span class="st">'% UTI'</span>] <span class="op">=</span> (uti_macro[<span class="st">'Leitos UTI'</span>] <span class="op">/</span> uti_macro[<span class="st">'Total Leitos'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>uti_macro[<span class="st">'Municípios c/ UTI'</span>] <span class="op">=</span> (df_merge[df_merge[<span class="st">'Tipo_Leito'</span>] <span class="op">==</span> <span class="st">'UTI'</span>]</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>                                  .groupby(<span class="st">'Macrorregião de Saúde'</span>)[<span class="st">'codufmun'</span>].nunique())</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>uti_macro[<span class="st">'Total Municípios'</span>] <span class="op">=</span> df_merge.groupby(<span class="st">'Macrorregião de Saúde'</span>)[<span class="st">'codufmun'</span>].nunique()</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>uti_macro[<span class="st">'% Municípios c/ UTI'</span>] <span class="op">=</span> (uti_macro[<span class="st">'Municípios c/ UTI'</span>] <span class="op">/</span> </span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>                                    uti_macro[<span class="st">'Total Municípios'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>uti_macro <span class="op">=</span> uti_macro.sort_values(<span class="st">'% UTI'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ANÁLISE DE DISPONIBILIDADE DE UTI POR MACRORREGIÃO"</span>)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(uti_macro.head(<span class="dv">15</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>ANÁLISE DE DISPONIBILIDADE DE UTI POR MACRORREGIÃO
+================================================================================
+                                 Leitos Não UTI  Leitos UTI  \
+Macrorregião de Saúde                                         
+MT Macrorregiao Centro-Norte               2558         799   
+SP Rras6                                  30195        7928   
+DF Distrito Federal                        8554        2234   
+RJ Macrorregiao I                         35598        9313   
+SP Rras1                                   5312        1380   
+SP Rras7                                   3484         902   
+BA Leste - (Nrs - Salvador)               10973        2801   
+MG Vale Do Aco                             1229         283   
+MG Centro                                 14219        3242   
+ES Metropolitana                           5587        1256   
+RO Macrorregiao I - Porto Velho            2895         598   
+SP Rras16                                  2088         423   
+SP Rras5                                   2288         454   
+MG Triangulo Do Norte                      2848         566   
+MT Macrorregiao Norte                      1643         326   
+
+                                 Municípios Não UTI  Municípios UTI  \
+Macrorregião de Saúde                                                 
+MT Macrorregiao Centro-Norte                      7               2   
+SP Rras6                                          1               1   
+DF Distrito Federal                               1               1   
+RJ Macrorregiao I                                87              54   
+SP Rras1                                          6               6   
+SP Rras7                                         13               8   
+BA Leste - (Nrs - Salvador)                      42               9   
+MG Vale Do Aco                                    9               4   
+MG Centro                                        50              19   
+ES Metropolitana                                 20               8   
+RO Macrorregiao I - Porto Velho                  18               6   
+SP Rras16                                        14               7   
+SP Rras5                                          6               6   
+MG Triangulo Do Norte                            20               7   
+MT Macrorregiao Norte                            24               7   
+
+                                 Total Leitos  % UTI  Municípios c/ UTI  \
+Macrorregião de Saúde                                                     
+MT Macrorregiao Centro-Norte             3357   23.8                  2   
+SP Rras6                                38123   20.8                  1   
+DF Distrito Federal                     10788   20.7                  1   
+RJ Macrorregiao I                       44911   20.7                 54   
+SP Rras1                                 6692   20.6                  6   
+SP Rras7                                 4386   20.6                  8   
+BA Leste - (Nrs - Salvador)             13774   20.3                  9   
+MG Vale Do Aco                           1512   18.7                  4   
+MG Centro                               17461   18.6                 19   
+ES Metropolitana                         6843   18.4                  8   
+RO Macrorregiao I - Porto Velho          3493   17.1                  6   
+SP Rras16                                2511   16.8                  7   
+SP Rras5                                 2742   16.6                  6   
+MG Triangulo Do Norte                    3414   16.6                  7   
+MT Macrorregiao Norte                    1969   16.6                  7   
+
+                                 Total Municípios  % Municípios c/ UTI  
+Macrorregião de Saúde                                                   
+MT Macrorregiao Centro-Norte                    7                 28.6  
+SP Rras6                                        1                100.0  
+DF Distrito Federal                             1                100.0  
+RJ Macrorregiao I                              87                 62.1  
+SP Rras1                                        6                100.0  
+SP Rras7                                       13                 61.5  
+BA Leste - (Nrs - Salvador)                    42                 21.4  
+MG Vale Do Aco                                  9                 44.4  
+MG Centro                                      50                 38.0  
+ES Metropolitana                               20                 40.0  
+RO Macrorregiao I - Porto Velho                18                 33.3  
+SP Rras16                                      14                 50.0  
+SP Rras5                                        6                100.0  
+MG Triangulo Do Norte                          20                 35.0  
+MT Macrorregiao Norte                          24                 29.2  </code></pre>
+</div>
+</div>
+</section>
+<section id="visualização-da-cobertura-uti" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="visualização-da-cobertura-uti"><span class="header-section-number">4.2</span> Visualização da Cobertura UTI</h2>
+<div id="7bc55ea2" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Percentual de Leitos UTI</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>uti_top15 <span class="op">=</span> uti_macro.head(<span class="dv">15</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>bars1 <span class="op">=</span> axes[<span class="dv">0</span>].barh(<span class="bu">range</span>(<span class="bu">len</span>(uti_top15)), uti_top15[<span class="st">'% UTI'</span>], color<span class="op">=</span><span class="st">'#9b59b6'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(uti_top15)))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_yticklabels(uti_top15.index, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_xlabel(<span class="st">'</span><span class="sc">% Le</span><span class="st">itos UTI'</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">'Top 15 - </span><span class="sc">% Le</span><span class="st">itos UTI'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].grid(axis<span class="op">=</span><span class="st">'x'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Percentual de Municípios com UTI</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>bars2 <span class="op">=</span> axes[<span class="dv">1</span>].barh(<span class="bu">range</span>(<span class="bu">len</span>(uti_top15)), uti_top15[<span class="st">'% Municípios c/ UTI'</span>], color<span class="op">=</span><span class="st">'#e67e22'</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(uti_top15)))</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_yticklabels(uti_top15.index, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">'% Municípios com UTI'</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">'Top 15 - % Municípios com UTI'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].grid(axis<span class="op">=</span><span class="st">'x'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/figure-html/cell-9-output-1.png" width="1490" height="588" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="análise-de-equidade-e-desigualdade" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Análise de Equidade e Desigualdade</h1>
+<section id="análise-por-região-geográfica" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="análise-por-região-geográfica"><span class="header-section-number">5.1</span> Análise por Região Geográfica</h2>
+<div id="74fd5aba" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrupar por grande região geográfica</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>regiao_geo <span class="op">=</span> df_merge.groupby(<span class="st">'no_regiao'</span>).agg({</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'cnes'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'codufmun'</span>: <span class="st">'nunique'</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_exist'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'qt_sus'</span>: <span class="st">'sum'</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nu_idh'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nu_area'</span>: <span class="st">'sum'</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>regiao_geo.columns <span class="op">=</span> [<span class="st">'Estabelecimentos'</span>, <span class="st">'Municípios'</span>, <span class="st">'Leitos Totais'</span>, <span class="st">'Leitos SUS'</span>, </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'IDH Médio'</span>, <span class="st">'Área (km²)'</span>]</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>regiao_geo[<span class="st">'% SUS'</span>] <span class="op">=</span> (regiao_geo[<span class="st">'Leitos SUS'</span>] <span class="op">/</span> regiao_geo[<span class="st">'Leitos Totais'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>regiao_geo[<span class="st">'Leitos/Município'</span>] <span class="op">=</span> (regiao_geo[<span class="st">'Leitos Totais'</span>] <span class="op">/</span> regiao_geo[<span class="st">'Municípios'</span>]).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>regiao_geo[<span class="st">'Leitos/100km²'</span>] <span class="op">=</span> (regiao_geo[<span class="st">'Leitos Totais'</span>] <span class="op">/</span> (regiao_geo[<span class="st">'Área (km²)'</span>] <span class="op">/</span> <span class="dv">100</span>)).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>regiao_geo <span class="op">=</span> regiao_geo.sort_values(<span class="st">'Leitos Totais'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ANÁLISE POR REGIÃO GEOGRÁFICA"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(regiao_geo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>ANÁLISE POR REGIÃO GEOGRÁFICA
+============================================================
+                     Estabelecimentos  Municípios  Leitos Totais  Leitos SUS  \
+no_regiao                                                                      
+Regiao Sudeste                   3132         914         221530      128125   
+Regiao Nordeste                  2955        1355         142405      108138   
+Regiao Sul                       1217         634          83637       57834   
+Regiao Centro-Oeste               973         361          47677       30102   
+Regiao norte                      795         333          39884       30980   
+
+                     IDH Médio    Área (km²)  % SUS  Leitos/Município  \
+no_regiao                                                               
+Regiao Sudeste            0.76  1.559629e+10   57.8             242.4   
+Regiao Nordeste           0.67  1.414798e+10   75.9             105.1   
+Regiao Sul                0.76  6.354255e+09   69.1             131.9   
+Regiao Centro-Oeste       0.74  2.290175e+10   63.1             132.1   
+Regiao norte              0.67  5.029953e+10   77.7             119.8   
+
+                     Leitos/100km²  
+no_regiao                           
+Regiao Sudeste                 0.0  
+Regiao Nordeste                0.0  
+Regiao Sul                     0.0  
+Regiao Centro-Oeste            0.0  
+Regiao norte                   0.0  </code></pre>
+</div>
+</div>
+</section>
+<section id="índice-de-desigualdade" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="índice-de-desigualdade"><span class="header-section-number">5.2</span> Índice de Desigualdade</h2>
+<div id="d4bad29c" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular coeficiente de Gini para distribuição de leitos</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_gini(values):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calcular coeficiente de Gini"""</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> <span class="bu">sorted</span>(values)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(values)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    cumulative <span class="op">=</span> np.cumsum(values)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    gini <span class="op">=</span> (n <span class="op">+</span> <span class="dv">1</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> np.<span class="bu">sum</span>(cumulative) <span class="op">/</span> cumulative[<span class="op">-</span><span class="dv">1</span>]) <span class="op">/</span> n</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gini</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Gini por macrorregião</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>gini_macro <span class="op">=</span> df_merge.groupby(<span class="st">'Macrorregião de Saúde'</span>).<span class="bu">apply</span>(</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: calcular_gini(x[<span class="st">'qt_exist'</span>].values)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>).<span class="bu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>gini_macro <span class="op">=</span> gini_macro.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"COEFICIENTE DE GINI - DESIGUALDADE NA DISTRIBUIÇÃO DE LEITOS"</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(0 = perfeita igualdade, 1 = máxima desigualdade)"</span>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> macro, gini <span class="kw">in</span> gini_macro.head(<span class="dv">15</span>).items():</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>macro<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>gini<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>COEFICIENTE DE GINI - DESIGUALDADE NA DISTRIBUIÇÃO DE LEITOS
+======================================================================
+(0 = perfeita igualdade, 1 = máxima desigualdade)
+
+RR Macro-Roraima: 0.681
+RS Metropolitana: 0.671
+MG Vale Do Aco: 0.659
+SP Rras17: 0.657
+SC Grande Florianopolis: 0.655
+SP Rras9: 0.650
+SP Rras12: 0.636
+PR Macrorregional Leste: 0.634
+SP Rras15: 0.630
+MG Centro: 0.630
+CE Fortaleza: 0.629
+PR Macrorregional Norte: 0.627
+GO Macrorregiao Centro-Oeste: 0.625
+SP Rras10: 0.619
+RO Macrorregiao I - Porto Velho: 0.615</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="indicadores-compostos-e-ranking" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Indicadores Compostos e Ranking</h1>
+<section id="índice-de-desempenho-assistencial" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="índice-de-desempenho-assistencial"><span class="header-section-number">6.1</span> Índice de Desempenho Assistencial</h2>
+<div id="11afc29b" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar índice composto</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> criar_indice_desempenho(df):</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Índice composto de desempenho assistencial"""</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Normalizar indicadores (0-1)</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    leitos_capita_norm <span class="op">=</span> (df[<span class="st">'Leitos/Município'</span>] <span class="op">-</span> df[<span class="st">'Leitos/Município'</span>].<span class="bu">min</span>()) <span class="op">/</span> <span class="op">\</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                        (df[<span class="st">'Leitos/Município'</span>].<span class="bu">max</span>() <span class="op">-</span> df[<span class="st">'Leitos/Município'</span>].<span class="bu">min</span>())</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    sus_norm <span class="op">=</span> df[<span class="st">'% SUS'</span>] <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    idh_norm <span class="op">=</span> (df[<span class="st">'IDH Médio'</span>] <span class="op">-</span> df[<span class="st">'IDH Médio'</span>].<span class="bu">min</span>()) <span class="op">/</span> <span class="op">\</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>              (df[<span class="st">'IDH Médio'</span>].<span class="bu">max</span>() <span class="op">-</span> df[<span class="st">'IDH Médio'</span>].<span class="bu">min</span>())</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice de concentração (invertido - menor HHI = melhor)</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    hhi_values <span class="op">=</span> df_merge.groupby(<span class="st">'Macrorregião de Saúde'</span>).<span class="bu">apply</span>(calcular_hhi)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    hhi_norm <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (hhi_values <span class="op">-</span> hhi_values.<span class="bu">min</span>()) <span class="op">/</span> (hhi_values.<span class="bu">max</span>() <span class="op">-</span> hhi_values.<span class="bu">min</span>())</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Índice composto (pesos diferentes)</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    indice <span class="op">=</span> (leitos_capita_norm <span class="op">*</span> <span class="fl">0.3</span> <span class="op">+</span> </span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>              sus_norm <span class="op">*</span> <span class="fl">0.3</span> <span class="op">+</span> </span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>              idh_norm <span class="op">*</span> <span class="fl">0.2</span> <span class="op">+</span> </span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>              hhi_norm <span class="op">*</span> <span class="fl">0.2</span>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> indice.<span class="bu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular índice de desempenho</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>macro_analise[<span class="st">'Índice Desempenho'</span>] <span class="op">=</span> criar_indice_desempenho(macro_analise)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>macro_analise[<span class="st">'Ranking'</span>] <span class="op">=</span> macro_analise[<span class="st">'Índice Desempenho'</span>].rank(ascending<span class="op">=</span><span class="va">False</span>, method<span class="op">=</span><span class="st">'min'</span>)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Apresentar ranking</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>ranking_final <span class="op">=</span> macro_analise[[<span class="st">'Índice Desempenho'</span>, <span class="st">'Ranking'</span>, <span class="st">'Leitos Totais'</span>, <span class="st">'Leitos/Município'</span>, </span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>                              <span class="st">'% SUS'</span>, <span class="st">'IDH Médio'</span>]].sort_values(<span class="st">'Ranking'</span>)</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RANKING DE DESEMPENHO ASSISTENCIAL POR MACRORREGIÃO"</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(Índice composto: disponibilidade, equidade, desenvolvimento, concentração)"</span>)</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ranking_final.head(<span class="dv">20</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>RANKING DE DESEMPENHO ASSISTENCIAL POR MACRORREGIÃO
+================================================================================
+(Índice composto: disponibilidade, equidade, desenvolvimento, concentração)
+
+                              Índice Desempenho  Ranking  Leitos Totais  \
+Macrorregião de Saúde                                                     
+SP Rras6                                  0.820      1.0          38123   
+DF Distrito Federal                       0.621      2.0          10788   
+SC Grande Florianopolis                   0.573      3.0           3856   
+SC Planalto Norte E Nordeste              0.564      4.0           2830   
+SC Vale Do Itajai                         0.561      5.0           2689   
+SC Grande Oeste                           0.560      6.0           2181   
+SC Sul                                    0.553      7.0           2558   
+SP Rras13                                 0.553      7.0           6866   
+PR Macrorregional Leste                   0.552      9.0          13855   
+SC Meio Oeste                             0.549     10.0           2095   
+MG Triangulo Do Norte                     0.545     11.0           3414   
+PR Macrorregiao Oeste                     0.545     11.0           5361   
+SP Rras5                                  0.544     13.0           2742   
+SP Rras10                                 0.542     14.0           3463   
+RS Metropolitana                          0.542     14.0          14021   
+PR Macrorregional Noroeste                0.541     16.0           5243   
+SP Rras17                                 0.540     17.0           5811   
+PR Macrorregional Norte                   0.539     18.0           6900   
+SP Rras7                                  0.538     19.0           4386   
+RS Norte                                  0.538     19.0           4526   
+
+                              Leitos/Município  % SUS  IDH Médio  
+Macrorregião de Saúde                                             
+SP Rras6                               38123.0   47.8       0.80  
+DF Distrito Federal                    10788.0   51.7       0.82  
+SC Grande Florianopolis                  275.4   65.6       0.83  
+SC Planalto Norte E Nordeste             176.9   71.1       0.79  
+SC Vale Do Itajai                        112.0   75.3       0.78  
+SC Grande Oeste                           66.1   75.7       0.76  
+SC Sul                                   106.6   74.0       0.77  
+SP Rras13                                176.1   66.6       0.78  
+PR Macrorregional Leste                  230.9   67.1       0.77  
+SC Meio Oeste                             77.6   73.2       0.76  
+MG Triangulo Do Norte                    170.7   69.9       0.76  
+PR Macrorregiao Oeste                    105.1   69.4       0.75  
+SP Rras5                                 457.0   69.3       0.77  
+SP Rras10                                138.5   70.5       0.78  
+RS Metropolitana                         311.6   67.4       0.76  
+PR Macrorregional Noroeste                88.9   67.1       0.76  
+SP Rras17                                242.1   61.5       0.79  
+PR Macrorregional Norte                   95.8   75.8       0.73  
+SP Rras7                                 337.4   59.2       0.79  
+RS Norte                                  87.0   68.4       0.75  </code></pre>
+</div>
+</div>
+</section>
+<section id="visualização-do-ranking" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="visualização-do-ranking"><span class="header-section-number">6.2</span> Visualização do Ranking</h2>
+<div id="95a666e5" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">12</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Top 15 - Índice de Desempenho</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>top15_desempenho <span class="op">=</span> ranking_final.head(<span class="dv">15</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>bars1 <span class="op">=</span> axes[<span class="dv">0</span>,<span class="dv">0</span>].barh(<span class="bu">range</span>(<span class="bu">len</span>(top15_desempenho)), top15_desempenho[<span class="st">'Índice Desempenho'</span>], </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                       color<span class="op">=</span><span class="st">'#16a085'</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(top15_desempenho)))</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_yticklabels(top15_desempenho.index, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_xlabel(<span class="st">'Índice de Desempenho'</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].set_title(<span class="st">'Top 15 - Índice de Desempenho Assistencial'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">0</span>].grid(axis<span class="op">=</span><span class="st">'x'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Dispersão: Desempenho vs Leitos Totais</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].scatter(macro_analise[<span class="st">'Leitos Totais'</span>], macro_analise[<span class="st">'Índice Desempenho'</span>], </span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>                   alpha<span class="op">=</span><span class="fl">0.6</span>, s<span class="op">=</span><span class="dv">60</span>, c<span class="op">=</span>macro_analise[<span class="st">'IDH Médio'</span>], cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_xlabel(<span class="st">'Leitos Totais'</span>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_ylabel(<span class="st">'Índice de Desempenho'</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].set_title(<span class="st">'Desempenho vs Volume (Cor = IDH)'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>,<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Box Plot do Índice por Região Geográfica</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>regioes_box <span class="op">=</span> []</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> regiao <span class="kw">in</span> macro_analise.index:</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> regiao <span class="kw">in</span> df_merge[<span class="st">'Macrorregião de Saúde'</span>].values:</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>        regiao_geo <span class="op">=</span> df_merge[df_merge[<span class="st">'Macrorregião de Saúde'</span>] <span class="op">==</span> regiao][<span class="st">'no_regiao'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>        regioes_box.append((regiao, regiao_geo, macro_analise.loc[regiao, <span class="st">'Índice Desempenho'</span>]))</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>df_box <span class="op">=</span> pd.DataFrame(regioes_box, columns<span class="op">=</span>[<span class="st">'Macrorregião'</span>, <span class="st">'Região'</span>, <span class="st">'Índice'</span>])</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df_box, x<span class="op">=</span><span class="st">'Região'</span>, y<span class="op">=</span><span class="st">'Índice'</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>,<span class="dv">0</span>])</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].set_title(<span class="st">'Distribuição do Índice por Região Geográfica'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">0</span>].tick_params(axis<span class="op">=</span><span class="st">'x'</span>, rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Heatmap de Correlações</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>corr_data <span class="op">=</span> macro_analise[[<span class="st">'Leitos Totais'</span>, <span class="st">'Leitos/Município'</span>, <span class="st">'% SUS'</span>, <span class="st">'IDH Médio'</span>, </span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'Índice Desempenho'</span>]].corr()</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr_data, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, center<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>,<span class="dv">1</span>], </span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>           fmt<span class="op">=</span><span class="st">'.2f'</span>, cbar_kws<span class="op">=</span>{<span class="st">'shrink'</span>: <span class="fl">0.8</span>})</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>,<span class="dv">1</span>].set_title(<span class="st">'Matriz de Correlação'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO_files/figure-html/cell-13-output-1.png" width="1589" height="1189" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="recomendações-e-conclusões" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Recomendações e Conclusões</h1>
+<section id="macrorregiões-críticas" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="macrorregiões-críticas"><span class="header-section-number">7.1</span> Macrorregiões Críticas</h2>
+<div id="bde36de6" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar macrorregiões críticas</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>criticalas <span class="op">=</span> ranking_final.tail(<span class="dv">10</span>)  <span class="co"># Piores 10 no ranking</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MACRORREGIÕES COM MAIORES DESAFIOS ASSISTENCIAIS"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"(Piores posições no ranking de desempenho)"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, row <span class="kw">in</span> criticalas.iterrows():</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"📍 </span><span class="sc">{</span>idx<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Ranking: </span><span class="sc">{</span><span class="bu">int</span>(row[<span class="st">'Ranking'</span>])<span class="sc">}</span><span class="ss">º | Índice: </span><span class="sc">{</span>row[<span class="st">'Índice Desempenho'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Leitos: </span><span class="sc">{</span><span class="bu">int</span>(row[<span class="st">'Leitos Totais'</span>])<span class="sc">:,}</span><span class="ss"> | Leitos/Mun: </span><span class="sc">{</span>row[<span class="st">'Leitos/Município'</span>]<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   % SUS: </span><span class="sc">{</span>row[<span class="st">'% SUS'</span>]<span class="sc">:.1f}</span><span class="ss">% | IDH: </span><span class="sc">{</span>row[<span class="st">'IDH Médio'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>MACRORREGIÕES COM MAIORES DESAFIOS ASSISTENCIAIS
+======================================================================
+(Piores posições no ranking de desempenho)
+
+📍 AL 2ª Macrorregiao De Saude
+   Ranking: 111º | Índice: 0.465
+   Leitos: 2,036 | Leitos/Mun: 101.8
+   % SUS: 84.4% | IDH: 0.620
+
+📍 PE Agreste
+   Ranking: 112º | Índice: 0.462
+   Leitos: 4,137 | Leitos/Mun: 79.6
+   % SUS: 74.6% | IDH: 0.620
+
+📍 MG Noroeste
+   Ranking: 113º | Índice: 0.459
+   Leitos: 1,777 | Leitos/Mun: 80.8
+   % SUS: 56.2% | IDH: 0.730
+
+📍 BA Norte - (Nrs - Juazeiro)
+   Ranking: 113º | Índice: 0.459
+   Leitos: 2,118 | Leitos/Mun: 84.7
+   % SUS: 77.9% | IDH: 0.620
+
+📍 CE Litoral Leste/Jaguaribe
+   Ranking: 115º | Índice: 0.458
+   Leitos: 1,206 | Leitos/Mun: 63.5
+   % SUS: 76.1% | IDH: 0.640
+
+📍 AM Oeste
+   Ranking: 116º | Índice: 0.438
+   Leitos: 921 | Leitos/Mun: 43.9
+   % SUS: 90.0% | IDH: 0.550
+
+📍 SP Rras4
+   Ranking: 116º | Índice: 0.438
+   Leitos: 2,100 | Leitos/Mun: 262.5
+   % SUS: 44.0% | IDH: 0.760
+
+📍 MG Vale Do Aco
+   Ranking: 118º | Índice: 0.436
+   Leitos: 1,512 | Leitos/Mun: 168.0
+   % SUS: 66.9% | IDH: 0.740
+
+📍 SP Rras3
+   Ranking: 119º | Índice: 0.414
+   Leitos: 1,029 | Leitos/Mun: 205.8
+   % SUS: 75.1% | IDH: 0.740
+
+📍 MS Pantanal
+   Ranking: 120º | Índice: 0.330
+   Leitos: 215 | Leitos/Mun: 71.7
+   % SUS: 76.7% | IDH: 0.690
+</code></pre>
+</div>
+</div>
+</section>
+<section id="oportunidades-de-melhoria" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="oportunidades-de-melhoria"><span class="header-section-number">7.2</span> Oportunidades de Melhoria</h2>
+<div id="8d1cff9a" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identificar oportunidades</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>oportunidades <span class="op">=</span> []</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Alta concentração, baixo desempenho</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>alta_concentracao <span class="op">=</span> hhi_macro[hhi_macro <span class="op">&gt;</span> <span class="fl">0.2</span>].index</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> macro <span class="kw">in</span> alta_concentracao:</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> macro <span class="kw">in</span> ranking_final.index <span class="kw">and</span> ranking_final.loc[macro, <span class="st">'Ranking'</span>] <span class="op">&gt;</span> <span class="dv">50</span>:</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        oportunidades.append(<span class="ss">f"🔍 </span><span class="sc">{</span>macro<span class="sc">}</span><span class="ss">: Reduzir concentração (HHI=</span><span class="sc">{</span>hhi_macro[macro]<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Baixa cobertura SUS</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>baixo_sus <span class="op">=</span> macro_analise[macro_analise[<span class="st">'% SUS'</span>] <span class="op">&lt;</span> <span class="dv">50</span>].index</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> macro <span class="kw">in</span> baixo_sus:</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> macro <span class="kw">in</span> ranking_final.index:</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        oportunidades.append(<span class="ss">f"🏥 </span><span class="sc">{</span>macro<span class="sc">}</span><span class="ss">: Aumentar cobertura SUS (</span><span class="sc">{</span>macro_analise<span class="sc">.</span>loc[macro, <span class="st">'% SUS'</span>]<span class="sc">:.1f}</span><span class="ss">%)"</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Baixa densidade de leitos</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>baixa_densidade <span class="op">=</span> macro_analise[macro_analise[<span class="st">'Leitos/Município'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].index</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> macro <span class="kw">in</span> baixa_densidade:</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> macro <span class="kw">in</span> ranking_final.index:</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        oportunidades.append(<span class="ss">f"📊 </span><span class="sc">{</span>macro<span class="sc">}</span><span class="ss">: Aumentar densidade (</span><span class="sc">{</span>macro_analise<span class="sc">.</span>loc[macro, <span class="st">'Leitos/Município'</span>]<span class="sc">:.1f}</span><span class="ss">/mun)"</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"OPORTUNIDADES DE MELHORIA PRIORITÁRIAS"</span>)</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> oportunidade <span class="kw">in</span> oportunidades[:<span class="dv">15</span>]:</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(oportunidade)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>OPORTUNIDADES DE MELHORIA PRIORITÁRIAS
+============================================================
+🏥 SP Rras6: Aumentar cobertura SUS (47.8%)
+🏥 SP Rras1: Aumentar cobertura SUS (44.0%)
+🏥 SP Rras16: Aumentar cobertura SUS (48.9%)
+🏥 SP Rras4: Aumentar cobertura SUS (44.0%)
+📊 MA Macrorregiao Norte: Aumentar densidade (99.8/mun)
+📊 PR Macrorregional Norte: Aumentar densidade (95.8/mun)
+📊 RN Macrorregiao I: Aumentar densidade (77.3/mun)
+📊 PR Macrorregional Noroeste: Aumentar densidade (88.9/mun)
+📊 BA Centro-Leste (Nrs - Feira Santana): Aumentar densidade (77.3/mun)
+📊 RS Norte: Aumentar densidade (87.0/mun)
+📊 PE Agreste: Aumentar densidade (79.6/mun)
+📊 GO Macrorregiao Centro Sudeste: Aumentar densidade (90.1/mun)
+📊 BA Sudoeste (Nbs - Vitoria Conquista): Aumentar densidade (62.8/mun)
+📊 BA Sul (Nbs - Ilheus): Aumentar densidade (94.1/mun)
+📊 CE Cariri: Aumentar densidade (88.8/mun)</code></pre>
+</div>
+</div>
+</section>
+<section id="exportação-de-resultados" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="exportação-de-resultados"><span class="header-section-number">7.3</span> Exportação de Resultados</h2>
+<div id="89bb6d27" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Ver código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar análise completa</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>analise_completa <span class="op">=</span> macro_analise.copy()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>analise_completa[<span class="st">'HHI'</span>] <span class="op">=</span> hhi_macro</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>analise_completa[<span class="st">'Gini'</span>] <span class="op">=</span> gini_macro</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>analise_completa[<span class="st">'% Desertos'</span>] <span class="op">=</span> desertos_macro[<span class="st">'% Desertos'</span>]</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>analise_completa[<span class="st">'% UTI'</span>] <span class="op">=</span> uti_macro[<span class="st">'% UTI'</span>]</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>analise_completa[<span class="st">'% Municípios c/ UTI'</span>] <span class="op">=</span> uti_macro[<span class="st">'% Municípios c/ UTI'</span>]</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar arquivo final</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>analise_completa.to_csv(<span class="st">'analise_macrorregioes_concentracao_desertos.csv'</span>, </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                        sep<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>, index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvar municípios críticos</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>municipios_criticos <span class="op">=</span> municipios_analise[</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    municipios_analise[<span class="st">'Classificacao'</span>].isin([<span class="st">'DESERTO ABSOLUTO'</span>, <span class="st">'DESERTO CRÍTICO'</span>])</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>municipios_criticos.to_csv(<span class="st">'municipios_desertos_assistenciais.csv'</span>, </span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>                           sep<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ARQUIVOS EXPORTADOS:"</span>)</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ analise_macrorregioes_concentracao_desertos.csv"</span>)</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ municipios_desertos_assistenciais.csv"</span>)</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"📊 Total de macrorregiões analisadas: </span><span class="sc">{</span><span class="bu">len</span>(analise_completa)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"🏜️  Municípios em situação crítica: </span><span class="sc">{</span><span class="bu">len</span>(municipios_criticos)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>ARQUIVOS EXPORTADOS:
+✅ analise_macrorregioes_concentracao_desertos.csv
+✅ municipios_desertos_assistenciais.csv
+📊 Total de macrorregiões analisadas: 120
+🏜️  Municípios em situação crítica: 2256</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="conclusões" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Conclusões</h1>
+<section id="principais-achados" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="principais-achados"><span class="header-section-number">8.1</span> Principais Achados</h2>
+<ol type="1">
+<li><p><strong>Concentração Significativa</strong>: Macrorregiões como RJ Macrorregião I e SP Rras6 apresentam alta concentração de leitos (HHI &gt; 0.2)</p></li>
+<li><p><strong>Desertos Assistenciais</strong>: Identificados X municípios sem leitos hospitalares, concentrados principalmente nas regiões Norte e Nordeste</p></li>
+<li><p><strong>Desigualdade Regional</strong>: Profundas disparidades na relação leitos/habitante entre macrorregiões</p></li>
+<li><p><strong>Cobertura UTI</strong>: Apenas X% dos municípios possuem leitos de terapia intensiva</p></li>
+</ol>
+</section>
+<section id="recomendações-estratégicas" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="recomendações-estratégicas"><span class="header-section-number">8.2</span> Recomendações Estratégicas</h2>
+<ol type="1">
+<li><strong>Políticas de Redistribuição</strong>: Incentivar expansão em macrorregiões críticas</li>
+<li><strong>Investimento em UTI</strong>: Priorizar aumento da cobertura de leitos intensivos</li>
+<li><strong>Integração Regional</strong>: Desenvolver redes de referência intermacrorregional</li>
+<li><strong>Monitoramento Contínuo</strong>: Implementar dashboard para acompanhamento dos indicadores</li>
+</ol>
+<hr>
+<p><strong>Elaborado por:</strong> Cieges - Brasil Estadial<br>
+<strong>Data:</strong> 28/01/2026<br>
+<strong>Fonte:</strong> CNES (202506) + IBGE DTB<br>
+<strong>Análise:</strong> 120 macrorregiões de saúde</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
