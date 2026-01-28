@@ -1,6 +1,4 @@
 {
   "version": 2,
-  "name": "cnes-360-portal",
-  "cleanUrls": true,
-  "trailingSlash": false
+  "name": "cnes-360-portal"
 }
