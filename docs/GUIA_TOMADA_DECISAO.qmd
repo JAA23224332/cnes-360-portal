@@ -1,0 +1,409 @@
+---
+title: "Guia de Uso dos Dados para Tomada de Decisão"
+subtitle: "Como Utilizar as Análises de Leitos do CNES na Gestão em Saúde"
+author: "Cieges - Brasil Estadual"
+date: "2026-01-21"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    documentclass: article
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \usepackage{geometry}
+        \geometry{a4paper, margin=2cm, left=1.5cm, right=1.5cm, top=2cm, bottom=2cm}
+        \usepackage{pdflscape}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{multirow}
+        \usepackage{wrapfig}
+        \usepackage{float}
+        \floatplacement{figure}{H}
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{6pt}
+        \usepackage{adjustbox}
+        \usepackage{tabularx}
+        \usepackage{booktabs}
+    colorlinks: true
+---
+
+# Introdução
+
+## Objetivo deste Guia
+
+Este documento orienta **gestores de saúde** sobre como utilizar os dados e análises do projeto CNES 360 v2 para fundamentar decisões estratégicas. Os dados aqui apresentados permitem:
+
+- Identificar **lacunas na oferta** de leitos hospitalares
+- Priorizar **investimentos** em infraestrutura de saúde
+- Avaliar **riscos de desassistência** por concentração de mercado
+- Planejar **redes de referência** regionais
+- Monitorar a **evolução da capacidade instalada**
+
+## Público-Alvo
+
+| Perfil | Aplicação Principal |
+|--------|---------------------|
+| **Secretários de Saúde** | Planejamento estratégico e alocação de recursos |
+| **Gestores Regionais** | Organização de redes de referência |
+| **Analistas de Dados** | Monitoramento e geração de indicadores |
+| **Reguladores** | Avaliação de contratos e credenciamentos |
+| **Pesquisadores** | Estudos epidemiológicos e de acesso |
+
+---
+
+# Dados Disponíveis
+
+## Visão Geral dos Datasets
+
+O projeto gera **7 arquivos de dados** que podem ser utilizados de forma integrada:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    PIPELINE DE DADOS CNES 360                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  arq2_tratado.csv ──────► Dados base de leitos (49.804 reg.)    │
+│         │                                                        │
+│         ├──► arq3_tipologias.csv      (Tipologias derivadas)    │
+│         ├──► arq5_taxonomia_leitos.csv (Classificação 3 níveis) │
+│         ├──► arq6_clusterizacao.csv   (Clusters de especialidade)│
+│         └──► arq7_analise_municipios.csv (Indicadores por mun.) │
+│                                                                  │
+│  arq4_perfil_estabelecimentos.csv ──► Perfil por hospital       │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Indicadores Principais
+
+### Por Município (`arq7_analise_municipios.csv`)
+
+| Indicador | Descrição | Uso na Gestão |
+|-----------|-----------|---------------|
+| `total_leitos` | Quantidade total de leitos | Dimensionar capacidade instalada |
+| `leitos_sus` / `pct_sus` | Leitos disponíveis ao SUS | Avaliar cobertura pública |
+| `tem_uti` / `tem_uci` | Presença de leitos intensivos | Identificar vazios de alta complexidade |
+| `hhi` | Índice de concentração | Avaliar risco de monopólio |
+| `classificacao_vazio` | COMPLETO/PARCIAL/BÁSICO | Priorizar investimentos |
+
+### Por Estabelecimento (`arq4_perfil_estabelecimentos.csv`)
+
+| Indicador | Descrição | Uso na Gestão |
+|-----------|-----------|---------------|
+| `porte` | Pequeno/Médio/Grande | Segmentar análises |
+| `natureza` | SUS/Misto/Privado | Avaliar mix público-privado |
+| `n_especialidades` | Diversidade de serviços | Identificar hospitais de referência |
+| `complexidade` | Nível de complexidade | Planejar hierarquização |
+
+---
+
+# Casos de Uso para Gestão
+
+## 1. Identificação de Vazios Assistenciais
+
+### Problema
+> "Quais municípios da minha região não possuem leitos de UTI e dependem de transferência para outros municípios?"
+
+### Solução com os Dados
+
+Utilize o arquivo `arq7_analise_municipios.csv` e filtre:
+
+```
+classificacao_vazio = "BASICO" ou "PARCIAL"
+tem_uti = FALSE
+```
+
+### Ação Gerencial
+
+- **Curto prazo:** Estabelecer fluxos de referência formalizados
+- **Médio prazo:** Avaliar viabilidade de habilitação de UTI em hospitais existentes
+- **Longo prazo:** Planejar construção de novos leitos
+
+### Indicador de Monitoramento
+
+```
+% de municípios com cobertura COMPLETA na região
+Meta: Aumentar de X% para Y% em 2 anos
+```
+
+---
+
+## 2. Avaliação de Risco por Concentração
+
+### Problema
+> "Quais municípios dependem de um único hospital e estão em risco caso esse estabelecimento feche ou reduza capacidade?"
+
+### Solução com os Dados
+
+Utilize o arquivo `arq7_analise_municipios.csv` e filtre:
+
+```
+hhi > 0.8 (alta concentração)
+total_leitos > 50 (municípios com demanda significativa)
+```
+
+### Ação Gerencial
+
+- **Imediato:** Mapear estabelecimentos críticos e criar planos de contingência
+- **Médio prazo:** Incentivar entrada de novos prestadores ou fortalecimento de consórcios
+- **Monitoramento:** Acompanhar indicadores de qualidade do prestador único
+
+### Indicador de Monitoramento
+
+```
+Número de municípios com HHI > 0.8
+Meta: Reduzir em 10% ao ano via diversificação
+```
+
+---
+
+## 3. Planejamento de Redes de Referência
+
+### Problema
+> "Como organizar a rede de referência para que municípios sem alta complexidade tenham acesso garantido?"
+
+### Solução com os Dados
+
+1. Identificar municípios-polo (classificação = COMPLETO, tem_uti = TRUE)
+2. Mapear municípios dependentes (classificação = BÁSICO ou PARCIAL)
+3. Calcular distância/tempo até o polo mais próximo
+
+### Ação Gerencial
+
+- Formalizar Pactuação Interfederativa (PPI)
+- Dimensionar transporte sanitário (SAMU, ambulâncias)
+- Estabelecer cotas de leitos por município de origem
+
+### Indicador de Monitoramento
+
+```
+Tempo médio de transferência para UTI
+Meta: < 2 horas para 90% dos casos
+```
+
+---
+
+## 4. Priorização de Investimentos
+
+### Problema
+> "Com orçamento limitado, onde devo investir primeiro para ter maior impacto na cobertura?"
+
+### Solução com os Dados
+
+Criar score de priorização combinando:
+
+| Fator | Peso | Fonte |
+|-------|------|-------|
+| População do município | 30% | IBGE |
+| Classificação de vazio | 25% | arq7 |
+| Distância até UTI mais próxima | 25% | Cálculo |
+| Concentração (HHI) | 20% | arq7 |
+
+### Ação Gerencial
+
+- Ranquear municípios por score de prioridade
+- Avaliar custo-benefício de cada intervenção
+- Submeter ao Conselho de Saúde para validação
+
+### Indicador de Monitoramento
+
+```
+Leitos de UTI habilitados por ano
+Meta: +X leitos/ano nas regiões prioritárias
+```
+
+---
+
+## 5. Monitoramento da Rede SUS
+
+### Problema
+> "Qual a proporção de leitos disponíveis ao SUS em cada região? Estamos perdendo capacidade para o setor privado?"
+
+### Solução com os Dados
+
+Utilize `arq7_analise_municipios.csv`:
+
+```
+Agrupar por região
+Calcular: sum(leitos_sus) / sum(total_leitos) * 100
+```
+
+### Ação Gerencial
+
+- Monitorar tendência histórica (comparar competências)
+- Identificar especialidades com maior "fuga" para privado
+- Avaliar política de credenciamento e valores de tabela SUS
+
+### Indicador de Monitoramento
+
+```
+% de leitos SUS por região
+Alerta: Queda > 5 pontos percentuais em 12 meses
+```
+
+---
+
+## 6. Análise de Especialidades Críticas
+
+### Problema
+> "Quais especialidades de leitos estão mais concentradas e representam gargalos no sistema?"
+
+### Solução com os Dados
+
+Utilize `arq6_clusterizacao_especialidades.csv` e `arq5_taxonomia_leitos.csv`:
+
+- Identificar especialidades com poucos estabelecimentos
+- Cruzar com demanda (internações por especialidade)
+- Mapear distribuição geográfica
+
+### Ação Gerencial
+
+- Priorizar habilitação de especialidades escassas
+- Avaliar formação de profissionais (residência médica)
+- Negociar contratos com prestadores especializados
+
+---
+
+# Dashboards Sugeridos
+
+## Painel Executivo (Secretário)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    PAINEL EXECUTIVO - LEITOS                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │ TOTAL LEITOS │  │  % SUS       │  │ MUNICÍPIOS   │           │
+│  │   535.133    │  │    72.3%     │  │ COM UTI: 847 │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
+│                                                                  │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │ CLASSIFICAÇÃO DE VAZIOS                                  │    │
+│  │ ████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │    │
+│  │ COMPLETO: 23%  PARCIAL: 31%  BÁSICO: 46%                │    │
+│  └─────────────────────────────────────────────────────────┘    │
+│                                                                  │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │ ALERTAS                                                  │    │
+│  │ ⚠️ 2.750 municípios sem UTI                              │    │
+│  │ ⚠️ 1.823 municípios com monopólio (HHI > 0.8)           │    │
+│  │ ⚠️ Região Norte: apenas 12% com cobertura completa      │    │
+│  └─────────────────────────────────────────────────────────┘    │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Painel Operacional (Regulação)
+
+| Componente | Dados | Atualização |
+|------------|-------|-------------|
+| Mapa de calor de leitos | arq7 + geolocalização | Mensal |
+| Lista de municípios críticos | arq7 filtrado | Mensal |
+| Ocupação por estabelecimento | Integrar com CNES-Leitos | Diária |
+| Fila de regulação | Sistema de regulação | Tempo real |
+
+---
+
+# Integração com Outros Sistemas
+
+## Fontes Complementares
+
+Para enriquecer as análises, recomenda-se integrar com:
+
+| Sistema | Dados | Aplicação |
+|---------|-------|-----------|
+| **SIH/SUS** | Internações realizadas | Calcular taxa de ocupação |
+| **IBGE** | População por município | Calcular leitos per capita |
+| **ANS** | Beneficiários de planos | Ajustar demanda SUS |
+| **CNES-Profissionais** | Equipes por estabelecimento | Avaliar capacidade operacional |
+| **SIM** | Óbitos por causa | Correlacionar com vazios |
+
+## Fluxo de Atualização
+
+```
+CNES (DataSUS)
+     │
+     ▼ Mensal
+ETL Pinti
+     │
+     ▼
+Datasets CNES 360
+     │
+     ├──► Tableau (Dashboards)
+     ├──► Power BI (Relatórios)
+     └──► API (Integração)
+```
+
+---
+
+# Boas Práticas
+
+## Ao Interpretar os Dados
+
+::: {.callout-warning}
+## Cuidados na Interpretação
+
+1. **Leitos ≠ Capacidade operacional** - Um leito pode estar inativo por falta de equipe
+2. **Dados são de cadastro** - Refletem estrutura, não ocupação em tempo real
+3. **Competência mensal** - Analisar tendência, não apenas foto atual
+4. **Contexto regional** - Comparar com pares, não com média nacional
+:::
+
+## Ao Tomar Decisões
+
+::: {.callout-tip}
+## Recomendações
+
+1. **Triangular fontes** - Combine CNES com SIH, regulação e campo
+2. **Envolver atores locais** - Gestores municipais conhecem realidade
+3. **Considerar sazonalidade** - Demanda varia ao longo do ano
+4. **Avaliar viabilidade** - Nem todo vazio justifica novo serviço
+5. **Monitorar resultados** - Acompanhar impacto das intervenções
+:::
+
+---
+
+# Glossário
+
+| Termo | Definição |
+|-------|-----------|
+| **CNES** | Cadastro Nacional de Estabelecimentos de Saúde |
+| **HHI** | Índice Herfindahl-Hirschman (concentração de mercado) |
+| **UTI** | Unidade de Terapia Intensiva |
+| **UCI** | Unidade de Cuidados Intermediários |
+| **Vazio Assistencial** | Região sem oferta de determinado serviço |
+| **PPI** | Programação Pactuada Integrada |
+| **Leito SUS** | Leito disponível para atendimento pelo Sistema Único de Saúde |
+
+---
+
+# Contato e Suporte
+
+Para dúvidas sobre os dados ou metodologia:
+
+| Canal | Informação |
+|-------|------------|
+| **Equipe** | Cieges - Brasil Estadual |
+| **Atualização** | Mensal (competência CNES) |
+| **Formato** | CSV (separador: ponto-e-vírgula) |
+| **Encoding** | UTF-8 |
+
+---
+
+**Elaborado por:** Cieges - Brasil Estadual  
+**Data:** 21/01/2026  
+**Versão:** 1.0

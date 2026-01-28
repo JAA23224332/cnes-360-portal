@@ -179,24 +179,6 @@ Identificação de vazios assistenciais e padrões de concentração nas 120 mac
 
 ---
 
-## Análise de Desertos de Leitos por Município
-
-Análise de vazios assistenciais e concentração da oferta em nível municipal.
-
-| Arquivo | Descrição |
-|---------|-----------|
-| [ANALISE_DESERTOS_LEITOS.html](ANALISE_DESERTOS_LEITOS.html) | Relatório HTML interativo |
-| [ANALISE_DESERTOS_LEITOS.qmd](ANALISE_DESERTOS_LEITOS.qmd) | Código fonte Quarto |
-
-**Indicadores calculados:**
-
-- Classificação de vazios: COMPLETO, PARCIAL, BÁSICO, DESERTO
-- Índice de Concentração (HHI)
-- Cobertura de UTI/UCI por município
-- Análise regional comparativa
-
----
-
 ## Guia de Tomada de Decisão
 
 Documento orientador para gestores sobre como utilizar os dados nas decisões estratégicas.
@@ -232,9 +214,7 @@ arq2_tratado.csv (3 MB)
         │
         ├──▶ arq5_taxonomia_leitos.csv (11 MB)
         │
-        ├──▶ arq6_clusterizacao_especialidades.csv (12 KB)
-        │
-        └──▶ arq7_analise_municipios.csv (293 KB)
+        └──▶ arq6_clusterizacao_especialidades.csv (12 KB)
 ```
 
 ## Dicionário de Arquivos
@@ -247,15 +227,8 @@ arq2_tratado.csv (3 MB)
 | `arq4_perfil_estabelecimentos.csv` | 9.072 | Perfil por estabelecimento (CNES) |
 | `arq5_taxonomia_leitos.csv` | 49.804 | Leitos com taxonomia hierárquica |
 | `arq6_clusterizacao_especialidades.csv` | 65 | Clusters por especialidade |
-| `arq7_analise_municipios.csv` | 3.597 | Indicadores por município |
 
 ---
-
-# 🖼️ Recursos Visuais
-
-## Fluxo ETL
-
-![Fluxo de Importação dos Dados de Leitos do CNES](fluxo_etl_cnes.png)
 
 ---
 

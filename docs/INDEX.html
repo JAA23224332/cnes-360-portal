@@ -39,8 +39,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="INDEX_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
-<script src="nav-header.js"></script>
-<link rel="stylesheet" href="custom-styles.css">
 </head>
 
 <body class="quarto-light">
@@ -66,17 +64,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#taxonomia-hierárquica" id="toc-taxonomia-hierárquica" class="nav-link" data-scroll-target="#taxonomia-hierárquica">Taxonomia Hierárquica</a></li>
   <li><a href="#clusterização-híbrida" id="toc-clusterização-híbrida" class="nav-link" data-scroll-target="#clusterização-híbrida">Clusterização Híbrida</a></li>
   <li><a href="#análise-de-concentração-e-desertos-por-macrorregião" id="toc-análise-de-concentração-e-desertos-por-macrorregião" class="nav-link" data-scroll-target="#análise-de-concentração-e-desertos-por-macrorregião">Análise de Concentração e Desertos por Macrorregião</a></li>
-  <li><a href="#análise-de-desertos-de-leitos-por-município" id="toc-análise-de-desertos-de-leitos-por-município" class="nav-link" data-scroll-target="#análise-de-desertos-de-leitos-por-município">Análise de Desertos de Leitos por Município</a></li>
   <li><a href="#guia-de-tomada-de-decisão" id="toc-guia-de-tomada-de-decisão" class="nav-link" data-scroll-target="#guia-de-tomada-de-decisão">Guia de Tomada de Decisão</a></li>
   </ul></li>
   <li><a href="#datasets-gerados" id="toc-datasets-gerados" class="nav-link" data-scroll-target="#datasets-gerados">📊 Datasets Gerados</a>
   <ul class="collapse">
   <li><a href="#pipeline-de-dados" id="toc-pipeline-de-dados" class="nav-link" data-scroll-target="#pipeline-de-dados">Pipeline de Dados</a></li>
   <li><a href="#dicionário-de-arquivos" id="toc-dicionário-de-arquivos" class="nav-link" data-scroll-target="#dicionário-de-arquivos">Dicionário de Arquivos</a></li>
-  </ul></li>
-  <li><a href="#recursos-visuais" id="toc-recursos-visuais" class="nav-link" data-scroll-target="#recursos-visuais">🖼️ Recursos Visuais</a>
-  <ul class="collapse">
-  <li><a href="#fluxo-etl" id="toc-fluxo-etl" class="nav-link" data-scroll-target="#fluxo-etl">Fluxo ETL</a></li>
   </ul></li>
   <li><a href="#próximos-passos" id="toc-próximos-passos" class="nav-link" data-scroll-target="#próximos-passos">📈 Próximos Passos</a>
   <ul class="collapse">
@@ -85,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#informações-do-projeto" id="toc-informações-do-projeto" class="nav-link" data-scroll-target="#informações-do-projeto">📋 Informações do Projeto</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="pdf/INDEX.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="INDEX.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
@@ -363,36 +356,6 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Dados integrados:</strong> CNES + IBGE (120 macrorregiões, 5.570 municípios)</p>
 <hr>
 </section>
-<section id="análise-de-desertos-de-leitos-por-município" class="level2">
-<h2 class="anchored" data-anchor-id="análise-de-desertos-de-leitos-por-município">Análise de Desertos de Leitos por Município</h2>
-<p>Análise de vazios assistenciais e concentração da oferta em nível municipal.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Arquivo</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="ANALISE_DESERTOS_LEITOS.html">ANALISE_DESERTOS_LEITOS.html</a></td>
-<td>Relatório HTML interativo</td>
-</tr>
-<tr class="even">
-<td><a href="ANALISE_DESERTOS_LEITOS.qmd">ANALISE_DESERTOS_LEITOS.qmd</a></td>
-<td>Código fonte Quarto</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Indicadores calculados:</strong></p>
-<ul>
-<li>Classificação de vazios: COMPLETO, PARCIAL, BÁSICO, DESERTO</li>
-<li>Índice de Concentração (HHI)</li>
-<li>Cobertura de UTI/UCI por município</li>
-<li>Análise regional comparativa</li>
-</ul>
-<hr>
-</section>
 <section id="guia-de-tomada-de-decisão" class="level2">
 <h2 class="anchored" data-anchor-id="guia-de-tomada-de-decisão">Guia de Tomada de Decisão</h2>
 <p>Documento orientador para gestores sobre como utilizar os dados nas decisões estratégicas.</p>
@@ -443,9 +406,7 @@ arq2_tratado.csv (3 MB)
         │
         ├──▶ arq5_taxonomia_leitos.csv (11 MB)
         │
-        ├──▶ arq6_clusterizacao_especialidades.csv (12 KB)
-        │
-        └──▶ arq7_analise_municipios.csv (293 KB)</code></pre>
+        └──▶ arq6_clusterizacao_especialidades.csv (12 KB)</code></pre>
 </section>
 <section id="dicionário-de-arquivos" class="level2">
 <h2 class="anchored" data-anchor-id="dicionário-de-arquivos">Dicionário de Arquivos</h2>
@@ -493,26 +454,9 @@ arq2_tratado.csv (3 MB)
 <td>65</td>
 <td>Clusters por especialidade</td>
 </tr>
-<tr class="odd">
-<td><code>arq7_analise_municipios.csv</code></td>
-<td>3.597</td>
-<td>Indicadores por município</td>
-</tr>
 </tbody>
 </table>
 <hr>
-</section>
-</section>
-<section id="recursos-visuais" class="level1">
-<h1>🖼️ Recursos Visuais</h1>
-<section id="fluxo-etl" class="level2">
-<h2 class="anchored" data-anchor-id="fluxo-etl">Fluxo ETL</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fluxo_etl_cnes.png" class="img-fluid figure-img"></p>
-<figcaption>Fluxo de Importação dos Dados de Leitos do CNES</figcaption>
-</figure>
-</div>
 <hr>
 </section>
 </section>
