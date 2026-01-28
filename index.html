@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cieges - Brasil Estadual">
+<meta name="dcterms.date" content="2026-01-21">
+
+<title>CNES 360 v2 - Índice do Projeto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="INDEX_files/libs/clipboard/clipboard.min.js"></script>
+<script src="INDEX_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="INDEX_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="INDEX_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="INDEX_files/libs/quarto-html/popper.min.js"></script>
+<script src="INDEX_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="INDEX_files/libs/quarto-html/anchor.min.js"></script>
+<link href="INDEX_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="INDEX_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="INDEX_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="INDEX_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="INDEX_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#visão-geral-do-projeto" id="toc-visão-geral-do-projeto" class="nav-link active" data-scroll-target="#visão-geral-do-projeto">🏥 Visão Geral do Projeto</a>
+  <ul class="collapse">
+  <li><a href="#documento-do-projeto-terra-sus" id="toc-documento-do-projeto-terra-sus" class="nav-link" data-scroll-target="#documento-do-projeto-terra-sus">Documento do Projeto Terra SUS</a></li>
+  <li><a href="#escopo-dos-dados" id="toc-escopo-dos-dados" class="nav-link" data-scroll-target="#escopo-dos-dados">Escopo dos Dados</a></li>
+  </ul></li>
+  <li><a href="#documentação-técnica" id="toc-documentação-técnica" class="nav-link" data-scroll-target="#documentação-técnica">📚 Documentação Técnica</a>
+  <ul class="collapse">
+  <li><a href="#nota-técnica-etl" id="toc-nota-técnica-etl" class="nav-link" data-scroll-target="#nota-técnica-etl">Nota Técnica ETL</a></li>
+  </ul></li>
+  <li><a href="#análises-e-metodologias" id="toc-análises-e-metodologias" class="nav-link" data-scroll-target="#análises-e-metodologias">🔬 Análises e Metodologias</a>
+  <ul class="collapse">
+  <li><a href="#tipologia-de-leitos" id="toc-tipologia-de-leitos" class="nav-link" data-scroll-target="#tipologia-de-leitos">Tipologia de Leitos</a></li>
+  <li><a href="#taxonomia-hierárquica" id="toc-taxonomia-hierárquica" class="nav-link" data-scroll-target="#taxonomia-hierárquica">Taxonomia Hierárquica</a></li>
+  <li><a href="#clusterização-híbrida" id="toc-clusterização-híbrida" class="nav-link" data-scroll-target="#clusterização-híbrida">Clusterização Híbrida</a></li>
+  <li><a href="#análise-de-concentração-e-desertos-por-macrorregião" id="toc-análise-de-concentração-e-desertos-por-macrorregião" class="nav-link" data-scroll-target="#análise-de-concentração-e-desertos-por-macrorregião">Análise de Concentração e Desertos por Macrorregião</a></li>
+  <li><a href="#análise-de-desertos-de-leitos-por-município" id="toc-análise-de-desertos-de-leitos-por-município" class="nav-link" data-scroll-target="#análise-de-desertos-de-leitos-por-município">Análise de Desertos de Leitos por Município</a></li>
+  <li><a href="#guia-de-tomada-de-decisão" id="toc-guia-de-tomada-de-decisão" class="nav-link" data-scroll-target="#guia-de-tomada-de-decisão">Guia de Tomada de Decisão</a></li>
+  </ul></li>
+  <li><a href="#datasets-gerados" id="toc-datasets-gerados" class="nav-link" data-scroll-target="#datasets-gerados">📊 Datasets Gerados</a>
+  <ul class="collapse">
+  <li><a href="#pipeline-de-dados" id="toc-pipeline-de-dados" class="nav-link" data-scroll-target="#pipeline-de-dados">Pipeline de Dados</a></li>
+  <li><a href="#dicionário-de-arquivos" id="toc-dicionário-de-arquivos" class="nav-link" data-scroll-target="#dicionário-de-arquivos">Dicionário de Arquivos</a></li>
+  </ul></li>
+  <li><a href="#recursos-visuais" id="toc-recursos-visuais" class="nav-link" data-scroll-target="#recursos-visuais">🖼️ Recursos Visuais</a>
+  <ul class="collapse">
+  <li><a href="#fluxo-etl" id="toc-fluxo-etl" class="nav-link" data-scroll-target="#fluxo-etl">Fluxo ETL</a></li>
+  </ul></li>
+  <li><a href="#próximos-passos" id="toc-próximos-passos" class="nav-link" data-scroll-target="#próximos-passos">📈 Próximos Passos</a>
+  <ul class="collapse">
+  <li><a href="#análises-planejadas" id="toc-análises-planejadas" class="nav-link" data-scroll-target="#análises-planejadas">Análises Planejadas</a></li>
+  <li><a href="#evoluções-sugeridas" id="toc-evoluções-sugeridas" class="nav-link" data-scroll-target="#evoluções-sugeridas">Evoluções Sugeridas</a></li>
+  </ul></li>
+  <li><a href="#informações-do-projeto" id="toc-informações-do-projeto" class="nav-link" data-scroll-target="#informações-do-projeto">📋 Informações do Projeto</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="INDEX.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CNES 360 v2 - Índice do Projeto</h1>
+<p class="subtitle lead">Inteligência de Dados de Leitos Hospitalares do Brasil</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cieges - Brasil Estadual </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="visão-geral-do-projeto" class="level1">
+<h1>🏥 Visão Geral do Projeto</h1>
+<p>O <strong>CNES 360 v2</strong> é um projeto de inteligência de dados em saúde que transforma dados brutos de leitos hospitalares do CNES (Cadastro Nacional de Estabelecimentos de Saúde) em informação estratégica para gestão e planejamento.</p>
+<section id="documento-do-projeto-terra-sus" class="level2">
+<h2 class="anchored" data-anchor-id="documento-do-projeto-terra-sus">Documento do Projeto Terra SUS</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="PROJETO_TERRA_SUS.html">PROJETO_TERRA_SUS.html</a></td>
+<td>Documento completo do projeto (HTML)</td>
+</tr>
+<tr class="even">
+<td><a href="PROJETO_TERRA_SUS.pdf">PROJETO_TERRA_SUS.pdf</a></td>
+<td>Versão PDF para impressão</td>
+</tr>
+<tr class="odd">
+<td><a href="PROJETO_TERRA_SUS.qmd">PROJETO_TERRA_SUS.qmd</a></td>
+<td>Código fonte Quarto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conteúdo:</strong> Introdução, objetivos (geral e específicos), metodologia em 4 etapas, especificações do produto, resultados alcançados, cronograma, orçamento, equipe e referências.</p>
+</section>
+<section id="escopo-dos-dados" class="level2">
+<h2 class="anchored" data-anchor-id="escopo-dos-dados">Escopo dos Dados</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Competência</strong></td>
+<td>Junho/2025 (202506)</td>
+</tr>
+<tr class="even">
+<td><strong>Total de Leitos</strong></td>
+<td>535.133</td>
+</tr>
+<tr class="odd">
+<td><strong>Estabelecimentos</strong></td>
+<td>9.072</td>
+</tr>
+<tr class="even">
+<td><strong>Municípios</strong></td>
+<td>3.597</td>
+</tr>
+<tr class="odd">
+<td><strong>Especialidades</strong></td>
+<td>65</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="documentação-técnica" class="level1">
+<h1>📚 Documentação Técnica</h1>
+<section id="nota-técnica-etl" class="level2">
+<h2 class="anchored" data-anchor-id="nota-técnica-etl">Nota Técnica ETL</h2>
+<p>Documento que descreve o processo de extração, transformação e carga dos dados do CNES.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="NOTA_TECNICA_ETL_CNES_LEITOS.html">NOTA_TECNICA_ETL_CNES_LEITOS.html</a></td>
+<td>Relatório HTML interativo</td>
+</tr>
+<tr class="even">
+<td><a href="NOTA_TECNICA_ETL_CNES_LEITOS.pdf">NOTA_TECNICA_ETL_CNES_LEITOS.pdf</a></td>
+<td>Versão PDF para impressão</td>
+</tr>
+<tr class="odd">
+<td><a href="NOTA_TECNICA_ETL_CNES_LEITOS.md">NOTA_TECNICA_ETL_CNES_LEITOS.md</a></td>
+<td>Versão Markdown</td>
+</tr>
+<tr class="even">
+<td><a href="NOTA_TECNICA_ETL_CNES_LEITOS.qmd">NOTA_TECNICA_ETL_CNES_LEITOS.qmd</a></td>
+<td>Código fonte Quarto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conteúdo:</strong></p>
+<ul>
+<li>Comparativo arquivo original vs tratado</li>
+<li>Transformações realizadas (filtros, remoções, enriquecimentos)</li>
+<li>Validação de totais</li>
+<li>Fluxo de processamento</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="análises-e-metodologias" class="level1">
+<h1>🔬 Análises e Metodologias</h1>
+<section id="tipologia-de-leitos" class="level2">
+<h2 class="anchored" data-anchor-id="tipologia-de-leitos">Tipologia de Leitos</h2>
+<p>Criação de tipologias derivadas usando quatro abordagens complementares.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="TIPOLOGIA_LEITOS_CNES.html">TIPOLOGIA_LEITOS_CNES.html</a></td>
+<td>Relatório HTML interativo</td>
+</tr>
+<tr class="even">
+<td><a href="TIPOLOGIA_LEITOS_CNES.qmd">TIPOLOGIA_LEITOS_CNES.qmd</a></td>
+<td>Código fonte Quarto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipologias criadas:</strong></p>
+<ol type="1">
+<li><strong>Hierárquica</strong> - Tipo → Especialidade (7 tipos, 65 especialidades)</li>
+<li><strong>Por Complexidade</strong> - UTI, UCI, Cirúrgico, Clínico</li>
+<li><strong>Por Público-Alvo</strong> - Adulto, Pediátrico, Neonatal, Obstétrico</li>
+<li><strong>Perfil de Estabelecimento</strong> - Porte × Natureza (SUS/Privado)</li>
+</ol>
+<hr>
+</section>
+<section id="taxonomia-hierárquica" class="level2">
+<h2 class="anchored" data-anchor-id="taxonomia-hierárquica">Taxonomia Hierárquica</h2>
+<p>Classificação determinística em 3 níveis baseada em normativas do Ministério da Saúde.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="TAXONOMIA_LEITOS_CNES.html">TAXONOMIA_LEITOS_CNES.html</a></td>
+<td>Relatório HTML interativo</td>
+</tr>
+<tr class="even">
+<td><a href="TAXONOMIA_LEITOS_CNES.qmd">TAXONOMIA_LEITOS_CNES.qmd</a></td>
+<td>Código fonte Quarto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Estrutura:</strong></p>
+<pre><code>NÍVEL 1: Intensidade do Cuidado (5 categorias)
+├── NÍVEL 2: Público-Alvo (4 categorias)
+│   └── NÍVEL 3: Grupo de Especialidade (21 grupos)</code></pre>
+<p><strong>Fundamentação normativa:</strong></p>
+<ul>
+<li>RDC ANVISA nº 7/2010</li>
+<li>Portaria GM/MS nº 3.432/1998</li>
+<li>Portaria GM/MS nº 930/2012</li>
+<li>Portaria GM/MS nº 148/2012</li>
+<li>Portaria GM/MS nº 2.809/2012</li>
+</ul>
+<hr>
+</section>
+<section id="clusterização-híbrida" class="level2">
+<h2 class="anchored" data-anchor-id="clusterização-híbrida">Clusterização Híbrida</h2>
+<p>Metodologia data-driven com validação clínica para identificar agrupamentos naturais de especialidades.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="CLUSTERIZACAO_LEITOS_CNES.html">CLUSTERIZACAO_LEITOS_CNES.html</a></td>
+<td>Relatório HTML interativo</td>
+</tr>
+<tr class="even">
+<td><a href="CLUSTERIZACAO_LEITOS_CNES.qmd">CLUSTERIZACAO_LEITOS_CNES.qmd</a></td>
+<td>Código fonte Quarto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Metodologia:</strong></p>
+<ul>
+<li>Engenharia de 12 features por especialidade</li>
+<li>Normalização StandardScaler</li>
+<li>Clusterização Hierárquica (Ward)</li>
+<li>Validação: Silhouette, Calinski-Harabasz, Davies-Bouldin</li>
+<li>Rotulação clínica dos clusters</li>
+</ul>
+<p><strong>Resultado:</strong> 8 clusters identificados com interpretação clínica.</p>
+<hr>
+</section>
+<section id="análise-de-concentração-e-desertos-por-macrorregião" class="level2">
+<h2 class="anchored" data-anchor-id="análise-de-concentração-e-desertos-por-macrorregião">Análise de Concentração e Desertos por Macrorregião</h2>
+<p>Identificação de vazios assistenciais e padrões de concentração nas 120 macrorregiões de saúde do Brasil.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.html">ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.html</a></td>
+<td>Relatório HTML interativo</td>
+</tr>
+<tr class="even">
+<td><a href="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.pdf">ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.pdf</a></td>
+<td>Versão PDF para impressão</td>
+</tr>
+<tr class="odd">
+<td><a href="ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.qmd">ANALISE_CONCENTRACAO_DESERTOS_MACROREGIAO.qmd</a></td>
+<td>Código fonte Quarto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análises realizadas:</strong></p>
+<ul>
+<li><strong>Índice HHI</strong> - Concentração de leitos por macrorregião</li>
+<li><strong>Desertos Assistenciais</strong> - Municípios sem leitos ou com baixa disponibilidade</li>
+<li><strong>Cobertura UTI</strong> - Distribuição de leitos intensivos</li>
+<li><strong>Índice de Gini</strong> - Desigualdade na distribuição</li>
+<li><strong>Ranking de Desempenho</strong> - Índice composto assistencial</li>
+</ul>
+<p><strong>Dados integrados:</strong> CNES + IBGE (120 macrorregiões, 5.570 municípios)</p>
+<hr>
+</section>
+<section id="análise-de-desertos-de-leitos-por-município" class="level2">
+<h2 class="anchored" data-anchor-id="análise-de-desertos-de-leitos-por-município">Análise de Desertos de Leitos por Município</h2>
+<p>Análise de vazios assistenciais e concentração da oferta em nível municipal.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="ANALISE_DESERTOS_LEITOS.html">ANALISE_DESERTOS_LEITOS.html</a></td>
+<td>Relatório HTML interativo</td>
+</tr>
+<tr class="even">
+<td><a href="ANALISE_DESERTOS_LEITOS.qmd">ANALISE_DESERTOS_LEITOS.qmd</a></td>
+<td>Código fonte Quarto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indicadores calculados:</strong></p>
+<ul>
+<li>Classificação de vazios: COMPLETO, PARCIAL, BÁSICO, DESERTO</li>
+<li>Índice de Concentração (HHI)</li>
+<li>Cobertura de UTI/UCI por município</li>
+<li>Análise regional comparativa</li>
+</ul>
+<hr>
+</section>
+<section id="guia-de-tomada-de-decisão" class="level2">
+<h2 class="anchored" data-anchor-id="guia-de-tomada-de-decisão">Guia de Tomada de Decisão</h2>
+<p>Documento orientador para gestores sobre como utilizar os dados nas decisões estratégicas.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="GUIA_TOMADA_DECISAO.html">GUIA_TOMADA_DECISAO.html</a></td>
+<td>Relatório HTML interativo</td>
+</tr>
+<tr class="even">
+<td><a href="GUIA_TOMADA_DECISAO.pdf">GUIA_TOMADA_DECISAO.pdf</a></td>
+<td>Versão PDF para impressão</td>
+</tr>
+<tr class="odd">
+<td><a href="GUIA_TOMADA_DECISAO.qmd">GUIA_TOMADA_DECISAO.qmd</a></td>
+<td>Código fonte Quarto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conteúdo:</strong></p>
+<ul>
+<li>6 casos de uso para gestão (vazios, concentração, redes, investimentos)</li>
+<li>Indicadores de monitoramento sugeridos</li>
+<li>Dashboards recomendados</li>
+<li>Boas práticas de interpretação</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="datasets-gerados" class="level1">
+<h1>📊 Datasets Gerados</h1>
+<section id="pipeline-de-dados" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-de-dados">Pipeline de Dados</h2>
+<pre><code>arq1_original.csv (30 MB)
+        │
+        ▼ ETL
+arq2_tratado.csv (3 MB)
+        │
+        ├──▶ arq3_tipologias.csv (6 MB)
+        │
+        ├──▶ arq4_perfil_estabelecimentos.csv (463 KB)
+        │
+        ├──▶ arq5_taxonomia_leitos.csv (11 MB)
+        │
+        ├──▶ arq6_clusterizacao_especialidades.csv (12 KB)
+        │
+        └──▶ arq7_analise_municipios.csv (293 KB)</code></pre>
+</section>
+<section id="dicionário-de-arquivos" class="level2">
+<h2 class="anchored" data-anchor-id="dicionário-de-arquivos">Dicionário de Arquivos</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 35%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Arquivo</th>
+<th>Registros</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>arq1_original.csv</code></td>
+<td>309.610</td>
+<td>Dados brutos consolidados (6 meses)</td>
+</tr>
+<tr class="even">
+<td><code>arq2_tratado.csv</code></td>
+<td>49.804</td>
+<td>Dados limpos e enriquecidos (jun/2025)</td>
+</tr>
+<tr class="odd">
+<td><code>arq3_tipologias.csv</code></td>
+<td>49.804</td>
+<td>Leitos com tipologias derivadas</td>
+</tr>
+<tr class="even">
+<td><code>arq4_perfil_estabelecimentos.csv</code></td>
+<td>9.072</td>
+<td>Perfil por estabelecimento (CNES)</td>
+</tr>
+<tr class="odd">
+<td><code>arq5_taxonomia_leitos.csv</code></td>
+<td>49.804</td>
+<td>Leitos com taxonomia hierárquica</td>
+</tr>
+<tr class="even">
+<td><code>arq6_clusterizacao_especialidades.csv</code></td>
+<td>65</td>
+<td>Clusters por especialidade</td>
+</tr>
+<tr class="odd">
+<td><code>arq7_analise_municipios.csv</code></td>
+<td>3.597</td>
+<td>Indicadores por município</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="recursos-visuais" class="level1">
+<h1>🖼️ Recursos Visuais</h1>
+<section id="fluxo-etl" class="level2">
+<h2 class="anchored" data-anchor-id="fluxo-etl">Fluxo ETL</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fluxo_etl_cnes.png" class="img-fluid figure-img"></p>
+<figcaption>Fluxo de Importação dos Dados de Leitos do CNES</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="próximos-passos" class="level1">
+<h1>📈 Próximos Passos</h1>
+<section id="análises-planejadas" class="level2">
+<h2 class="anchored" data-anchor-id="análises-planejadas">Análises Planejadas</h2>
+<ol type="1">
+<li><strong>Análise SUS vs Privado por Especialidade</strong> - Identificar especialidades com maior dependência do SUS</li>
+<li><strong>Análise Porte vs Diversidade</strong> - Relação entre tamanho do hospital e variedade de serviços</li>
+</ol>
+</section>
+<section id="evoluções-sugeridas" class="level2">
+<h2 class="anchored" data-anchor-id="evoluções-sugeridas">Evoluções Sugeridas</h2>
+<ol type="1">
+<li><strong>Índice de Vulnerabilidade de Leitos (IVL)</strong> - Indicador composto de vazios assistenciais</li>
+<li><strong>Modelo Preditivo de Demanda</strong> - Projeção de necessidade de leitos</li>
+<li><strong>API + Dashboard</strong> - Democratização do acesso aos dados</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="informações-do-projeto" class="level1">
+<h1>📋 Informações do Projeto</h1>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Projeto</strong></td>
+<td>CNES 360 v2</td>
+</tr>
+<tr class="even">
+<td><strong>Autor</strong></td>
+<td>Cieges - Brasil Estadual</td>
+</tr>
+<tr class="odd">
+<td><strong>Data</strong></td>
+<td>21/01/2026</td>
+</tr>
+<tr class="even">
+<td><strong>Fonte</strong></td>
+<td>CNES - Cadastro Nacional de Estabelecimentos de Saúde</td>
+</tr>
+<tr class="odd">
+<td><strong>Competência</strong></td>
+<td>202506 (Junho/2025)</td>
+</tr>
+<tr class="even">
+<td><strong>Ferramenta ETL</strong></td>
+<td>Pinti</td>
+</tr>
+<tr class="odd">
+<td><strong>Destino</strong></td>
+<td>Tableau (LT_BR_2501-2510.hyper)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><em>Documento gerado automaticamente. Última atualização: 21/01/2026</em></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
