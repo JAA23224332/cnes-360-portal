@@ -1,10 +1,5 @@
 {
   "version": 2,
   "name": "cnes-360-portal",
-  "public": true,
-  "rewrites": [
-    { "source": "/", "destination": "/docs/index.html" },
-    { "source": "/portal", "destination": "/docs/portal_equipe.html" },
-    { "source": "/indice", "destination": "/docs/INDEX.html" }
-  ]
+  "outputDirectory": "docs"
 }
