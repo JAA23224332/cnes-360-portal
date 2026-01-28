@@ -38,7 +38,7 @@
             <div class="cnes-nav-brand">
                 <a href="${prefix}index.html">
                     <i class="fas fa-hospital"></i>
-                    <span>CNES 360 v2</span>
+                    <span>CNES 360 - Terra SUS</span>
                 </a>
             </div>
             <div class="cnes-nav-links">
